@@ -2,14 +2,18 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { ArrowSmallRightIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowSmallRightIcon,
+  ExclamationCircleIcon,
+} from "@heroicons/react/24/outline";
 
 import Image from "next/image";
 import { api } from "../utils/api";
 import { useState } from "react";
+import { DotLoader, Loader } from "../components/Loader";
 
 const Home: NextPage = () => {
-  // const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  const promptMutation = api.ai.prompt.useMutation();
 
   const [prompt, setPrompt] = useState(
     "Write a description for a website experimenting with the OpenAI API"
@@ -18,6 +22,10 @@ const Home: NextPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submit");
+
+    promptMutation.mutate({
+      text: e.target.prompt.value,
+    });
   };
 
   return (
@@ -37,13 +45,13 @@ const Home: NextPage = () => {
             className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 z-10 flex h-full flex-col items-center">
-            <h1 className="px-4 pt-16 text-5xl font-extrabold tracking-tight text-slate-800 sm:text-[5rem]">
+            <h1 className="px-4 pt-16 text-5xl font-extrabold tracking-tight text-slate-900 sm:text-[5rem]">
               OpenAI
               <br />
               Experiments
             </h1>
             <form onSubmit={handleSubmit} className="">
-              <div className="mt-12 flex h-10 gap-1 rounded-full bg-white pl-6 pr-1 align-middle sm:h-14">
+              <div className="mt-12 flex h-10 gap-1 rounded-full bg-white pl-6 pr-1 align-middle shadow-md sm:h-14">
                 <input
                   className="text-md sm:text-md w-[400px] border-0 bg-transparent  outline-none ring-0 sm:w-[550px]"
                   placeholder="Prompt goes here..."
@@ -82,12 +90,31 @@ const Home: NextPage = () => {
               </button>
             </form>
 
+            {promptMutation.isLoading && <Loader />}
+            {promptMutation.data && promptMutation.data.error && (
+              <div className=" mt-8 flex w-[400px] flex-row place-items-center items-center rounded-lg bg-white shadow-lg sm:w-[550px]">
+                <ExclamationCircleIcon className="my-4 mr-4 ml-4 h-6 w-6 text-red-500" />
+                <p className="h-6">
+                  {promptMutation.data.error.message ||
+                    JSON.stringify(promptMutation.data.error)}
+                </p>
+              </div>
+            )}
+            {!promptMutation.isLoading &&
+              promptMutation.data &&
+              !promptMutation.data.error && (
+                <div className="prose prose-slate mt-8 w-[400px] rounded-lg bg-white shadow-lg sm:w-[550px]">
+                  <p className=" p-4">{promptMutation.data.result}</p>
+                </div>
+              )}
+
+            <div className="grow" />
+
             {/* <div>
               <Link href="/prompting">
                 <p>1. Prompting</p>
               </Link>
             </div> */}
-            <div className="grow" />
           </div>
         </div>
       </main>
