@@ -4,6 +4,11 @@
       "extends": [
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
+      "rules": {
+        "@typescript-eslint/no-unsafe-member-access": "warn",
+        "@typescript-eslint/no-unsafe-assignment": "warn",
+        "@typescript-eslint/restrict-template-expressions": "warn"
+      },
       "files": ["*.ts", "*.tsx"],
       "parserOptions": {
         "project": "tsconfig.json"

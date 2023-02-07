@@ -1,8 +1,4 @@
-import { SVGProps } from "react";
-
-{
-  /* <!-- By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL --> */
-}
+/* <!-- By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL --> */
 export function Loader() {
   return (
     <div className="grid h-[80vh] w-full place-items-center">

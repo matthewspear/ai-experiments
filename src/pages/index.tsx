@@ -9,8 +9,8 @@ import {
 
 import Image from "next/image";
 import { api } from "../utils/api";
-import { useState } from "react";
-import { DotLoader, Loader } from "../components/Loader";
+import { FormEvent, useState } from "react";
+import { Loader } from "../components/Loader";
 
 const Home: NextPage = () => {
   const promptMutation = api.ai.prompt.useMutation();
@@ -19,12 +19,12 @@ const Home: NextPage = () => {
     "Write a description for a website experimenting with the OpenAI API"
   );
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submit");
+    console.log("Submit");
 
     promptMutation.mutate({
-      text: e.target.prompt.value,
+      text: prompt,
     });
   };
 
@@ -95,7 +95,7 @@ const Home: NextPage = () => {
               <div className=" mt-8 flex w-[400px] flex-row place-items-center items-center rounded-lg bg-white shadow-lg sm:w-[550px]">
                 <ExclamationCircleIcon className="my-4 mr-4 ml-4 h-6 w-6 text-red-500" />
                 <p className="h-6">
-                  {promptMutation.data.error.message ||
+                  {promptMutation.data.error?.message ||
                     JSON.stringify(promptMutation.data.error)}
                 </p>
               </div>
