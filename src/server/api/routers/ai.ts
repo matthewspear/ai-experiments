@@ -34,13 +34,14 @@ export const aiRouter = createTRPCRouter({
           },
         };
       }
+      console.log("Input", query);
 
       try {
         const completion = await openai.createCompletion({
           model: "text-davinci-003",
           prompt: generatePrompt(query),
           temperature: 0.6,
-          max_tokens: 200,
+          max_tokens: 265,
         });
 
         const result = completion.data.choices[0]?.text;

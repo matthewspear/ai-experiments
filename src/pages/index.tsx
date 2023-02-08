@@ -109,7 +109,7 @@ const Home: NextPage = () => {
               )}
 
             <div className="grow" />
-
+            <Component />
             {/* <div>
               <Link href="/prompting">
                 <p>1. Prompting</p>
@@ -121,5 +121,28 @@ const Home: NextPage = () => {
     </>
   );
 };
+
+export function Component() {
+  const { data: session } = useSession();
+  if (session) {
+    return (
+      <>
+        <pre className=" my-4 rounded-lg bg-white/30 p-4 backdrop-blur-md">
+          {JSON.stringify(session, null, 2)}
+        </pre>
+        Signed in as {session.user.email} <br />
+        <button className="pb-4" onClick={() => void signOut()}>
+          Sign out
+        </button>
+      </>
+    );
+  }
+  return (
+    <>
+      Not signed in <br />
+      <button onClick={() => void signIn()}>Sign in</button>
+    </>
+  );
+}
 
 export default Home;
