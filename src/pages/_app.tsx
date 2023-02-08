@@ -17,7 +17,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
   const router = useRouter();
   useEffect(() => {
     // Initialize Fathom when the app loads
-    Fathom.load(env.FATHOM_SITE_ID, {
+    Fathom.load(env.NEXT_PUBLIC_FATHOM_SITE_ID, {
       includedDomains: ["openai-experiment.vercel.app"],
     });
 
