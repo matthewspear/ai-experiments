@@ -1,7 +1,7 @@
 /* <!-- By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL --> */
 export function Loader() {
   return (
-    <div className="grid h-[80vh] w-full place-items-center">
+    <div className="grid h-[300px] w-full place-items-center sm:w-[700px]">
       <svg
         className="h-12 w-12 text-slate-300 opacity-50"
         viewBox="0 0 120 30"

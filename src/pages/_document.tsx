@@ -3,7 +3,7 @@ import Document, {
   Head,
   Main,
   NextScript,
-  DocumentContext,
+  type DocumentContext,
 } from "next/document";
 
 class MyDocument extends Document {
@@ -14,7 +14,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html className="h-full scroll-smooth bg-white antialiased" lang="en">
+      <Html className="h-full scroll-smooth bg-slate-100 antialiased" lang="en">
         <Head>
           <link rel="icon" href="/favicon.ico" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
