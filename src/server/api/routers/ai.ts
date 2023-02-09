@@ -43,6 +43,8 @@ export const aiRouter = createTRPCRouter({
       }
       console.log("Input", query);
       const fullPrompt = generatePrompt(query);
+      let output = "";
+
       try {
         const completion = await openai.createCompletion({
           model: "text-davinci-003",
@@ -50,24 +52,10 @@ export const aiRouter = createTRPCRouter({
           temperature: input.temperature ?? 0.6,
           max_tokens: 265,
         });
-
         const result = completion.data.choices[0]?.text;
-
         console.log("Result", result);
         if (result) {
-          await ctx.prisma.result.create({
-            data: {
-              task: input.task ?? "",
-              model: "text-davinci-003",
-              temperature: input.temperature ?? 0.6,
-              userPrompt: input.text,
-              fullPrompt: fullPrompt,
-              result: result,
-              userId: ctx.session?.user.id,
-            },
-          });
-
-          return { result: result };
+          output = result;
         } else {
           return {
             error: {
@@ -75,9 +63,26 @@ export const aiRouter = createTRPCRouter({
             },
           };
         }
+
+        await ctx.prisma.result.create({
+          data: {
+            task: input.task ?? "",
+            model: "text-davinci-003",
+            temperature: input.temperature ?? 0.6,
+            userPrompt: input.text,
+            fullPrompt: fullPrompt,
+            result: output,
+            userId: ctx.session?.user.id,
+          },
+        });
+
+        return {
+          result: output,
+        };
       } catch (error: any) {
         // Consider adjusting the error handling logic for your use case
         if (error.response) {
+          console.log(JSON.stringify(error, null, 2));
           console.error(error.response.status, error.response.data);
           return {
             error: error,
