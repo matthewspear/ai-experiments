@@ -25,7 +25,7 @@ function ResourceItem({
 const Resources: NextPage = () => {
   return (
     <Layout title="Resources">
-      <div className="flex w-1/2 flex-col gap-4">
+      <div className="flex flex-col gap-4 sm:w-1/2">
         <ResourceItem
           title="OpenAI Documentation"
           description="Guide to getting started with the OpenAI API."

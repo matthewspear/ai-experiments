@@ -12,6 +12,7 @@ import {
   ArrowsRightLeftIcon,
   Bars3Icon,
   BookmarkIcon,
+  GlobeEuropeAfricaIcon,
   HomeIcon,
   InboxIcon,
   InformationCircleIcon,
@@ -51,6 +52,11 @@ const navigation = [
     name: "URL Generator",
     href: "/url-generator",
     icon: LinkIcon,
+  },
+  {
+    name: "Holiday Destination",
+    href: "/holiday-destination",
+    icon: GlobeEuropeAfricaIcon,
   },
   {
     name: "Summary",

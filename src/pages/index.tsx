@@ -5,9 +5,59 @@ import {
 } from "@heroicons/react/24/outline";
 
 import { api } from "../utils/api";
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useState, Dispatch, SetStateAction } from "react";
 import { Loader } from "../components/Loader";
 import Layout from "../components/Layout";
+
+function PromptInput({
+  prompt,
+  setPrompt,
+}: {
+  prompt: string;
+  setPrompt: Dispatch<SetStateAction<string>>;
+}) {
+  return (
+    <>
+      <div className="my-auto mt-12 flex h-12 w-full gap-1 rounded-full bg-white pl-6 pr-1 align-middle shadow-md sm:h-14 sm:w-[700px]">
+        <input
+          className="sm:text-md w-full border-0 bg-transparent text-sm outline-none ring-0"
+          placeholder="Prompt goes here..."
+          name="prompt"
+          id="prompt"
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+        />
+        <button
+          className="my-1 hidden rounded-full bg-gradient-to-b from-[#797EEE] to-[#5761EB] px-3 hover:opacity-90 sm:block sm:px-6"
+          type="submit"
+          name="try"
+          id="try"
+        >
+          <div className="flex items-center gap-1">
+            <p className="font-medium text-white sm:text-lg sm:tracking-wide">
+              Try
+            </p>
+            <ArrowSmallRightIcon className="h-6 w-6 text-white" />
+          </div>
+        </button>
+      </div>
+      <button
+        className="mt-2 grid h-10 w-full place-items-center rounded-full bg-gradient-to-b from-[#797EEE] to-[#5761EB] px-3 hover:opacity-90 sm:hidden sm:px-6 "
+        type="submit"
+        value="Subscribe"
+        name="member[subscribe]"
+        id="member_submit"
+      >
+        <div className="flex items-center gap-1">
+          <p className="font-medium text-white sm:text-lg sm:tracking-wide">
+            Try
+          </p>
+          <ArrowSmallRightIcon className="h-6 w-6 text-white" />
+        </div>
+      </button>
+    </>
+  );
+}
 
 const Home: NextPage = () => {
   const promptMutation = api.ai.prompt.useMutation();
@@ -28,49 +78,13 @@ const Home: NextPage = () => {
   return (
     <Layout>
       <div className="flex w-full flex-col">
-        <h1 className="px-4 pt-16 text-5xl font-extrabold tracking-tight text-slate-900 sm:text-[5rem]">
+        <h1 className="px-4 text-5xl font-extrabold tracking-tight text-slate-900 sm:pt-16 sm:text-[5rem]">
           OpenAI
           <br />
           Experiments
         </h1>
         <form onSubmit={handleSubmit} className="">
-          <div className="my-auto mt-12 flex h-12 w-full gap-1 rounded-full bg-white pl-6 pr-1 align-middle shadow-md sm:h-14 sm:w-[700px]">
-            <input
-              className="sm:text-md w-full border-0 bg-transparent text-sm outline-none ring-0"
-              placeholder="Prompt goes here..."
-              name="prompt"
-              id="prompt"
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-            />
-            <button
-              className="my-1 hidden rounded-full bg-gradient-to-b from-[#797EEE] to-[#5761EB] px-3 hover:opacity-90 sm:block sm:px-6"
-              type="submit"
-              name="try"
-              id="try"
-            >
-              <div className="flex items-center gap-1">
-                <p className="font-medium text-white sm:text-lg sm:tracking-wide">
-                  Try
-                </p>
-                <ArrowSmallRightIcon className="h-6 w-6 text-white" />
-              </div>
-            </button>
-          </div>
-          <button
-            className="mt-2 grid h-10 w-full place-items-center rounded-full bg-gradient-to-b from-[#797EEE] to-[#5761EB] px-3 hover:opacity-90 sm:hidden sm:px-6 "
-            type="submit"
-            value="Subscribe"
-            name="member[subscribe]"
-            id="member_submit"
-          >
-            <div className="flex items-center gap-1">
-              <p className="font-medium text-white sm:text-lg sm:tracking-wide">
-                Try
-              </p>
-              <ArrowSmallRightIcon className="h-6 w-6 text-white" />
-            </div>
-          </button>
+          <PromptInput prompt={prompt} setPrompt={setPrompt} />
         </form>
 
         <div className="flex h-full flex-col">

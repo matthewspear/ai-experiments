@@ -49,6 +49,21 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    results       Result[]
+}
+
+model Result {
+    id          String   @id @default(cuid())
+    createdAt   DateTime @default(now())
+    task        String
+    model       String
+    temperature Float
+    userPrompt  String   @db.Text
+    fullPrompt  String   @db.Text
+    result      String   @db.Text
+
+    user   User?   @relation(fields: [userId], references: [id])
+    userId String?
 }
 
 model VerificationToken {

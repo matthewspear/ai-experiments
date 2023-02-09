@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 import { Configuration, OpenAIApi } from "openai";
+import { prisma } from "@prisma/client";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -22,8 +23,14 @@ function checkAPIKey() {
 
 export const aiRouter = createTRPCRouter({
   prompt: publicProcedure
-    .input(z.object({ text: z.string() }))
-    .mutation(async ({ input }) => {
+    .input(
+      z.object({
+        text: z.string(),
+        temperature: z.number().optional(),
+        task: z.string().optional(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
       checkAPIKey();
 
       const query = input.text || "";
@@ -35,12 +42,12 @@ export const aiRouter = createTRPCRouter({
         };
       }
       console.log("Input", query);
-
+      const fullPrompt = generatePrompt(query);
       try {
         const completion = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: generatePrompt(query),
-          temperature: 0.6,
+          prompt: fullPrompt,
+          temperature: input.temperature ?? 0.6,
           max_tokens: 265,
         });
 
@@ -48,6 +55,18 @@ export const aiRouter = createTRPCRouter({
 
         console.log("Result", result);
         if (result) {
+          await ctx.prisma.result.create({
+            data: {
+              task: input.task ?? "",
+              model: "text-davinci-003",
+              temperature: input.temperature ?? 0.6,
+              userPrompt: input.text,
+              fullPrompt: fullPrompt,
+              result: result,
+              userId: ctx.session?.user.id,
+            },
+          });
+
           return { result: result };
         } else {
           return {
