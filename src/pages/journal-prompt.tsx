@@ -5,6 +5,7 @@ import { ComingSoon } from "../components/ComingSoon";
 import { api } from "../utils/api";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import { Loader } from "../components/Loader";
+import { useState } from "react";
 
 const JournalPrompt: NextPage = () => {
   const promptMutation = api.ai.prompt.useMutation();
@@ -29,7 +30,7 @@ const JournalPrompt: NextPage = () => {
           e.preventDefault();
           promptMutation.mutate({
             text: fullPrompt,
-            temperature: 0.7,
+            temperature: creativity,
             task: "journal-prompt",
           });
         }}
@@ -40,10 +41,35 @@ const JournalPrompt: NextPage = () => {
     );
   }
 
+  const [creativity, setCreativity] = useState(0.7);
+
   return (
     <Layout title="Journal Prompt">
       <div className="flex w-full flex-col gap-4">
         {/* <ComingSoon /> */}
+        <div className="flex w-full flex-wrap gap-4">
+          <div className="w-full sm:w-[400px]">
+            <label
+              htmlFor="location"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Creativity
+            </label>
+            <input
+              id="myRange"
+              className="range w-full p-2 accent-indigo-500"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={creativity}
+              onChange={(e) => {
+                setCreativity(parseFloat(e.target.value));
+              }}
+            ></input>
+            <p>{(creativity * 100).toFixed(0)}%</p>
+          </div>
+        </div>
         <div className="flex flex-wrap gap-4">
           <PromptButton
             icon="🗓️"

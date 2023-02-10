@@ -11,6 +11,7 @@ interface HolidayForm {
   continent: string;
   length: string;
   likes: string[];
+  randomness: number;
 }
 
 const Planner: NextPage = () => {
@@ -20,6 +21,7 @@ const Planner: NextPage = () => {
     continent: "Europe",
     length: "1 Week",
     likes: [],
+    randomness: 0.7,
   });
 
   const generatePrompt = () => {
@@ -37,7 +39,7 @@ const Planner: NextPage = () => {
 
     promptMutation.mutate({
       text: generatePrompt(),
-      temperature: 0.7,
+      temperature: form.randomness,
       task: "holiday-destination",
     });
   };
@@ -154,6 +156,29 @@ const Planner: NextPage = () => {
             </div>
           </div>
         </div>
+        {/* <div className="flex w-full flex-wrap gap-4">
+          <div className="w-full sm:w-[400px]">
+            <label
+              htmlFor="location"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Randomness
+            </label>
+            <input
+              id="myRange"
+              className="range w-full p-4 accent-indigo-500"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={form.randomness}
+              onChange={(e) => {
+                setForm({ ...form, randomness: parseFloat(e.target.value) });
+              }}
+            ></input>
+            <p>{(form.randomness * 100).toFixed(0)}%</p>
+          </div>
+        </div> */}
 
         <hr />
 
@@ -187,7 +212,6 @@ const Planner: NextPage = () => {
                 </div>
               </div>
             )}
-
           <div className="h-10 grow" />
         </div>
       </div>

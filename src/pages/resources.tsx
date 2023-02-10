@@ -16,7 +16,9 @@ function ResourceItem({
       <div className="flex flex-col gap-1 rounded-lg bg-white p-4 shadow-lg">
         <h3 className="font-bold">{title}</h3>
         <p>{description}</p>
-        <pre className="pt-2 font-mono text-[12px] underline">{url}</pre>
+        <pre className="truncate pt-2 font-mono text-[12px] underline">
+          {url}
+        </pre>
       </div>
     </a>
   );
@@ -36,6 +38,12 @@ const Resources: NextPage = () => {
           description="A tool to understand how a piece of text would be tokenized by the API, and the total count of tokens in that piece of text."
           url="https://platform.openai.com/tokenizer"
         />
+        <ResourceItem
+          title="Best practices for prompt engineering"
+          description="Article from the OpenAI help center on how to give clear and effective instructions to GPT-3 and Codex"
+          url="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api"
+        />
+        {/* <ResourceItem title="" description="" url="" /> */}
       </div>
     </Layout>
   );

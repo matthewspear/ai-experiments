@@ -5,7 +5,7 @@ import { ComingSoon } from "../components/ComingSoon";
 
 const Expand: NextPage = () => {
   return (
-    <Layout title="Expand">
+    <Layout title="Expander">
       <div className="flex w-full flex-col">
         <ComingSoon />
       </div>

@@ -65,7 +65,7 @@ const navigation = [
     icon: ArrowsPointingInIcon,
   },
   {
-    name: "Explainer",
+    name: "Expander",
     href: "/expand",
     icon: ArrowsPointingOutIcon,
   },
