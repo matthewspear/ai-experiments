@@ -41,7 +41,10 @@ function PostPage({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
 
   return (
     <Layout
-      breadcrumbs={BlogLevelBreadcrumbs(post?.title ?? "", post?.url ?? "")}
+      breadcrumbs={BlogLevelBreadcrumbs(
+        post?.breadcrumb ?? post?.title ?? "",
+        post?.url ?? ""
+      )}
     >
       <div className="mx-auto max-w-3xl">
         {post && (

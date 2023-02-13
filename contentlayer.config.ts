@@ -39,6 +39,7 @@ export const Post = defineDocumentType(() => ({
     authorImage: { type: "string", required: true },
     summary: { type: "string", required: true },
     category: { type: "string", required: true },
+    breadcrumb: { type: "string", required: false },
   },
   computedFields,
 }));

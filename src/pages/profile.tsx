@@ -9,7 +9,7 @@ const Profile: NextPage = () => {
   const { data: session } = useSession();
   return (
     <Layout
-      title="Profile"
+      // title="Profile"
       breadcrumbs={TopLevelBreadcrumb("Profile", "/profile")}
     >
       <div className="flex w-fit flex-col gap-2">

@@ -81,8 +81,6 @@ const Planner: NextPage = () => {
     );
   }
 
-  const breadcrumbs = [{ name: "Experiments", href: "", current: false }];
-
   return (
     <Layout
       // title="Holiday Destination"
