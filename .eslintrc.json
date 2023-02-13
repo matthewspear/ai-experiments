@@ -13,7 +13,8 @@
           {
             "checksVoidReturn": false
           }
-        ]
+        ],
+        "@typescript-eslint/require-await": "warn"
       },
       "files": ["*.ts", "*.tsx"],
       "parserOptions": {
