@@ -5,13 +5,27 @@ import { useRouter } from "next/router";
 import Metatags from "./Metatags";
 import { MobileSidebar } from "./MobileSidebar";
 import { DesktopSideBar } from "./DesktopSideBar";
+import { Post } from "contentlayer/generated";
+import { BreadcrumbBar } from "./BreadcrumbBar";
 
 export function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Layout(props: PropsWithChildren<{ title?: string }>) {
-  const { title, children } = props;
+export interface Breadcrumb {
+  name: string;
+  href: string;
+  current: boolean;
+}
+
+export default function Layout(
+  props: PropsWithChildren<{
+    title?: string;
+    post?: Post;
+    breadcrumbs: Breadcrumb[];
+  }>
+) {
+  const { title, post, breadcrumbs, children } = props;
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
   const { data: session } = useSession();
@@ -22,7 +36,12 @@ export default function Layout(props: PropsWithChildren<{ title?: string }>) {
 
   return (
     <>
-      <Metatags title={fullTitle} description={""} image={""} />
+      <Metatags
+        title={post?.title ? post.title : fullTitle}
+        // description={post?.summary || ""}
+        description=""
+        image=""
+      />
       <div>
         {/* Sidebar for mobile */}
         <MobileSidebar
@@ -52,18 +71,21 @@ export default function Layout(props: PropsWithChildren<{ title?: string }>) {
           </div>
 
           <main className="flex-1">
-            <div className="py-6">
-              {title && (
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-                  <h1 className="text-2xl font-semibold text-gray-900">
-                    {title}
-                  </h1>
-                </div>
-              )}
+            <div className="">
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}
                 <div className="flex flex-col py-4">
                   {/* <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" /> */}
+                  {breadcrumbs && <BreadcrumbBar breadcrumbs={breadcrumbs} />}
+                  <div>
+                    {title && (
+                      <div className="max-w-7xl pt-4 sm:px-6 md:px-8">
+                        <h1 className="text-2xl font-semibold text-gray-900">
+                          {title}
+                        </h1>
+                      </div>
+                    )}
+                  </div>
                   {children}
                 </div>
                 {/* /End replace */}

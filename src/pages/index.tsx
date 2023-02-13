@@ -8,6 +8,8 @@ import { api } from "../utils/api";
 import { type FormEvent, useState, Dispatch, SetStateAction } from "react";
 import { Loader } from "../components/Loader";
 import Layout from "../components/Layout";
+// import { ExperimentCard } from "./experiments";
+// import { experiments } from "@/components/Experiments";
 
 function PromptInput({
   prompt,
@@ -76,7 +78,7 @@ const Home: NextPage = () => {
   };
 
   return (
-    <Layout>
+    <Layout breadcrumbs={[]}>
       <div className="flex w-full flex-col">
         <h1 className="px-4 text-5xl font-extrabold tracking-tight text-slate-900 sm:pt-16 sm:text-[5rem]">
           OpenAI

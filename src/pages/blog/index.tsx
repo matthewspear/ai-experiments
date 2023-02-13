@@ -1,3 +1,4 @@
+import { TopLevelBreadcrumb } from "@/components/BreadcrumbBar";
 import Layout, { classNames } from "@/components/Layout";
 import { Post, allPosts } from "contentlayer/generated";
 import { compareDesc, format, parseISO } from "date-fns";
@@ -27,7 +28,7 @@ function PostCard(post: Post) {
 
 const Blog = ({ posts }: { posts: Post[] }) => {
   return (
-    <Layout title="Blog">
+    <Layout breadcrumbs={TopLevelBreadcrumb("Blog", "/blog")}>
       <div className="flex w-full flex-col">
         {posts.map((post, idx) => (
           <PostCard key={idx} {...post} />

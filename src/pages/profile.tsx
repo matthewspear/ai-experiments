@@ -3,11 +3,15 @@ import { type NextPage } from "next";
 import Layout from "../components/Layout";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import { TopLevelBreadcrumb } from "@/components/BreadcrumbBar";
 
 const Profile: NextPage = () => {
   const { data: session } = useSession();
   return (
-    <Layout title="Profile">
+    <Layout
+      title="Profile"
+      breadcrumbs={TopLevelBreadcrumb("Profile", "/profile")}
+    >
       <div className="flex w-fit flex-col gap-2">
         {session && (
           <>

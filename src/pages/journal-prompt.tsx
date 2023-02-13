@@ -6,6 +6,7 @@ import { api } from "../utils/api";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import { Loader } from "../components/Loader";
 import { useState } from "react";
+import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 
 const JournalPrompt: NextPage = () => {
   const promptMutation = api.ai.prompt.useMutation();
@@ -44,7 +45,13 @@ const JournalPrompt: NextPage = () => {
   const [creativity, setCreativity] = useState(0.7);
 
   return (
-    <Layout title="Journal Prompt">
+    <Layout
+      // title="Journal Prompt"
+      breadcrumbs={ExperimentsLevelBreadcrumbs(
+        "Journal Prompt",
+        "/journal-prompt"
+      )}
+    >
       <div className="flex w-full flex-col gap-4">
         {/* <ComingSoon /> */}
         <div className="flex w-full flex-wrap gap-4">

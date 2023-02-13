@@ -1,6 +1,7 @@
 import { type NextPage } from "next";
 
 import Layout from "../components/Layout";
+import { TopLevelBreadcrumb } from "@/components/BreadcrumbBar";
 
 function ResourceItem({
   title,
@@ -26,8 +27,11 @@ function ResourceItem({
 
 const Resources: NextPage = () => {
   return (
-    <Layout title="Resources">
-      <div className="flex flex-col gap-4 sm:w-1/2">
+    <Layout
+      // title="Resources"
+      breadcrumbs={TopLevelBreadcrumb("Resources", "/resources")}
+    >
+      <div className="flex flex-col gap-4 md:mx-auto md:w-1/2">
         <ResourceItem
           title="OpenAI Documentation"
           description="Guide to getting started with the OpenAI API."

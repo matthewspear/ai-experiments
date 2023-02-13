@@ -6,6 +6,7 @@ import { api } from "../utils/api";
 import { Loader } from "../components/Loader";
 import ExclamationCircleIcon from "@heroicons/react/24/outline/ExclamationCircleIcon";
 import { FormEvent, useState } from "react";
+import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 
 interface HolidayForm {
   continent: string;
@@ -81,8 +82,16 @@ const Planner: NextPage = () => {
     );
   }
 
+  const breadcrumbs = [{ name: "Experiments", href: "", current: false }];
+
   return (
-    <Layout title="Holiday Destination">
+    <Layout
+      // title="Holiday Destination"
+      breadcrumbs={ExperimentsLevelBreadcrumbs(
+        "Holiday Destination",
+        "/holiday-destination"
+      )}
+    >
       <div className="flex w-full flex-col gap-4">
         {/* <ComingSoon /> */}
         <div className="flex flex-wrap gap-4">

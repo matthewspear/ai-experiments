@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import { format, parseISO } from "date-fns";
 import Link from "next/link";
 import { Post, allPosts } from "contentlayer/generated";
+import { BlogLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 
 export async function getStaticPaths() {
   const paths = allPosts.map((post) => post.url);
@@ -24,7 +25,9 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
 
 const PostPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <Layout>
+    <Layout
+      breadcrumbs={BlogLevelBreadcrumbs(post?.title ?? "", post?.url ?? "")}
+    >
       {post && (
         <div className="flex w-full flex-col">
           <article className="mx-auto max-w-2xl py-16">
