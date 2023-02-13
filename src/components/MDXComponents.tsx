@@ -1,14 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
+import { PropsWithChildren } from "react";
 
-const CustomLink = (props: any) => {
-  const href = props.href;
-  const isInternalLink: boolean =
-    href && (href.startsWith("/") || href.startsWith("#"));
+const CustomLink = (props: any): JSX.Element => {
+  const href: string = props.href;
+
+  const isInternalLink =
+    href !== undefined && (href.startsWith("/") || href?.startsWith("#"));
 
   if (isInternalLink) {
     return (
-      <Link href={href} {...props}>
+      <Link {...props} href={href}>
         {props.children}
       </Link>
     );
@@ -17,7 +19,7 @@ const CustomLink = (props: any) => {
   return <a target="_blank" rel="noopener noreferrer" {...props} />;
 };
 
-function RoundedImage(props: any) {
+function RoundedImage(props: any): JSX.Element {
   return (
     <Image
       alt={props.alt}

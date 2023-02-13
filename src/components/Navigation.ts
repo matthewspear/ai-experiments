@@ -1,21 +1,9 @@
 import {
-  HomeIcon,
-  RocketLaunchIcon,
-  TagIcon,
-  LinkIcon,
   GlobeEuropeAfricaIcon,
-  ArrowsPointingInIcon,
-  ArrowsPointingOutIcon,
-  PuzzlePieceIcon,
-  ArrowsRightLeftIcon,
-  PencilSquareIcon,
-  QueueListIcon,
   BookmarkIcon,
   NewspaperIcon,
   InboxIcon,
   InformationCircleIcon,
-  BeakerIcon,
-  Square2StackIcon,
   Square3Stack3DIcon,
 } from "@heroicons/react/24/outline";
 

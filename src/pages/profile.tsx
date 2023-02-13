@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 
-import Layout from "../components/Layout";
+import Layout from "@/components/Layout";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { TopLevelBreadcrumb } from "@/components/BreadcrumbBar";

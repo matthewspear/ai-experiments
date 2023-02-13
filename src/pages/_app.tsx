@@ -3,12 +3,12 @@ import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import * as Fathom from "fathom-client";
 
-import { api } from "../utils/api";
+import { api } from "@/utils/api";
 
-import "../styles/globals.css";
+import "@/styles/globals.css";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { env } from "../env.mjs";
+import { env } from "@/env.mjs";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,

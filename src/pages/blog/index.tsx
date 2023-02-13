@@ -1,8 +1,8 @@
 import { TopLevelBreadcrumb } from "@/components/BreadcrumbBar";
 import Layout, { classNames } from "@/components/Layout";
-import { Post, allPosts } from "contentlayer/generated";
+import { type Post, allPosts } from "contentlayer/generated";
 import { compareDesc, format, parseISO } from "date-fns";
-import Link from "next/link";
+import Image from "next/image";
 
 export async function getStaticProps() {
   const posts = allPosts.sort((a, b) => {
@@ -45,7 +45,9 @@ function PostCard(post: Post) {
         <div className="flex-shrink-0">
           <a href={post.author}>
             <span className="sr-only">{post.author}</span>
-            <img
+            <Image
+              width={40}
+              height={40}
               className="h-10 w-10 rounded-full"
               src={post.authorImage}
               alt=""

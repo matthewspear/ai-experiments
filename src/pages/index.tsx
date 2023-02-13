@@ -4,10 +4,15 @@ import {
   ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
 
-import { api } from "../utils/api";
-import { type FormEvent, useState, Dispatch, SetStateAction } from "react";
-import { Loader } from "../components/Loader";
-import Layout from "../components/Layout";
+import { api } from "@/utils/api";
+import {
+  type FormEvent,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
+import { Loader } from "@/components/Loader";
+import Layout from "@/components/Layout";
 import { ExperimentCard } from "./experiments";
 import { experiments } from "@/components/Experiments";
 

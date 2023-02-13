@@ -1,11 +1,10 @@
 import { type NextPage } from "next";
 
-import Layout from "../components/Layout";
-import { ComingSoon } from "../components/ComingSoon";
-import { api } from "../utils/api";
-import { Loader } from "../components/Loader";
+import Layout from "@/components/Layout";
+import { api } from "@/utils/api";
+import { Loader } from "@/components/Loader";
 import ExclamationCircleIcon from "@heroicons/react/24/outline/ExclamationCircleIcon";
-import { FormEvent, useState } from "react";
+import { type FormEvent, useState } from "react";
 import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 
 interface HolidayForm {

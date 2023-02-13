@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Metatags from "./Metatags";
 import { MobileSidebar } from "./MobileSidebar";
 import { DesktopSideBar } from "./DesktopSideBar";
-import { Post } from "contentlayer/generated";
+import type { Post } from "contentlayer/generated";
 import { BreadcrumbBar } from "./BreadcrumbBar";
 
 export function classNames(...classes: any[]) {
