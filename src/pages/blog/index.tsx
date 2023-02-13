@@ -39,7 +39,9 @@ function PostCard(post: Post) {
       </div>
       <a href={post.url} className="mt-4 block">
         <p className="text-xl font-semibold text-gray-900">{post.title}</p>
-        <p className="mt-3 text-base text-gray-500">{post.summary}</p>
+        <p className="mt-3 w-full text-base text-gray-500 sm:w-[550px]">
+          {post.summary}
+        </p>
       </a>
       <div className="mt-6 flex items-center">
         <div className="flex-shrink-0">
