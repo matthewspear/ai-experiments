@@ -158,7 +158,7 @@ const Planner: NextPage = () => {
               <Tickbox label="Nightlife" value="nightlife" />
               <Tickbox label="Coffee" value="coffee shops" />
               <Tickbox label="Cheap" value="cheap" />
-              <Tickbox label="Expensive" value="expensive" />
+              <Tickbox label="Luxury" value="luxury" />
             </div>
           </div>
         </div>
