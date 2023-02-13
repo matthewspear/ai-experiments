@@ -49,6 +49,13 @@
     "prettier": "^2.8.1",
     "prettier-plugin-tailwindcss": "^0.2.1",
     "prisma": "^4.9.0",
+    "reading-time": "^1.5.0",
+    "rehype": "^12.0.1",
+    "rehype-autolink-headings": "^6.1.1",
+    "rehype-code-titles": "^1.1.0",
+    "rehype-prism-plus": "^1.5.1",
+    "rehype-slug": "^5.1.0",
+    "remark-gfm": "^3.0.1",
     "tailwindcss": "^3.2.0",
     "typescript": "^4.9.4"
   },

@@ -38,8 +38,7 @@ export default function Layout(
     <>
       <Metatags
         title={post?.title ? post.title : fullTitle}
-        // description={post?.summary || ""}
-        description=""
+        description={post?.summary || ""}
         image=""
       />
       <div>
