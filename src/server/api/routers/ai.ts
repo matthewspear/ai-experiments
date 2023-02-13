@@ -28,6 +28,7 @@ export const aiRouter = createTRPCRouter({
         text: z.string(),
         temperature: z.number().optional(),
         task: z.string().optional(),
+        max_tokens: z.number().optional(),
       })
     )
     .mutation(async ({ input, ctx }) => {
@@ -50,7 +51,7 @@ export const aiRouter = createTRPCRouter({
           model: "text-davinci-003",
           prompt: fullPrompt,
           temperature: input.temperature ?? 0.6,
-          max_tokens: 265,
+          max_tokens: input.max_tokens ?? 265,
         });
         const result = completion.data.choices[0]?.text;
         console.log("Result", result);

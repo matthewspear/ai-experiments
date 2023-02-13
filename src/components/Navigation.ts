@@ -5,6 +5,7 @@ import {
   InboxIcon,
   InformationCircleIcon,
   Square3Stack3DIcon,
+  PuzzlePieceIcon,
 } from "@heroicons/react/24/outline";
 
 export const navigationItems = [
@@ -23,6 +24,11 @@ export const navigationItems = [
     name: "",
     href: "",
     icon: () => null,
+  },
+  {
+    name: "Journal Prompt",
+    href: "/journal-prompt",
+    icon: BookmarkIcon,
   },
   // {
   //   name: "Startup Name Generator",
@@ -54,11 +60,11 @@ export const navigationItems = [
   // //   href: "/expand",
   // //   icon: ArrowsPointingOutIcon,
   // // },
-  // {
-  //   name: "Explain Like I Am 5",
-  //   href: "/eli5",
-  //   icon: PuzzlePieceIcon,
-  // },
+  {
+    name: "Explain Like I Am 5",
+    href: "/eli5",
+    icon: PuzzlePieceIcon,
+  },
   // {
   //   name: "This or That",
   //   href: "/this-that",
@@ -74,11 +80,6 @@ export const navigationItems = [
   //   href: "/first-step",
   //   icon: QueueListIcon,
   // },
-  {
-    name: "Journal Prompt",
-    href: "/journal-prompt",
-    icon: BookmarkIcon,
-  },
   {
     divider: true,
     name: "",

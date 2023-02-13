@@ -69,11 +69,11 @@ export const experiments = [
   //   },
   {
     title: "Explain Like I Am 5",
-    description: `Explain a text in simple terms`,
+    description: `Explain a concept in simple terms, so that anyone can understand it`,
     url: "/eli5",
     icon: PuzzlePieceIcon,
     color: "indigo",
-    active: false,
+    active: true,
   },
   {
     title: "This or That",
