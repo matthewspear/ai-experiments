@@ -83,7 +83,7 @@ const Home: NextPage = () => {
   };
 
   return (
-    <Layout breadcrumbs={[]}>
+    <Layout>
       <div className="flex w-full flex-col">
         <h1 className="px-4 text-5xl font-extrabold tracking-tight text-slate-900 sm:pt-16 sm:text-[5rem]">
           OpenAI

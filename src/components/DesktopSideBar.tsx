@@ -28,7 +28,9 @@ export function DesktopSideBar({
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
               alt="Your Company"
             /> */}
-            <h1 className="font-bold text-slate-900">OpenAI Experiments</h1>
+            <Link href="/">
+              <h1 className="font-bold text-slate-900">OpenAI Experiments</h1>
+            </Link>
           </div>
           <nav className="mt-5 flex-1 space-y-1 bg-white px-2">
             {navigationItems.map((item) => (

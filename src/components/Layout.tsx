@@ -7,6 +7,7 @@ import { MobileSidebar } from "./MobileSidebar";
 import { DesktopSideBar } from "./DesktopSideBar";
 import type { Post } from "contentlayer/generated";
 import { BreadcrumbBar } from "./BreadcrumbBar";
+import Footer from "./Footer";
 
 export function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(" ");
@@ -22,7 +23,7 @@ export default function Layout(
   props: PropsWithChildren<{
     title?: string;
     post?: Post;
-    breadcrumbs: Breadcrumb[];
+    breadcrumbs?: Breadcrumb[];
   }>
 ) {
   const { title, post, breadcrumbs, children } = props;
@@ -57,7 +58,7 @@ export default function Layout(
           setSidebarOpen={setSidebarOpen}
         />
 
-        <div className="flex flex-1 flex-col md:pl-64">
+        <div className="flex min-h-screen flex-1 flex-col md:pl-64">
           <div className="sticky top-0 z-10 bg-gray-100 pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
             <button
               type="button"
@@ -91,6 +92,9 @@ export default function Layout(
               </div>
             </div>
           </main>
+
+          <div className="flex grow" />
+          <Footer />
         </div>
       </div>
     </>

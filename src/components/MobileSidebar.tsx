@@ -80,9 +80,11 @@ export function MobileSidebar({
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
               alt="Your Company"
             /> */}
-                  <h1 className="text-lg font-bold text-slate-900">
-                    OpenAI Experiments
-                  </h1>
+                  <Link href="/">
+                    <h1 className="text-lg font-bold text-slate-900">
+                      OpenAI Experiments
+                    </h1>
+                  </Link>
                 </div>
                 <nav className="mt-5 space-y-1 px-2">
                   {navigationItems.map((item) => (
