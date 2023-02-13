@@ -14,64 +14,78 @@ import {
   NewspaperIcon,
   InboxIcon,
   InformationCircleIcon,
+  BeakerIcon,
+  Square2StackIcon,
+  Square3Stack3DIcon,
 } from "@heroicons/react/24/outline";
 
 export const navigationItems = [
+  // {
+  //   name: "Home",
+  //   href: "/",
+  //   icon: HomeIcon,
+  // },
   {
-    name: "Home",
-    href: "/",
-    icon: HomeIcon,
+    name: "Experiments",
+    href: "/experiments",
+    icon: Square3Stack3DIcon,
   },
   {
-    name: "Startup Name Generator",
-    href: "/startup-generator",
-    icon: RocketLaunchIcon,
+    divider: true,
+    name: "",
+    href: "",
+    icon: () => null,
   },
-  {
-    name: "Tagline Generator",
-    href: "/tagline-generator",
-    icon: TagIcon,
-  },
-  {
-    name: "URL Generator",
-    href: "/url-generator",
-    icon: LinkIcon,
-  },
+  // {
+  //   name: "Startup Name Generator",
+  //   href: "/startup-generator",
+  //   icon: RocketLaunchIcon,
+  // },
+  // {
+  //   name: "Tagline Generator",
+  //   href: "/tagline-generator",
+  //   icon: TagIcon,
+  // },
+  // {
+  //   name: "URL Generator",
+  //   href: "/url-generator",
+  //   icon: LinkIcon,
+  // },
   {
     name: "Holiday Destination",
     href: "/holiday-destination",
     icon: GlobeEuropeAfricaIcon,
   },
+  // // {
+  // //   name: "Summary",
+  // //   href: "/summary",
+  // //   icon: ArrowsPointingInIcon,
+  // // },
+  // // {
+  // //   name: "Expander",
+  // //   href: "/expand",
+  // //   icon: ArrowsPointingOutIcon,
+  // // },
   // {
-  //   name: "Summary",
-  //   href: "/summary",
-  //   icon: ArrowsPointingInIcon,
+  //   name: "Explain Like I Am 5",
+  //   href: "/eli5",
+  //   icon: PuzzlePieceIcon,
   // },
   // {
-  //   name: "Expander",
-  //   href: "/expand",
-  //   icon: ArrowsPointingOutIcon,
+  //   name: "This or That",
+  //   href: "/this-that",
+  //   icon: ArrowsRightLeftIcon,
   // },
-  {
-    name: "Explain Like I Am 5",
-    href: "/eli5",
-    icon: PuzzlePieceIcon,
-  },
-  {
-    name: "This or That",
-    href: "/this-that",
-    icon: ArrowsRightLeftIcon,
-  },
-  {
-    name: "Planner",
-    href: "/planner",
-    icon: PencilSquareIcon,
-  },
-  {
-    name: "First Step",
-    href: "/first-step",
-    icon: QueueListIcon,
-  },
+  // {
+  //   name: "Planner",
+  //   href: "/planner",
+  //   icon: PencilSquareIcon,
+  // },
+  // {
+  //   name: "First Step",
+  //   href: "/first-step",
+  //   icon: QueueListIcon,
+  // },
   {
     name: "Journal Prompt",
     href: "/journal-prompt",

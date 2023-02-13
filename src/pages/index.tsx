@@ -8,8 +8,8 @@ import { api } from "../utils/api";
 import { type FormEvent, useState, Dispatch, SetStateAction } from "react";
 import { Loader } from "../components/Loader";
 import Layout from "../components/Layout";
-// import { ExperimentCard } from "./experiments";
-// import { experiments } from "@/components/Experiments";
+import { ExperimentCard } from "./experiments";
+import { experiments } from "@/components/Experiments";
 
 function PromptInput({
   prompt,
@@ -112,6 +112,20 @@ const Home: NextPage = () => {
             )}
 
           <div className="h-10 grow" />
+          <div className="flex flex-col gap-4">
+            <div className="border-b border-gray-200 pb-5 pt-6">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Experiments
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {experiments
+                .filter((e) => e.active)
+                .map((e) => (
+                  <ExperimentCard key={e.url} experiment={e} />
+                ))}
+            </div>
+          </div>
         </div>
       </div>
     </Layout>
