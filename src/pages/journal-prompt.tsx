@@ -2,7 +2,11 @@ import { type NextPage } from "next";
 
 import Layout from "@/components/Layout";
 import { api } from "@/utils/api";
-import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
+import {
+  ClipboardDocumentCheckIcon,
+  ClipboardDocumentIcon,
+  ExclamationCircleIcon,
+} from "@heroicons/react/24/outline";
 import { Loader } from "@/components/Loader";
 import { useState } from "react";
 import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
@@ -28,6 +32,7 @@ const JournalPrompt: NextPage = () => {
         className="inline-flex items-center rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium capitalize text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         onClick={(e) => {
           e.preventDefault();
+          setCopied(false);
           promptMutation.mutate({
             text: fullPrompt,
             temperature: creativity,
@@ -42,6 +47,7 @@ const JournalPrompt: NextPage = () => {
   }
 
   const [creativity, setCreativity] = useState(0.7);
+  const [copied, setCopied] = useState(false);
 
   return (
     <Layout
@@ -80,17 +86,17 @@ const JournalPrompt: NextPage = () => {
           <PromptButton
             icon="🗓️"
             label="daily prompt"
-            prompt={`Generate a journal prompt (single question) to help me connect back to myself`}
+            prompt={`Generate a single question journal prompt to help me connect back to myself`}
           />
           <PromptButton
             icon="🙏"
             label="gratitude"
-            prompt={`Generate a journal prompt to exploring the topic of gratitude`}
+            prompt={`Generate a journal prompt to explore the topic of gratitude`}
           />
           <PromptButton
             icon="❤️"
             label="love"
-            prompt={`Generate a journal prompt to exploring the topic of love`}
+            prompt={`Generate a journal prompt to explore the topic of love`}
           />
           <PromptButton
             icon="🚀"
@@ -129,13 +135,34 @@ const JournalPrompt: NextPage = () => {
           {!promptMutation.isLoading &&
             promptMutation.data &&
             !promptMutation.data.error && (
-              <div className=" mt-8 grid w-full place-items-center rounded-lg bg-white shadow-lg sm:w-[700px]">
+              <div className="relative mt-8 grid w-full place-items-center rounded-lg bg-white shadow-lg sm:w-[700px]">
+                <button
+                  className="absolute bottom-0 right-0 p-4"
+                  aria-label="Copy to clipboard"
+                  onClick={async () => {
+                    if (promptMutation.data.result) {
+                      await navigator.clipboard.writeText(
+                        promptMutation.data.result
+                      );
+                      setCopied(true);
+                      setTimeout(() => {
+                        setCopied(false);
+                      }, 2000);
+                    }
+                  }}
+                >
+                  {copied && (
+                    <ClipboardDocumentCheckIcon className="-mb-1 w-6 text-gray-400 transition-all" />
+                  )}
+                  {!copied && (
+                    <ClipboardDocumentIcon className="-mb-1 w-6 text-gray-300 transition-all" />
+                  )}
+                </button>
                 <div className="prose prose-slate">
                   <p className="p-4">{promptMutation.data.result}</p>
                 </div>
               </div>
             )}
-
           <div className="h-10 grow" />
         </div>
       </div>
