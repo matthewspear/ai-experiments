@@ -2,7 +2,6 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 import { Configuration, OpenAIApi } from "openai";
-import { prisma } from "@prisma/client";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
