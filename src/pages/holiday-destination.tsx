@@ -6,6 +6,7 @@ import { Loader } from "@/components/Loader";
 import ExclamationCircleIcon from "@heroicons/react/24/outline/ExclamationCircleIcon";
 import { type FormEvent, useState } from "react";
 import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
+import { ResultsView } from "@/components/ResultsView";
 
 interface HolidayForm {
   continent: string;
@@ -197,29 +198,10 @@ const Planner: NextPage = () => {
             Try
           </button>
         </div>
-        <div className="flex h-full flex-col">
-          {promptMutation.isLoading && <Loader />}
-          {promptMutation.data && promptMutation.data.error && (
-            <div className="mt-8 flex w-full flex-row place-items-center items-center rounded-lg bg-white shadow-lg sm:w-[700px]">
-              <ExclamationCircleIcon className="my-4 mr-4 ml-4 h-6 w-6 text-red-500" />
-              <p className="h-6">
-                {(promptMutation.data.error &&
-                  promptMutation.data.error.message) ||
-                  JSON.stringify(promptMutation.data.error)}
-              </p>
-            </div>
-          )}
-          {!promptMutation.isLoading &&
-            promptMutation.data &&
-            !promptMutation.data.error && (
-              <div className=" mt-8 grid w-full place-items-center rounded-lg bg-white shadow-lg sm:w-[700px]">
-                <div className="prose prose-slate">
-                  <p className="p-4">{promptMutation.data.result}</p>
-                </div>
-              </div>
-            )}
-          <div className="h-10 grow" />
-        </div>
+        <ResultsView
+          isLoading={promptMutation.isLoading}
+          data={promptMutation.data}
+        />
       </div>
     </Layout>
   );

@@ -10,6 +10,7 @@ import {
 import { Loader } from "@/components/Loader";
 import { useState } from "react";
 import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
+import { ResultsView } from "@/components/ResultsView";
 
 const JournalPrompt: NextPage = () => {
   const promptMutation = api.ai.prompt.useMutation();
@@ -32,7 +33,6 @@ const JournalPrompt: NextPage = () => {
         className="inline-flex items-center rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium capitalize text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         onClick={(e) => {
           e.preventDefault();
-          setCopied(false);
           promptMutation.mutate({
             text: fullPrompt,
             temperature: creativity,
@@ -47,7 +47,6 @@ const JournalPrompt: NextPage = () => {
   }
 
   const [creativity, setCreativity] = useState(0.7);
-  const [copied, setCopied] = useState(false);
 
   return (
     <Layout
@@ -120,51 +119,11 @@ const JournalPrompt: NextPage = () => {
           />
         </div>
         <hr />
-        <div className="flex h-full flex-col">
-          {promptMutation.isLoading && <Loader />}
-          {promptMutation.data && promptMutation.data.error && (
-            <div className="mt-8 flex w-full flex-row place-items-center items-center rounded-lg bg-white shadow-lg sm:w-[700px]">
-              <ExclamationCircleIcon className="my-4 mr-4 ml-4 h-6 w-6 text-red-500" />
-              <p className="h-6">
-                {(promptMutation.data.error &&
-                  promptMutation.data.error.message) ||
-                  JSON.stringify(promptMutation.data.error)}
-              </p>
-            </div>
-          )}
-          {!promptMutation.isLoading &&
-            promptMutation.data &&
-            !promptMutation.data.error && (
-              <div className="relative mt-8 grid w-full place-items-center rounded-lg bg-white shadow-lg sm:w-[700px]">
-                <button
-                  className="absolute bottom-0 right-0 p-4"
-                  aria-label="Copy to clipboard"
-                  onClick={async () => {
-                    if (promptMutation.data.result) {
-                      await navigator.clipboard.writeText(
-                        promptMutation.data.result
-                      );
-                      setCopied(true);
-                      setTimeout(() => {
-                        setCopied(false);
-                      }, 2000);
-                    }
-                  }}
-                >
-                  {copied && (
-                    <ClipboardDocumentCheckIcon className="-mb-1 w-6 text-gray-400 transition-all" />
-                  )}
-                  {!copied && (
-                    <ClipboardDocumentIcon className="-mb-1 w-6 text-gray-300 transition-all" />
-                  )}
-                </button>
-                <div className="prose prose-slate">
-                  <p className="p-4">{promptMutation.data.result}</p>
-                </div>
-              </div>
-            )}
-          <div className="h-10 grow" />
-        </div>
+        <ResultsView
+          isLoading={promptMutation.isLoading}
+          data={promptMutation.data}
+          copyable
+        />
       </div>
     </Layout>
   );
