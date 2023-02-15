@@ -6,6 +6,7 @@ import {
   InformationCircleIcon,
   Square3Stack3DIcon,
   PuzzlePieceIcon,
+  ArrowsPointingInIcon,
 } from "@heroicons/react/24/outline";
 
 export const navigationItems = [
@@ -50,21 +51,21 @@ export const navigationItems = [
     href: "/holiday-destination",
     icon: GlobeEuropeAfricaIcon,
   },
-  // // {
-  // //   name: "Summary",
-  // //   href: "/summary",
-  // //   icon: ArrowsPointingInIcon,
-  // // },
-  // // {
-  // //   name: "Expander",
-  // //   href: "/expand",
-  // //   icon: ArrowsPointingOutIcon,
-  // // },
   {
     name: "Explain Like I Am 5",
     href: "/eli5",
     icon: PuzzlePieceIcon,
   },
+  {
+    name: "Summary",
+    href: "/summary",
+    icon: ArrowsPointingInIcon,
+  },
+  // {
+  //   name: "Expander",
+  //   href: "/expand",
+  //   icon: ArrowsPointingOutIcon,
+  // },
   // {
   //   name: "This or That",
   //   href: "/this-that",

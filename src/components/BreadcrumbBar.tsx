@@ -1,5 +1,5 @@
 import { HomeIcon } from "@heroicons/react/20/solid";
-import { Breadcrumb } from "./Layout";
+import { type Breadcrumb } from "./Layout";
 import Link from "next/link";
 
 export function TopLevelBreadcrumb(name: string, href: string) {

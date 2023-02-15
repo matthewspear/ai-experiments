@@ -2,33 +2,13 @@ import { type NextPage } from "next";
 import Layout from "@/components/Layout";
 import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 import { api } from "@/utils/api";
-import { ChangeEvent, type FormEvent, useState } from "react";
-import { ResultsView } from "../components/ResultsView";
+import { type ChangeEvent, type FormEvent, useState } from "react";
+import { ResultsBlock } from "@/components/ResultsBlock";
 
 const ELI5: NextPage = () => {
   const promptMutation = api.ai.prompt.useMutation();
   const [creativity, setCreativity] = useState(0.5);
-
   const [concept, setConcept] = useState<string>("");
-
-  function ExplainButton({ value }: { value: string }) {
-    return (
-      <button
-        className="inline-flex w-min items-center rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium capitalize text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-        onClick={(e) => {
-          e.preventDefault();
-          setConcept(value);
-          promptMutation.mutate({
-            text: `Explain like I am 5 years old the concept of ${concept}`,
-            temperature: creativity,
-            task: "eli5",
-          });
-        }}
-      >
-        <p>{value}</p>
-      </button>
-    );
-  }
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,10 +20,7 @@ const ELI5: NextPage = () => {
   };
 
   return (
-    <Layout
-      // title="Explain Like I'm Five"
-      breadcrumbs={ExperimentsLevelBreadcrumbs("ELI5", "/eli5")}
-    >
+    <Layout breadcrumbs={ExperimentsLevelBreadcrumbs("ELI5", "/eli5")}>
       <div className="flex w-full flex-col gap-4">
         <div className="prose prose-lg prose-gray">
           <h3>What is ELI5?</h3>
@@ -61,11 +38,6 @@ const ELI5: NextPage = () => {
             subreddit which has now amassed over 22 million subscribers.
           </p>
         </div>
-        {/* <hr />
-        <div className="flex flex-wrap gap-4">
-          <ExplainButton value="Blackholes" />
-          <ExplainButton value="Toilets" />
-        </div> */}
         <hr />
         <form className="flex flex-col gap-4" onSubmit={onSubmit}>
           <div>
@@ -122,7 +94,7 @@ const ELI5: NextPage = () => {
           </button>
         </form>
         <hr />
-        <ResultsView
+        <ResultsBlock
           isLoading={promptMutation.isLoading}
           data={promptMutation.data}
         />

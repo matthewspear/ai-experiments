@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ExperimentCard } from "@/pages/experiments";
+import { experiments } from "./Experiments";
 
 const CustomLink = (props: any): JSX.Element => {
   const href: string = props.href;
@@ -32,9 +34,26 @@ function RoundedImage(props: any): JSX.Element {
   );
 }
 
+function ExperimentLink(props: any): JSX.Element {
+  const e = experiments.find((experiment) => experiment.url == props.url);
+  if (!e) return <></>;
+  return (
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <ExperimentCard experiment={e} />
+    </div>
+  );
+}
+
+function Divider(props: any): JSX.Element {
+  return <hr className="w-full px-4" />;
+}
+
 const MDXComponents = {
-  Image: RoundedImage,
+  RoundedImage,
+  Image,
   a: CustomLink,
+  ExperimentLink,
+  Divider,
 };
 
 export default MDXComponents;

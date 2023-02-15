@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
+import { createTRPCRouter, publicProcedure } from "../trpc";
 import { Configuration, OpenAIApi } from "openai";
 import { encode } from "gpt-3-encoder";
 
@@ -81,6 +81,8 @@ export const aiRouter = createTRPCRouter({
           result: output,
         };
       } catch (error: any) {
+        // TODO: Improve error handling
+
         // Consider adjusting the error handling logic for your use case
         if (error.response) {
           console.log(JSON.stringify(error, null, 2));
@@ -100,7 +102,7 @@ export const aiRouter = createTRPCRouter({
     }),
   tokens: publicProcedure
     .input(z.object({ text: z.string() }))
-    .mutation(async ({ input, ctx }) => {
+    .mutation(({ input }) => {
       const encoded = encode(input.text);
       return {
         count: encoded.length,

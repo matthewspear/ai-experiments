@@ -6,7 +6,7 @@ import {
 import { Loader } from "@/components/Loader";
 import { useState } from "react";
 
-interface ResultsViewInput {
+interface ResultsBlockInput {
   isLoading: boolean;
   data:
     | {
@@ -14,10 +14,16 @@ interface ResultsViewInput {
         error?: any;
       }
     | undefined;
+  pretext?: string;
   copyable?: boolean;
 }
 
-export function ResultsView({ isLoading, data, copyable }: ResultsViewInput) {
+export function ResultsBlock({
+  isLoading,
+  data,
+  pretext,
+  copyable,
+}: ResultsBlockInput) {
   const [copied, setCopied] = useState(false);
   return (
     <div className="flex h-full flex-col">
@@ -38,7 +44,9 @@ export function ResultsView({ isLoading, data, copyable }: ResultsViewInput) {
               aria-label="Copy to clipboard"
               onClick={async () => {
                 if (data.result) {
-                  await navigator.clipboard.writeText(data.result);
+                  await navigator.clipboard.writeText(
+                    pretext ?? "" + data.result
+                  );
                   setCopied(true);
                   setTimeout(() => {
                     setCopied(false);
@@ -54,8 +62,11 @@ export function ResultsView({ isLoading, data, copyable }: ResultsViewInput) {
               )}
             </button>
           )}
-          <div className="prose prose-slate">
-            <p className="p-4">{data.result}</p>
+          <div className="prose prose-slate whitespace-pre-line">
+            <p className="p-4">
+              {pretext ?? ""}
+              {data.result}
+            </p>
           </div>
         </div>
       )}

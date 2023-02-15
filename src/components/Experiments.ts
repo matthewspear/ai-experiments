@@ -8,6 +8,7 @@ import {
   ArrowsRightLeftIcon,
   PencilSquareIcon,
   QueueListIcon,
+  ArrowsPointingInIcon,
 } from "@heroicons/react/24/outline";
 
 export const experiments = [
@@ -51,22 +52,7 @@ export const experiments = [
     color: "teal",
     active: true,
   },
-  //   {
-  //     title: "Summary",
-  //     description: `Summarise a text`,
-  //     url: "/summary",
-  //     icon: ArrowsPointingInIcon,
-  //     color: "indigo",
-  //     active: false,
-  //   },
-  //   {
-  //     title: "Expander",
-  //     description: `Expand a text`,
-  //     url: "/expand",
-  //     icon: ArrowsPointingOutIcon,
-  //     color: "teal",
-  //     active: false,
-  //   },
+
   {
     title: "Explain Like I Am 5",
     description: `Explain a concept in simple terms, so that anyone can understand it`,
@@ -75,6 +61,22 @@ export const experiments = [
     color: "indigo",
     active: true,
   },
+  {
+    title: "Summary",
+    description: `Summarise a text`,
+    url: "/summary",
+    icon: ArrowsPointingInIcon,
+    color: "sky",
+    active: true,
+  },
+  //   {
+  //     title: "Expander",
+  //     description: `Expand a text`,
+  //     url: "/expand",
+  //     icon: ArrowsPointingOutIcon,
+  //     color: "teal",
+  //     active: false,
+  //   },
   {
     title: "This or That",
     description: `Help making decisions`,

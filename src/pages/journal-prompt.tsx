@@ -2,15 +2,9 @@ import { type NextPage } from "next";
 
 import Layout from "@/components/Layout";
 import { api } from "@/utils/api";
-import {
-  ClipboardDocumentCheckIcon,
-  ClipboardDocumentIcon,
-  ExclamationCircleIcon,
-} from "@heroicons/react/24/outline";
-import { Loader } from "@/components/Loader";
 import { useState } from "react";
 import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
-import { ResultsView } from "@/components/ResultsView";
+import { ResultsBlock } from "@/components/ResultsBlock";
 
 const JournalPrompt: NextPage = () => {
   const promptMutation = api.ai.prompt.useMutation();
@@ -119,7 +113,7 @@ const JournalPrompt: NextPage = () => {
           />
         </div>
         <hr />
-        <ResultsView
+        <ResultsBlock
           isLoading={promptMutation.isLoading}
           data={promptMutation.data}
           copyable

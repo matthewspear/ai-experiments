@@ -2,11 +2,9 @@ import { type NextPage } from "next";
 
 import Layout from "@/components/Layout";
 import { api } from "@/utils/api";
-import { Loader } from "@/components/Loader";
-import ExclamationCircleIcon from "@heroicons/react/24/outline/ExclamationCircleIcon";
 import { type FormEvent, useState } from "react";
 import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
-import { ResultsView } from "@/components/ResultsView";
+import { ResultsBlock } from "@/components/ResultsBlock";
 
 interface HolidayForm {
   continent: string;
@@ -198,7 +196,7 @@ const Planner: NextPage = () => {
             Try
           </button>
         </div>
-        <ResultsView
+        <ResultsBlock
           isLoading={promptMutation.isLoading}
           data={promptMutation.data}
         />

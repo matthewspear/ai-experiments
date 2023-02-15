@@ -4,7 +4,7 @@ import { type Post, allPosts } from "contentlayer/generated";
 import { compareDesc, format, parseISO } from "date-fns";
 import Image from "next/image";
 
-export async function getStaticProps() {
+export function getStaticProps() {
   const posts = allPosts.sort((a, b) => {
     return compareDesc(new Date(a.publishedAt), new Date(b.publishedAt));
   });

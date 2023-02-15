@@ -8,7 +8,7 @@ import components from "@/components/MDXComponents";
 import Image from "next/image";
 import { BlogLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 
-export async function getStaticPaths() {
+export function getStaticPaths() {
   const paths = allPosts.map((post) => post.url);
   return {
     paths,
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }: { params: { slug: string } }) {
+export function getStaticProps({ params }: { params: { slug: string } }) {
   const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
   return {
     props: {
