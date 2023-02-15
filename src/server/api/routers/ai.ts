@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 import { Configuration, OpenAIApi } from "openai";
+import { encode } from "gpt-3-encoder";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -96,6 +97,14 @@ export const aiRouter = createTRPCRouter({
           };
         }
       }
+    }),
+  tokens: publicProcedure
+    .input(z.object({ text: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      const encoded = encode(input.text);
+      return {
+        count: encoded.length,
+      };
     }),
 });
 

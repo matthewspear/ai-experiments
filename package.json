@@ -26,6 +26,7 @@
     "contentlayer": "^0.3.0",
     "date-fns": "^2.29.3",
     "fathom-client": "^3.5.0",
+    "gpt-3-encoder": "^1.1.4",
     "next": "13.1.6",
     "next-auth": "^4.19.0",
     "next-contentlayer": "^0.3.0",
