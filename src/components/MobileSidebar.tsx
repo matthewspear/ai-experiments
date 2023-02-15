@@ -87,10 +87,13 @@ export function MobileSidebar({
                   </Link>
                 </div>
                 <nav className="mt-5 space-y-1 px-2">
-                  {navigationItems.map((item) => (
+                  {navigationItems.map((item, index) => (
                     <>
                       {item.divider && (
-                        <div className="flex items-center px-2 py-2">
+                        <div
+                          key={index}
+                          className="flex items-center px-2 py-2"
+                        >
                           <hr className="w-full" />
                         </div>
                       )}
