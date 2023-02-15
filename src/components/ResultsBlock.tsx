@@ -45,7 +45,7 @@ export function ResultsBlock({
               onClick={async () => {
                 if (data.result) {
                   await navigator.clipboard.writeText(
-                    pretext ?? "" + data.result
+                    pretext ?? "" + data.result.trim()
                   );
                   setCopied(true);
                   setTimeout(() => {
@@ -65,7 +65,7 @@ export function ResultsBlock({
           <div className="prose prose-slate whitespace-pre-line">
             <p className="p-4">
               {pretext ?? ""}
-              {data.result}
+              {data.result?.trim()}
             </p>
           </div>
         </div>

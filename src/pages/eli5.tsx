@@ -2,19 +2,34 @@ import { type NextPage } from "next";
 import Layout from "@/components/Layout";
 import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 import { api } from "@/utils/api";
-import { type ChangeEvent, type FormEvent, useState } from "react";
+import { type ChangeEvent, type FormEvent, useState, useEffect } from "react";
 import { ResultsBlock } from "@/components/ResultsBlock";
+import { AdvancedBlock } from "@/components/AdvancedBlock";
+import { EstimateBlock } from "@/components/EstimateBlock";
+import { PromptBlock } from "@/components/PromptBlock";
 
 const ELI5: NextPage = () => {
   const promptMutation = api.ai.prompt.useMutation();
-  const [creativity, setCreativity] = useState(0.5);
+  const [temperature, setTemperature] = useState(0.5);
   const [concept, setConcept] = useState<string>("");
+
+  const [latestPrompt, setLatestPrompt] = useState<string>("");
+
+  function generatePrompt() {
+    const prompt = `Explain like I am 5 years old the concept of ${concept}`;
+    setLatestPrompt(prompt);
+    return prompt;
+  }
+
+  useEffect(() => {
+    generatePrompt();
+  }, [concept]);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     promptMutation.mutate({
-      text: `Explain like I am 5 years old the concept of ${concept}`,
-      temperature: creativity,
+      text: generatePrompt(),
+      temperature: temperature,
       task: "eli5",
     });
   };
@@ -61,31 +76,6 @@ const ELI5: NextPage = () => {
               />
             </div>
           </div>
-          <div className="flex w-full flex-wrap gap-4">
-            <div className="w-full sm:w-[400px]">
-              <label
-                htmlFor="creativity"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Creativity
-              </label>
-              <div className="flex items-center gap-4">
-                <input
-                  id="myRange"
-                  className="range w-full p-2 accent-indigo-500"
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.01"
-                  value={creativity}
-                  onChange={(e) => {
-                    setCreativity(parseFloat(e.target.value));
-                  }}
-                ></input>
-                <p>{(creativity * 100).toFixed(0)}%</p>
-              </div>
-            </div>
-          </div>
           <button
             className="inline-flex w-min items-center rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium capitalize text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             type="submit"
@@ -94,6 +84,15 @@ const ELI5: NextPage = () => {
           </button>
         </form>
         <hr />
+        <PromptBlock prompt={latestPrompt} />
+        <EstimateBlock
+          prompt={latestPrompt}
+          result={promptMutation.data?.result ?? ""}
+        />
+        <AdvancedBlock
+          temperature={temperature}
+          setTemperature={setTemperature}
+        />
         <ResultsBlock
           isLoading={promptMutation.isLoading}
           data={promptMutation.data}

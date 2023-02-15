@@ -5,9 +5,14 @@ import { api } from "@/utils/api";
 import { useState } from "react";
 import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 import { ResultsBlock } from "@/components/ResultsBlock";
+import { AdvancedBlock } from "@/components/AdvancedBlock";
+import { EstimateBlock } from "@/components/EstimateBlock";
+import { PromptBlock } from "@/components/PromptBlock";
+import { Summary } from "@/components/Summary";
 
 const JournalPrompt: NextPage = () => {
   const promptMutation = api.ai.prompt.useMutation();
+  const [latestPrompt, setLatestPrompt] = useState<string>("");
 
   function PromptButton({
     icon,
@@ -27,9 +32,10 @@ const JournalPrompt: NextPage = () => {
         className="inline-flex items-center rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium capitalize text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         onClick={(e) => {
           e.preventDefault();
+          setLatestPrompt(fullPrompt);
           promptMutation.mutate({
             text: fullPrompt,
-            temperature: creativity,
+            temperature: temperature,
             task: "journal-prompt",
           });
         }}
@@ -40,7 +46,7 @@ const JournalPrompt: NextPage = () => {
     );
   }
 
-  const [creativity, setCreativity] = useState(0.7);
+  const [temperature, setTemperature] = useState(0.7);
 
   return (
     <Layout
@@ -51,30 +57,9 @@ const JournalPrompt: NextPage = () => {
       )}
     >
       <div className="flex w-full flex-col gap-4">
-        {/* <ComingSoon /> */}
-        <div className="flex w-full flex-wrap gap-4">
-          <div className="w-full sm:w-[400px]">
-            <label
-              htmlFor="location"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Creativity
-            </label>
-            <input
-              id="myRange"
-              className="range w-full p-2 accent-indigo-500"
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value={creativity}
-              onChange={(e) => {
-                setCreativity(parseFloat(e.target.value));
-              }}
-            ></input>
-            <p>{(creativity * 100).toFixed(0)}%</p>
-          </div>
-        </div>
+        <Summary title="Journal Prompt">
+          <p>Tap one of the buttons below to generate a journal prompt:</p>
+        </Summary>
         <div className="flex flex-wrap gap-4">
           <PromptButton
             icon="🗓️"
@@ -113,6 +98,15 @@ const JournalPrompt: NextPage = () => {
           />
         </div>
         <hr />
+        <PromptBlock prompt={latestPrompt} />
+        <EstimateBlock
+          prompt={latestPrompt}
+          result={promptMutation.data?.result ?? ""}
+        />
+        <AdvancedBlock
+          temperature={temperature}
+          setTemperature={setTemperature}
+        />
         <ResultsBlock
           isLoading={promptMutation.isLoading}
           data={promptMutation.data}

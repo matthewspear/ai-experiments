@@ -2,43 +2,54 @@ import { type NextPage } from "next";
 
 import Layout from "@/components/Layout";
 import { api } from "@/utils/api";
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useState, useEffect } from "react";
 import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 import { ResultsBlock } from "@/components/ResultsBlock";
+import { Summary } from "@/components/Summary";
+import { AdvancedBlock } from "@/components/AdvancedBlock";
+import { EstimateBlock } from "@/components/EstimateBlock";
+import { PromptBlock } from "@/components/PromptBlock";
 
 interface HolidayForm {
   continent: string;
   length: string;
   likes: string[];
-  randomness: number;
 }
 
-const Planner: NextPage = () => {
+const Holiday: NextPage = () => {
   const promptMutation = api.ai.prompt.useMutation();
+
+  const [latestPrompt, setLatestPrompt] = useState<string>("");
 
   const [form, setForm] = useState<HolidayForm>({
     continent: "Europe",
     length: "1 Week",
     likes: [],
-    randomness: 0.7,
   });
+
+  const [temperature, setTemperature] = useState(0.7);
 
   const generatePrompt = () => {
     const fullPrompt = `Pick me a holiday destination in ${
       form.continent
     } for ${form.length.toLowerCase()}.
     I like ${form.likes.join(", ")}
-    \n\n
+    
     Destination`;
+    setLatestPrompt(fullPrompt);
     return fullPrompt;
   };
+
+  useEffect(() => {
+    generatePrompt();
+  }, [form]);
 
   const onSubmit = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     promptMutation.mutate({
       text: generatePrompt(),
-      temperature: form.randomness,
+      temperature: temperature,
       task: "holiday-destination",
     });
   };
@@ -82,14 +93,18 @@ const Planner: NextPage = () => {
 
   return (
     <Layout
-      // title="Holiday Destination"
       breadcrumbs={ExperimentsLevelBreadcrumbs(
         "Holiday Destination",
         "/holiday-destination"
       )}
     >
       <div className="flex w-full flex-col gap-4">
-        {/* <ComingSoon /> */}
+        <Summary title="Holiday Destination">
+          <p>
+            Fill out your critera for the perfect holiday and AI will generate
+            you a destination:
+          </p>
+        </Summary>
         <div className="flex flex-wrap gap-4">
           <div>
             <label
@@ -161,30 +176,6 @@ const Planner: NextPage = () => {
             </div>
           </div>
         </div>
-        {/* <div className="flex w-full flex-wrap gap-4">
-          <div className="w-full sm:w-[400px]">
-            <label
-              htmlFor="location"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Randomness
-            </label>
-            <input
-              id="myRange"
-              className="range w-full p-4 accent-indigo-500"
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value={form.randomness}
-              onChange={(e) => {
-                setForm({ ...form, randomness: parseFloat(e.target.value) });
-              }}
-            ></input>
-            <p>{(form.randomness * 100).toFixed(0)}%</p>
-          </div>
-        </div> */}
-
         <hr />
 
         <div className="flex flex-col gap-4">
@@ -196,6 +187,15 @@ const Planner: NextPage = () => {
             Try
           </button>
         </div>
+        <PromptBlock prompt={latestPrompt} />
+        <EstimateBlock
+          prompt={latestPrompt}
+          result={promptMutation.data?.result ?? ""}
+        />
+        <AdvancedBlock
+          temperature={temperature}
+          setTemperature={setTemperature}
+        />
         <ResultsBlock
           isLoading={promptMutation.isLoading}
           data={promptMutation.data}
@@ -205,4 +205,4 @@ const Planner: NextPage = () => {
   );
 };
 
-export default Planner;
+export default Holiday;
