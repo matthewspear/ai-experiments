@@ -2,7 +2,6 @@ import { api } from "@/utils/api";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/24/outline";
 import { Loader } from "./Loader";
-import { useState } from "react";
 
 export function EstimateBlock({
   prompt,
@@ -16,12 +15,12 @@ export function EstimateBlock({
   const tokenInputMutation = api.ai.tokens.useMutation();
   const tokenOutputMutation = api.ai.tokens.useMutation();
 
-  var inputCount = tokenInputMutation?.data?.count ?? 0;
-  var outputCount = tokenOutputMutation?.data?.count ?? 0;
+  const inputCount = tokenInputMutation?.data?.count ?? 0;
+  let outputCount = tokenOutputMutation?.data?.count ?? 0;
   if (outputCount === 0) {
     outputCount = max_tokens ?? 265;
   }
-  var sum = inputCount + outputCount;
+  const sum = inputCount + outputCount;
 
   return (
     <div className="w-full sm:w-[700px]">
