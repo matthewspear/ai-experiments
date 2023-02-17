@@ -18,14 +18,20 @@ const JournalPrompt: NextPage = () => {
     icon,
     label,
     prompt,
+    passthroughPrompt,
   }: {
     icon: string;
     label: string;
     prompt: string;
+    passthroughPrompt?: boolean;
   }) {
-    const fullPrompt = `${prompt}
+    let fullPrompt = `${prompt}
     
     Prompt`;
+
+    if (passthroughPrompt) {
+      fullPrompt = prompt;
+    }
 
     return (
       <button
@@ -95,6 +101,30 @@ const JournalPrompt: NextPage = () => {
             icon="📝"
             label="weekly review"
             prompt={`Generate a journal prompt to help with my weekly review`}
+          />
+          <PromptButton
+            icon="📓"
+            label="james clear"
+            prompt={`Generate one thought provoking journal prompt written by James Clear
+
+            1. What are my actions moving me closer to?
+            2. How are you complicit in creating the conditions you say you don’t want?
+            3. What do I actually want?
+            4. Does this activity fill me with energy or drain me of energy?
+            5. If you do not work on important problems, how can you expect to do important work?
+            6. What are you working on when time fades away?
+            7. Has the most important thing changed? Am I chasing an outdated target?
+            8. What is the highest leverage action I can execute on right now?
+            9. What is a mistake you seem to repeat each year? What can you do to prevent it this time?
+            10. What is one small thing I could do today that would make a meaningful impact on my future?
+            11. Imagine the most important goal or project you are working on right now. Fast forward six months. Imagine the project has failed. Why did you fail?
+            12. What would your closest friend tell you to do?
+            13. What is one repeating problem you can automate or eliminate today?
+            14. What is the little bit of extra work that has huge upside?
+            15. Where do I have healthy momentum right now? Where do I have unhealthy momentum?
+            
+            Journal Prompt`}
+            passthroughPrompt
           />
         </div>
         <hr />
