@@ -43,3 +43,5 @@ yarn-error.log*
 
 # Contentlayer
 .contentlayer
+public/sitemap.xml
+public/feed.xml
