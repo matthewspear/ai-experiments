@@ -4,9 +4,7 @@ import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 import { api } from "@/utils/api";
 import { type ChangeEvent, type FormEvent, useState, useEffect } from "react";
 import { ResultsBlock } from "@/components/ResultsBlock";
-import { AdvancedBlock } from "@/components/AdvancedBlock";
-import { EstimateBlock } from "@/components/EstimateBlock";
-import { PromptBlock } from "@/components/PromptBlock";
+import DropdownBlocks from "@/components/DropdownBlocks";
 
 const ELI5: NextPage = () => {
   const promptMutation = api.ai.prompt.useMutation();
@@ -84,12 +82,9 @@ const ELI5: NextPage = () => {
           </button>
         </form>
         <hr />
-        <PromptBlock prompt={latestPrompt} />
-        <EstimateBlock
+        <DropdownBlocks
           prompt={latestPrompt}
           result={promptMutation.data?.result ?? ""}
-        />
-        <AdvancedBlock
           temperature={temperature}
           setTemperature={setTemperature}
         />

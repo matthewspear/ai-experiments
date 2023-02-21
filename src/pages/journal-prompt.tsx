@@ -5,10 +5,8 @@ import { api } from "@/utils/api";
 import { useState } from "react";
 import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 import { ResultsBlock } from "@/components/ResultsBlock";
-import { AdvancedBlock } from "@/components/AdvancedBlock";
-import { EstimateBlock } from "@/components/EstimateBlock";
-import { PromptBlock } from "@/components/PromptBlock";
 import { Summary } from "@/components/Summary";
+import DropdownBlocks from "@/components/DropdownBlocks";
 
 const JournalPrompt: NextPage = () => {
   const promptMutation = api.ai.prompt.useMutation();
@@ -128,12 +126,9 @@ const JournalPrompt: NextPage = () => {
           />
         </div>
         <hr />
-        <PromptBlock prompt={latestPrompt} />
-        <EstimateBlock
+        <DropdownBlocks
           prompt={latestPrompt}
           result={promptMutation.data?.result ?? ""}
-        />
-        <AdvancedBlock
           temperature={temperature}
           setTemperature={setTemperature}
         />

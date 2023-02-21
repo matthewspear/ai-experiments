@@ -4,10 +4,8 @@ import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 import { ResultsBlock } from "@/components/ResultsBlock";
 import { api } from "@/utils/api";
 import { useState, type FormEvent, type ChangeEvent, useEffect } from "react";
-import { PromptBlock } from "@/components/PromptBlock";
-import { EstimateBlock } from "@/components/EstimateBlock";
-import { AdvancedBlock } from "@/components/AdvancedBlock";
 import { Summary } from "@/components/Summary";
+import DropdownBlocks from "@/components/DropdownBlocks";
 
 enum Mode {
   tldr = "Tl;dr",
@@ -117,12 +115,9 @@ ${command}`;
         </form>
 
         <hr className="w-full sm:w-[700px]" />
-        <PromptBlock prompt={latestPrompt} />
-        <EstimateBlock
+        <DropdownBlocks
           prompt={latestPrompt}
           result={promptMutation.data?.result ?? ""}
-        />
-        <AdvancedBlock
           temperature={temperature}
           setTemperature={setTemperature}
         />
