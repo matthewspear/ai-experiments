@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ExperimentCard } from "@/pages/experiments";
+import { ExperimentCard } from "@/components/ExperimentCard";
 import { experiments } from "./Experiments";
 
 const CustomLink = (props: any): JSX.Element => {

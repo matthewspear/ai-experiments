@@ -13,7 +13,7 @@ import {
 } from "react";
 import { Loader } from "@/components/Loader";
 import Layout from "@/components/Layout";
-import { ExperimentCard } from "./experiments";
+import { ExperimentCard } from "@/components/ExperimentCard";
 import { experiments } from "@/components/Experiments";
 
 function PromptInput({
