@@ -27,7 +27,7 @@ const Holiday: NextPage = () => {
 
   const [temperature, setTemperature] = useState(0.7);
 
-  const generatePrompt = () => {
+  const generatePrompt = (form: HolidayForm) => {
     const fullPrompt = `Pick me a holiday destination in ${
       form.continent
     } for ${form.length.toLowerCase()}.
@@ -39,14 +39,14 @@ const Holiday: NextPage = () => {
   };
 
   useEffect(() => {
-    generatePrompt();
+    generatePrompt(form);
   }, [form]);
 
   const onSubmit = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     promptMutation.mutate({
-      text: generatePrompt(),
+      text: generatePrompt(form),
       temperature: temperature,
       task: "holiday-destination",
     });

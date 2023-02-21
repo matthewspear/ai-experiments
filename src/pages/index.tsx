@@ -115,7 +115,6 @@ const Home: NextPage = () => {
                 </div>
               </div>
             )}
-
           <div className="h-10 grow" />
           <div className="flex flex-col gap-4">
             <div className="border-b border-gray-200 pb-5 pt-6">

@@ -7,6 +7,7 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 import components from "@/components/MDXComponents";
 import Image from "next/image";
 import { BlogLevelBreadcrumbs } from "@/components/BreadcrumbBar";
+import { type ReadTimeResults } from "reading-time";
 
 export function getStaticPaths() {
   const paths = allPosts.map((post) => post.url);
@@ -26,7 +27,7 @@ export function getStaticProps({ params }: { params: { slug: string } }) {
 }
 
 export function getNumberWithOrdinal(n: number): string {
-  const s = ["th", "st", "nd", "rd"];
+  const s = ["th", "st", "nd", "rd"] as const;
   const v = n % 100;
   return `${n}${s[(v - 20) % 10] || s[v] || s[0]}`;
 }
@@ -74,7 +75,7 @@ function PostPage({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
                     {format(parseISO(post.publishedAt), "LLLL d, yyyy")}
                   </time>
                   <span aria-hidden="true">&middot;</span>
-                  <span>{post.readingTime.text}</span>
+                  <span>{(post.readingTime as ReadTimeResults).text}</span>
                 </div>
               </div>
             </div>

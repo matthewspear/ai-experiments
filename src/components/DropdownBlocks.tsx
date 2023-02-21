@@ -1,7 +1,6 @@
 import { AdvancedBlock } from "@/components/AdvancedBlock";
 import { EstimateBlock } from "@/components/EstimateBlock";
 import { PromptBlock } from "@/components/PromptBlock";
-import { ResultsBlock } from "@/components/ResultsBlock";
 import type { Dispatch, SetStateAction } from "react";
 
 interface BlocksInputType {

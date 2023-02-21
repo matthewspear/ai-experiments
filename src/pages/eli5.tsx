@@ -13,20 +13,20 @@ const ELI5: NextPage = () => {
 
   const [latestPrompt, setLatestPrompt] = useState<string>("");
 
-  function generatePrompt() {
+  const generatePrompt = (concept: string) => {
     const prompt = `Explain like I am 5 years old the concept of ${concept}`;
     setLatestPrompt(prompt);
     return prompt;
-  }
+  };
 
   useEffect(() => {
-    generatePrompt();
+    generatePrompt(concept);
   }, [concept]);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     promptMutation.mutate({
-      text: generatePrompt(),
+      text: generatePrompt(concept),
       temperature: temperature,
       task: "eli5",
     });

@@ -3,6 +3,9 @@ import Image from "next/image";
 import { ExperimentCard } from "@/components/ExperimentCard";
 import { experiments } from "./Experiments";
 
+/* eslint-disable */
+// To avoid typewrangling and DetailedHTMLProps<_, _> craziness I just disabled eslint for this file
+
 const CustomLink = (props: any): JSX.Element => {
   const href: string = props.href;
 
@@ -44,7 +47,7 @@ function ExperimentLink(props: any): JSX.Element {
   );
 }
 
-function Divider(props: any): JSX.Element {
+function Divider(): JSX.Element {
   return <hr className="w-full px-4" />;
 }
 

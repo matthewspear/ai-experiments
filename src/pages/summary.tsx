@@ -23,7 +23,7 @@ const SummaryPage: NextPage = () => {
   const [latestPrompt, setLatestPrompt] = useState<string>("");
   const [pretext, setPretext] = useState<string>("");
 
-  function generatePrompt() {
+  function generatePrompt(mode: Mode, text: string) {
     let command = "";
 
     switch (mode) {
@@ -52,14 +52,14 @@ ${command}`;
   }
 
   useEffect(() => {
-    generatePrompt();
+    generatePrompt(mode, text);
   }, [mode, text]);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     promptMutation.mutate({
-      text: generatePrompt(),
+      text: generatePrompt(mode, text),
       temperature: temperature,
       task: "tldr",
     });

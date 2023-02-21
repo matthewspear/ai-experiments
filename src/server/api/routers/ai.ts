@@ -3,6 +3,8 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 import { Configuration, OpenAIApi } from "openai";
 import { encode } from "gpt-3-encoder";
+import { Prisma } from "@prisma/client";
+import axios, { type AxiosError } from "axios";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -29,6 +31,16 @@ export const aiRouter = createTRPCRouter({
         temperature: z.number().optional(),
         task: z.string().optional(),
         max_tokens: z.number().optional(),
+      })
+    )
+    .output(
+      z.object({
+        result: z.string().optional(),
+        error: z
+          .object({
+            message: z.string(),
+          })
+          .optional(),
       })
     )
     .mutation(async ({ input, ctx }) => {
@@ -64,8 +76,58 @@ export const aiRouter = createTRPCRouter({
             },
           };
         }
+      } catch (error: unknown) {
+        // TODO: Improve error handling
+        if (axios.isAxiosError(error)) {
+          if (error.response) {
+            const axiosError = error as AxiosError<
+              {
+                error: {
+                  message: string;
+                  type: string;
+                  // param: any;
+                  code: string;
+                };
+              },
+              Error
+            >;
+            // console.log(JSON.stringify(axiosError.response?.data, null, 2));
 
-        await ctx.prisma.result.create({
+            const message = axiosError.response?.data.error.message;
+            const requestMessage = error.message;
+
+            return {
+              error: {
+                message: message ?? requestMessage,
+              },
+            };
+          } else {
+            console.error(`Error with OpenAI API request: ${error.message}`);
+            return {
+              error: {
+                message: "An error occurred during your request.",
+              },
+            };
+          }
+        } else if (error instanceof Error) {
+          // Just a stock error
+          return {
+            error: {
+              message: "An error occurred during your request.",
+            },
+          };
+        } else {
+          // unknown
+          return {
+            error: {
+              message: "An error occurred...",
+            },
+          };
+        }
+      }
+
+      await ctx.prisma.result
+        .create({
           data: {
             task: input.task ?? "",
             model: "text-davinci-003",
@@ -75,30 +137,16 @@ export const aiRouter = createTRPCRouter({
             result: output,
             userId: ctx.session?.user.id,
           },
+        })
+        .catch((error) => {
+          if (error instanceof Prisma.PrismaClientKnownRequestError) {
+            console.log("Prisma error:", error.message);
+          }
         });
 
-        return {
-          result: output,
-        };
-      } catch (error: any) {
-        // TODO: Improve error handling
-
-        // Consider adjusting the error handling logic for your use case
-        if (error.response) {
-          console.log(JSON.stringify(error, null, 2));
-          console.error(error.response.status, error.response.data);
-          return {
-            error: error,
-          };
-        } else {
-          console.error(`Error with OpenAI API request: ${error.message}`);
-          return {
-            error: {
-              message: "An error occurred during your request.",
-            },
-          };
-        }
-      }
+      return {
+        result: output,
+      };
     }),
   tokens: publicProcedure
     .input(z.object({ text: z.string() }))

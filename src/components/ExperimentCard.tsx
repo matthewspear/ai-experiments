@@ -1,5 +1,5 @@
 import { classNames } from "@/components/Layout";
-import { Experiment, colors } from "../pages/experiments";
+import { type Experiment, colors } from "../pages/experiments";
 
 export function ExperimentCard({ experiment }: { experiment: Experiment }) {
   return (

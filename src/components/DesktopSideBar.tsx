@@ -34,15 +34,14 @@ export function DesktopSideBar({
           </div>
           <nav className="mt-5 flex-1 space-y-1 bg-white px-2">
             {navigationItems.map((item, index) => (
-              <>
+              <div key={item.name + index.toString()}>
                 {item.divider && (
-                  <div key={index} className="flex items-center px-2 py-2">
+                  <div className="flex items-center px-2 py-2">
                     <hr className="w-full" />
                   </div>
                 )}
                 {!item.divider && (
                   <Link
-                    key={item.name}
                     href={item.href}
                     className={classNames(
                       router.asPath === item.href
@@ -63,21 +62,23 @@ export function DesktopSideBar({
                     {item.name}
                   </Link>
                 )}
-              </>
+              </div>
             ))}
           </nav>
         </div>
         <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
           <button
             className="group block w-full flex-shrink-0"
-            onClick={async () => {
-              if (session) {
-                await router.push("/profile");
-              } else {
-                await signIn("github");
-              }
-              setSidebarOpen(false);
-            }}
+            onClick={
+              void (async () => {
+                if (session) {
+                  await router.push("/profile");
+                } else {
+                  await signIn("github");
+                }
+                setSidebarOpen(false);
+              })
+            }
           >
             <div className="flex items-center">
               <div>
