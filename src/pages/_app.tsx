@@ -6,6 +6,8 @@ import * as Fathom from "fathom-client";
 import { api } from "@/utils/api";
 
 import "@/styles/globals.css";
+import "@total-typescript/ts-reset";
+
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { env } from "@/env.mjs";
