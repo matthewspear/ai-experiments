@@ -42,19 +42,17 @@ export function ResultsBlock({
             <button
               className="absolute bottom-0 right-0 p-4"
               aria-label="Copy to clipboard"
-              onClick={
-                void (async () => {
-                  if (data.result) {
-                    await navigator.clipboard.writeText(
-                      pretext ?? "" + data.result.trim()
-                    );
-                    setCopied(true);
-                    setTimeout(() => {
-                      setCopied(false);
-                    }, 2000);
-                  }
-                })()
-              }
+              onClick={async () => {
+                if (data.result) {
+                  await navigator.clipboard.writeText(
+                    pretext ?? "" + data.result.trim()
+                  );
+                  setCopied(true);
+                  setTimeout(() => {
+                    setCopied(false);
+                  }, 2000);
+                }
+              }}
             >
               {copied && (
                 <ClipboardDocumentCheckIcon className="-mb-1 w-6 text-gray-400 transition-all" />

@@ -69,16 +69,14 @@ export function DesktopSideBar({
         <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
           <button
             className="group block w-full flex-shrink-0"
-            onClick={
-              void (async () => {
-                if (session) {
-                  await router.push("/profile");
-                } else {
-                  await signIn("github");
-                }
-                setSidebarOpen(false);
-              })()
-            }
+            onClick={async (): Promise<void> => {
+              if (session) {
+                await router.push("/profile");
+              } else {
+                await signIn("github");
+              }
+              setSidebarOpen(false);
+            }}
           >
             <div className="flex items-center">
               <div>
