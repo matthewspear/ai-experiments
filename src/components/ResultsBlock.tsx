@@ -53,7 +53,7 @@ export function ResultsBlock({
                       setCopied(false);
                     }, 2000);
                   }
-                })
+                })()
               }
             >
               {copied && (

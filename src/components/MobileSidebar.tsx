@@ -130,7 +130,7 @@ export function MobileSidebar({
                         await signIn("github");
                       }
                       setSidebarOpen(false);
-                    })
+                    })()
                   }
                   className="group block flex-shrink-0"
                 >

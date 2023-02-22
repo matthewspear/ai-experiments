@@ -77,7 +77,7 @@ export function DesktopSideBar({
                   await signIn("github");
                 }
                 setSidebarOpen(false);
-              })
+              })()
             }
           >
             <div className="flex items-center">
