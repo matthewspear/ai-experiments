@@ -6,8 +6,8 @@ import { type NextRouter } from "next/router";
 import { type Session } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
-import { classNames } from "./Layout";
 import { navigationItems } from "./Navigation";
+import clsx from "clsx";
 
 export function MobileSidebar({
   sidebarOpen,
@@ -97,7 +97,7 @@ export function MobileSidebar({
                       {!item.divider && (
                         <Link
                           href={item.href}
-                          className={classNames(
+                          className={clsx(
                             router.asPath === item.href
                               ? "bg-gray-100 text-gray-900"
                               : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
@@ -105,7 +105,7 @@ export function MobileSidebar({
                           )}
                         >
                           <item.icon
-                            className={classNames(
+                            className={clsx(
                               router.asPath === item.href
                                 ? "text-gray-500"
                                 : "text-gray-400 group-hover:text-gray-500",

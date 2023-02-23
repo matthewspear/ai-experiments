@@ -1,4 +1,4 @@
-import { classNames } from "@/components/Layout";
+import clsx from "clsx";
 import { type Post } from "contentlayer/generated";
 import { format, parseISO } from "date-fns";
 import Image from "next/image";
@@ -10,7 +10,7 @@ export function PostCard(post: Post) {
       <div>
         <a href={post.category} className="inline-block">
           <span
-            className={classNames(
+            className={clsx(
               post.category === "Feature"
                 ? "bg-purple-100 text-purple-800"
                 : "",

@@ -1,11 +1,11 @@
-import { classNames } from "@/components/Layout";
 import { type Experiment, colors } from "../pages/experiments";
+import clsx from "clsx";
 
 export function ExperimentCard({ experiment }: { experiment: Experiment }) {
   return (
     <div
       key={experiment.url}
-      className={classNames(
+      className={clsx(
         // actionIdx === 0 ? "rounded-tl-lg rounded-tr-lg sm:rounded-tr-none" : "",
         // actionIdx === 1 ? "sm:rounded-tr-lg" : "",
         // actionIdx === actions.length - 2 ? "sm:rounded-bl-lg" : "",
@@ -17,7 +17,7 @@ export function ExperimentCard({ experiment }: { experiment: Experiment }) {
     >
       <div>
         <span
-          className={classNames(
+          className={clsx(
             colors[experiment.color]?.iconForeground,
             colors[experiment.color]?.iconBackground,
             "inline-flex rounded-full p-3 ring-4 ring-white"
