@@ -5,6 +5,8 @@ import { TopLevelBreadcrumb } from "@/components/BreadcrumbBar";
 import Image from "next/image";
 import { format, parseISO } from "date-fns";
 
+import profile from "@/public/profile.png";
+
 const About: NextPage = () => {
   const publishedAt = "2022-02-14";
 
@@ -21,9 +23,11 @@ const About: NextPage = () => {
               <Image
                 width={40}
                 height={40}
+                placeholder="blur"
                 className="h-10 w-10 rounded-full"
-                src="/profile.png"
+                src={profile}
                 alt="Author profile picture for Matt Spear"
+                priority
               />
             </div>
             <div className="ml-3">

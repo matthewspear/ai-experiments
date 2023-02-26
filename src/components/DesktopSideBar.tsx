@@ -87,6 +87,7 @@ export function DesktopSideBar({
                     className="inline-block h-9 w-9 rounded-full"
                     width={36}
                     height={36}
+                    priority
                   />
                 )}
                 {!session && (
