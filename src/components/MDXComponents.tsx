@@ -2,19 +2,24 @@ import Link from "next/link";
 import Image from "next/image";
 import { ExperimentCard } from "@/components/ExperimentCard";
 import { experiments } from "./Experiments";
+import type { AnchorHTMLAttributes, DetailedHTMLProps } from "react";
 
-/* eslint-disable */
-// To avoid typewrangling and DetailedHTMLProps<_, _> craziness I just disabled eslint for this file
+type LinkProps = DetailedHTMLProps<
+  AnchorHTMLAttributes<HTMLAnchorElement>,
+  HTMLAnchorElement
+>;
 
-const CustomLink = (props: any): JSX.Element => {
-  const href: string = props.href;
+type CustomLinkProps = Omit<LinkProps, "ref">;
+
+const CustomLink = (props: CustomLinkProps): JSX.Element => {
+  const { href, ...rest } = { ...props };
 
   const isInternalLink =
     href !== undefined && (href.startsWith("/") || href?.startsWith("#"));
 
   if (isInternalLink) {
     return (
-      <Link {...props} href={href}>
+      <Link {...rest} href={href}>
         {props.children}
       </Link>
     );
@@ -23,12 +28,23 @@ const CustomLink = (props: any): JSX.Element => {
   return <a target="_blank" rel="noopener noreferrer" {...props} />;
 };
 
-function RoundedImage(props: any): JSX.Element {
+type ImageProps = DetailedHTMLProps<
+  React.ImgHTMLAttributes<HTMLImageElement>,
+  HTMLImageElement
+>;
+
+type CustomImageProps = Omit<ImageProps, "placeholder" | "ref">;
+
+function RoundedImage(props: CustomImageProps): JSX.Element {
+  const { src, height, width, ...rest } = props;
   return (
     <Image
-      alt={props.alt}
+      src={src || ""}
+      width={Number(width)}
+      height={Number(height)}
+      alt={props.alt || ""}
       className="rounded-lg"
-      {...props}
+      {...rest}
       style={{
         maxWidth: "100%",
         height: "auto",
@@ -37,8 +53,8 @@ function RoundedImage(props: any): JSX.Element {
   );
 }
 
-function ExperimentLink(props: any): JSX.Element {
-  const e = experiments.find((experiment) => experiment.url == props.url);
+function ExperimentLink(url: string): JSX.Element {
+  const e = experiments.find((experiment) => experiment.url == url);
   if (!e) return <></>;
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
