@@ -9,7 +9,10 @@
     "postbuild": "NODE_OPTIONS='--experimental-json-modules' node ./scripts/generate-rss.mjs && node ./scripts/generate-sitemap.mjs",
     "lint": "next lint",
     "start": "next start",
-    "studio": "prisma studio"
+    "studio": "prisma studio",
+    "db-local": "docker-compose up",
+    "db-dev": "pscale connect experiments dev --port 3309",
+    "db-prod": "pscale connect experiments main --port 3309"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.12",
