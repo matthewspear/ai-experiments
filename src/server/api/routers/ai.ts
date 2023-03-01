@@ -78,6 +78,12 @@ function handleError(error: unknown) {
   }
 }
 
+const ChatMessage = z.object({
+  role: z.enum(["system", "user", "assistant"]),
+  content: z.string(),
+  name: z.string().optional(),
+});
+
 export const aiRouter = createTRPCRouter({
   prompt: publicProcedure
     .input(
@@ -231,6 +237,83 @@ export const aiRouter = createTRPCRouter({
             userPrompt: input.text,
             fullPrompt: fullPrompt,
             result: output,
+            userId: ctx.session?.user.id,
+          },
+        })
+        .catch((error) => {
+          if (error instanceof Prisma.PrismaClientKnownRequestError) {
+            console.log("Prisma error:", error.message);
+          }
+        });
+
+      return {
+        result: output,
+      };
+    }),
+  newchat: publicProcedure
+    .input(
+      z.object({
+        messages: z.array(ChatMessage),
+        temperature: z.number().optional(),
+        task: z.string().optional(),
+        top_p: z.number().optional(),
+        frequency_penalty: z.number().optional(),
+        presence_penalty: z.number().optional(),
+        stop: z.array(z.string()).optional(),
+      })
+    )
+    .output(
+      z.object({
+        result: ChatMessage.optional(),
+        error: z
+          .object({
+            message: z.string(),
+          })
+          .optional(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      checkAPIKey();
+
+      let output;
+
+      try {
+        // const chat = await openai.createCH
+        const completion = await openai.createChatCompletion({
+          model: "gpt-3.5-turbo",
+          messages: input.messages,
+          temperature: input.temperature ?? 0.9,
+          top_p: input.top_p ?? 1,
+          frequency_penalty: input.frequency_penalty ?? 0,
+          presence_penalty: input.presence_penalty ?? 0.6,
+          stop: input.stop ?? [" Human:", " AI:"],
+        });
+
+        const result = completion.data.choices[0]?.message;
+        console.log("Result", result);
+
+        if (result) {
+          output = result;
+        } else {
+          return {
+            error: {
+              message: "Could not read result from OpenAI API",
+            },
+          };
+        }
+      } catch (error: unknown) {
+        return handleError(error);
+      }
+
+      await ctx.prisma.result
+        .create({
+          data: {
+            task: input.task ?? "",
+            model: "gpt-3.5-turbo",
+            temperature: input.temperature ?? 0.6,
+            userPrompt: "",
+            fullPrompt: JSON.stringify(input.messages, null, 2),
+            result: JSON.stringify(output, null, 2),
             userId: ctx.session?.user.id,
           },
         })

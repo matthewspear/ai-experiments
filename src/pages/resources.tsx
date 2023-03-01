@@ -59,11 +59,15 @@ const Resources: NextPage = () => {
             description="A tool to understand how a piece of text would be tokenized by the API, and the total count of tokens in that piece of text."
             url="https://platform.openai.com/tokenizer"
           />
-
           <ResourceItem
             title="Best practices for prompt engineering"
             description="Article from the OpenAI help center on how to give clear and effective instructions to GPT-3 and Codex"
             url="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api"
+          />
+          <ResourceItem
+            title="GPT Comparison tool"
+            description="This tool lets you try out different settings (engines, temp, top p, etc.) and compare the results."
+            url="https://gpttools.com/comparisontool"
           />
         </Section>
         <Section title="Diving Deeper">
