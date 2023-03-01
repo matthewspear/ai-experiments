@@ -36,7 +36,7 @@ const Chat: NextPage = () => {
   }, [chatMutation.data]);
 
   useEffect(() => {
-    let allMessages = messages;
+    const allMessages = messages;
     allMessages[0] = {
       role: "system",
       content: prompt,
