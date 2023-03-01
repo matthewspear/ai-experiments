@@ -20,12 +20,17 @@ module.exports = {
       }),
     },
   },
-  future:{
-    hoverOnlyWhenSupported: true
+  daisyui: {
+    themes: false,
+    prefix: "du-",
+  },
+  future: {
+    hoverOnlyWhenSupported: true,
   },
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio"),
+    require("daisyui"),
   ],
 };

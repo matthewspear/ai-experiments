@@ -9,6 +9,7 @@ import {
   PencilSquareIcon,
   QueueListIcon,
   ArrowsPointingInIcon,
+  ChatBubbleBottomCenterTextIcon,
 } from "@heroicons/react/24/outline";
 
 export const experiments = [
@@ -66,6 +67,14 @@ export const experiments = [
     description: `Summarise a text`,
     url: "/summary",
     icon: ArrowsPointingInIcon,
+    color: "rose",
+    active: true,
+  },
+  {
+    title: "Chat",
+    description: `Talk to the AI and ask questions`,
+    url: "/chat",
+    icon: ChatBubbleBottomCenterTextIcon,
     color: "sky",
     active: true,
   },

@@ -7,6 +7,7 @@ import {
   Square3Stack3DIcon,
   PuzzlePieceIcon,
   ArrowsPointingInIcon,
+  ChatBubbleBottomCenterTextIcon,
 } from "@heroicons/react/24/outline";
 
 export const navigationItems = [
@@ -60,6 +61,11 @@ export const navigationItems = [
     name: "Summary",
     href: "/summary",
     icon: ArrowsPointingInIcon,
+  },
+  {
+    name: "Chat",
+    href: "/chat",
+    icon: ChatBubbleBottomCenterTextIcon,
   },
   // {
   //   name: "Expander",
