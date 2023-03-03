@@ -2,10 +2,11 @@ import { type NextPage } from "next";
 import Layout from "@/components/Layout";
 import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 import { api } from "@/utils/api";
-import { type ChangeEvent, type FormEvent, useState, useEffect } from "react";
+import { type ChangeEvent, useState, useEffect } from "react";
 import clsx from "clsx";
-import { Loader } from "@/components/Loader";
+import { SmallWhiteLoader } from "@/components/Loader";
 import { DisplayBlock } from "@/components/DisplayBlock";
+import { AdvancedBlock } from "@/components/AdvancedBlock";
 
 const Chat: NextPage = () => {
   const chatMutation = api.ai.chat.useMutation();
@@ -23,8 +24,8 @@ const Chat: NextPage = () => {
     if (chatMutation.data?.result) {
       setChat(chat + chatMutation.data?.result);
       chatMutation.reset();
-      setMessage("");
     }
+    generatePrompt(message);
   }, [chatMutation.data]);
 
   const [latestPrompt, setLatestPrompt] = useState<string>("");
@@ -45,10 +46,21 @@ const Chat: NextPage = () => {
     generatePrompt(message);
   }, [message]);
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = (
+    e:
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+      | React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
+
+    if (chatMutation.isLoading || chatMutation.data) {
+      return;
+    }
+
     const prompt = generatePrompt(message);
     setChat(prompt.split("---")[1] ?? "");
+    setMessage("");
+
     chatMutation.mutate({
       text: prompt,
       temperature: temperature,
@@ -92,9 +104,9 @@ const Chat: NextPage = () => {
       <div className="flex w-full flex-col gap-4">
         <div className="prose prose-lg prose-gray">
           <h3>Chat</h3>
+          <p>Built using GPT-3 completions API.</p>
         </div>
         <hr />
-        {/* <div> */}
         <div className="flex w-full flex-col gap-4">
           <div className="flex flex-wrap gap-4">
             <PromptButton
@@ -179,32 +191,50 @@ const Chat: NextPage = () => {
                 </div>
               );
             })}
-          {chatMutation.isLoading && <Loader />}
+          {(chatMutation.isLoading || chatMutation.data) && (
+            <div className="du-chat du-chat-start">
+              <div className="du-chat-bubble w-32 bg-indigo-400">
+                <SmallWhiteLoader />
+              </div>
+            </div>
+          )}
         </pre>
-        <form className="flex flex-row gap-4" onSubmit={onSubmit}>
-          <input
-            type="text"
-            name="message"
-            id="message"
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:w-[600px] sm:text-sm"
-            value={message ?? ""}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              setMessage(e.target.value);
+        <div className="flex flex-row gap-4">
+          <form
+            onSubmit={(e) => {
+              onSubmit(e);
             }}
-          />
+          >
+            <input
+              type="text"
+              name="message"
+              id="message"
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:w-[600px] sm:text-sm"
+              value={message ?? ""}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.preventDefault();
+                setMessage(e.target.value);
+              }}
+            />
+          </form>
           <button
-            className="inline-flex w-min items-center rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium capitalize text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            type="submit"
+            type="button"
+            className="inline-flex w-min items-center rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium capitalize text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:hover:bg-indigo-100"
             disabled={chatMutation.isLoading}
+            onClick={(e) => onSubmit(e)}
           >
             <p>Send</p>
           </button>
-        </form>
+        </div>
         <hr />
         <div className="flex w-full flex-col gap-2">
           <DisplayBlock title="Prompt">{prompt.trim()}</DisplayBlock>
           <DisplayBlock title="Chat">{chat.trim()}</DisplayBlock>
           <DisplayBlock title="Full Prompt">{latestPrompt.trim()}</DisplayBlock>
+          <AdvancedBlock
+            temperature={temperature}
+            setTemperature={setTemperature}
+          />
         </div>
         {/* <DropdownBlocks
           prompt={latestPrompt}

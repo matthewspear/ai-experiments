@@ -3,14 +3,14 @@ import Layout from "@/components/Layout";
 import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 import { api } from "@/utils/api";
 import React, { type ChangeEvent, useState, useEffect } from "react";
-import { Loader } from "@/components/Loader";
+import { SmallWhiteLoader } from "@/components/Loader";
 import type {
   ChatCompletionRequestMessage,
   ChatCompletionResponseMessage,
 } from "openai";
 import { DisplayBlock } from "@/components/DisplayBlock";
 import clsx from "clsx";
-import { all } from "axios";
+import { AdvancedBlock } from "@/components/AdvancedBlock";
 
 const Chat: NextPage = () => {
   const chatMutation = api.ai.newchat.useMutation();
@@ -31,7 +31,6 @@ const Chat: NextPage = () => {
     if (chatMutation.data?.result) {
       setMessages([...messages, chatMutation.data.result]);
       chatMutation.reset();
-      setUserInput("");
     }
   }, [chatMutation.data]);
 
@@ -44,8 +43,16 @@ const Chat: NextPage = () => {
     setMessages(allMessages);
   }, [prompt]);
 
-  const onSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onSubmit = (
+    e:
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+      | React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
+
+    if (chatMutation.isLoading || chatMutation.data) {
+      return;
+    }
 
     const updatedMessages: ChatCompletionRequestMessage[] = [
       ...messages,
@@ -55,12 +62,13 @@ const Chat: NextPage = () => {
       },
     ];
 
+    setUserInput("");
     setMessages(updatedMessages);
 
     chatMutation.mutate({
       messages: updatedMessages,
       temperature: temperature,
-      task: "chat2",
+      task: "chatgpt",
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0.6,
@@ -106,7 +114,6 @@ const Chat: NextPage = () => {
           <p>Built using the new ChatGPT API.</p>
         </div>
         <hr />
-        {/* <div> */}
         <div className="flex w-full flex-col gap-4">
           <div className="flex flex-wrap gap-4">
             <PromptButton
@@ -164,7 +171,7 @@ const Chat: NextPage = () => {
         </div>
         <hr />
         <pre className="prose prose-slate whitespace-pre-line">
-          {JSON.stringify(chatMutation.data, null, 2)}
+          {/* {JSON.stringify(chatMutation.data, null, 2)} */}
           {messages
             .filter((m) => m.role !== "system")
             .map((m, index) => {
@@ -191,28 +198,41 @@ const Chat: NextPage = () => {
                 </div>
               );
             })}
-          {chatMutation.isLoading && <Loader />}
+          {(chatMutation.isLoading || chatMutation.data) && (
+            <div className="du-chat du-chat-start">
+              <div className="du-chat-bubble w-32 bg-indigo-400">
+                <SmallWhiteLoader />
+              </div>
+            </div>
+          )}
         </pre>
-        <form className="flex flex-row gap-4">
-          <input
-            type="text"
-            name="userInput"
-            id="userInput"
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:w-[600px] sm:text-sm"
-            value={userInput ?? ""}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              setUserInput(e.target.value);
+        <div className="flex flex-row gap-4">
+          <form
+            onSubmit={(e) => {
+              onSubmit(e);
             }}
-          />
+          >
+            <input
+              type="text"
+              name="userInput"
+              id="userInput"
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:w-[600px] sm:text-sm"
+              value={userInput ?? ""}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.preventDefault();
+                setUserInput(e.target.value);
+              }}
+            />
+          </form>
           <button
             type="button"
-            className="inline-flex w-min items-center rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium capitalize text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="inline-flex w-min items-center rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium capitalize text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:hover:bg-indigo-100"
             disabled={chatMutation.isLoading}
             onClick={(e) => onSubmit(e)}
           >
             <p>Send</p>
           </button>
-        </form>
+        </div>
         <hr />
         <div className="flex w-full flex-col gap-2">
           <DisplayBlock title="Messages">
@@ -220,6 +240,10 @@ const Chat: NextPage = () => {
               {JSON.stringify(messages, null, 2)}
             </p>
           </DisplayBlock>
+          <AdvancedBlock
+            temperature={temperature}
+            setTemperature={setTemperature}
+          />
         </div>
       </div>
     </Layout>
