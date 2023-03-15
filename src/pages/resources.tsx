@@ -69,6 +69,11 @@ const Resources: NextPage = () => {
             description="This tool lets you try out different settings (engines, temp, top p, etc.) and compare the results."
             url="https://gpttools.com/comparisontool"
           />
+          <ResourceItem
+            title="GPT-4 Paper"
+            description="The paper describing GPT-4, the latest version of OpenAI's language model."
+            url="https://openai.com/research/gpt-4"
+          />
         </Section>
         <Section title="Diving Deeper">
           <ResourceItem
