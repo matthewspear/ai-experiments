@@ -11,6 +11,8 @@ import type {
 import { DisplayBlock } from "@/components/DisplayBlock";
 import clsx from "clsx";
 import { AdvancedBlock } from "@/components/AdvancedBlock";
+import { ReferenceBlock } from "@/components/ReferenceBlock";
+import { downloadJSON } from "@/utils/download";
 
 const Chat: NextPage = () => {
   const chatMutation = api.ai.newchat.useMutation();
@@ -249,7 +251,12 @@ const Chat: NextPage = () => {
         </div>
         <hr />
         <div className="flex w-full flex-col gap-2">
-          <DisplayBlock title="Messages">
+          <DisplayBlock
+            title="Messages"
+            download={() => {
+              downloadJSON(JSON.stringify(messages, null, 2), "messages");
+            }}
+          >
             <p className="not-prose whitespace-pre-wrap">
               {JSON.stringify(messages, null, 2)}
             </p>
@@ -257,6 +264,18 @@ const Chat: NextPage = () => {
           <AdvancedBlock
             temperature={temperature}
             setTemperature={setTemperature}
+          />
+          <ReferenceBlock
+            references={[
+              {
+                title: "Awesome ChatGPT Prompts",
+                url: "https://github.com/f/awesome-chatgpt-prompts",
+              },
+              {
+                title: "GPT-3 Is the Best Journal I've Ever Used",
+                url: "https://every.to/chain-of-thought/gpt-3-is-the-best-journal-you-ve-ever-used",
+              },
+            ]}
           />
         </div>
       </div>

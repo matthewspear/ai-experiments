@@ -7,6 +7,8 @@ import clsx from "clsx";
 import { SmallWhiteLoader } from "@/components/Loader";
 import { DisplayBlock } from "@/components/DisplayBlock";
 import { AdvancedBlock } from "@/components/AdvancedBlock";
+import { ReferenceBlock } from "@/components/ReferenceBlock";
+import { downloadText } from "@/utils/download";
 
 const Chat: NextPage = () => {
   const chatMutation = api.ai.chat.useMutation();
@@ -237,11 +239,37 @@ const Chat: NextPage = () => {
         <hr />
         <div className="flex w-full flex-col gap-2">
           <DisplayBlock title="Prompt">{prompt.trim()}</DisplayBlock>
-          <DisplayBlock title="Chat">{chat.trim()}</DisplayBlock>
-          <DisplayBlock title="Full Prompt">{latestPrompt.trim()}</DisplayBlock>
+          <DisplayBlock
+            title="Chat"
+            download={() => {
+              downloadText(chat.trim(), "chat");
+            }}
+          >
+            {chat.trim()}
+          </DisplayBlock>
+          <DisplayBlock
+            title="Full Prompt"
+            download={() => {
+              downloadText(latestPrompt.trim(), "prompt");
+            }}
+          >
+            {latestPrompt.trim()}
+          </DisplayBlock>
           <AdvancedBlock
             temperature={temperature}
             setTemperature={setTemperature}
+          />
+          <ReferenceBlock
+            references={[
+              {
+                title: "Awesome ChatGPT Prompts",
+                url: "https://github.com/f/awesome-chatgpt-prompts",
+              },
+              {
+                title: "GPT-3 Is the Best Journal I've Ever Used",
+                url: "https://every.to/chain-of-thought/gpt-3-is-the-best-journal-you-ve-ever-used",
+              },
+            ]}
           />
         </div>
         {/* <DropdownBlocks
