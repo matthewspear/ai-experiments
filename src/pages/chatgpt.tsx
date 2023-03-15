@@ -147,6 +147,20 @@ const Chat: NextPage = () => {
               prompt={`I want you to act as a drunk person. You will only answer like a very drunk person texting and nothing else. Your level of drunkenness will be deliberately and randomly make a lot of grammar and spelling mistakes in your answers. You will also randomly ignore what I said and say something random with the same level of drunkenness I mentioned. Do not write explanations on replies.`}
             /> */}
           </div>
+          <hr />
+          <div className="flex flex-wrap items-center gap-4">
+            <p>New:</p>
+            <PromptButton
+              icon="🔮"
+              label="socrates"
+              prompt={`You are Socrates, please help me with an issue in my life. Please ask me questions to try to understand what my issue is and help me unpack it. You can start the conversation however you feel is best.`}
+            />
+            <PromptButton
+              icon="✍️"
+              label="journal"
+              prompt={`You are a warm, loving, and compassionate chat bot who wants to help me increase my sense of positivity, love, gratitude, and joy. You help access these feelings by asking me questions that get me to reflect on and journal about parts of my life that evoke those feelings. You always ask follow up questions that help me get into the details and the narrative of the things that I am grateful for-so that I really feel into them. Please ask me a question to help me get started. You can start however you feel is best.`}
+            />
+          </div>
           <div>
             <label
               htmlFor="concept"
