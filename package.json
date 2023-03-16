@@ -10,6 +10,7 @@
     "lint": "next lint",
     "start": "next start",
     "studio": "prisma studio",
+    "db-switch": "pscale org switch aiexperiments",
     "db-local": "docker-compose up",
     "db-dev": "pscale connect experiments dev --port 3309",
     "db-prod": "pscale connect experiments main --port 3309"

@@ -253,6 +253,7 @@ export const aiRouter = createTRPCRouter({
   newchat: publicProcedure
     .input(
       z.object({
+        model: z.enum(["gpt-3.5-turbo", "gpt-4"]),
         messages: z.array(ChatMessage),
         temperature: z.number().optional(),
         task: z.string().optional(),
@@ -280,7 +281,7 @@ export const aiRouter = createTRPCRouter({
       try {
         // const chat = await openai.createCH
         const completion = await openai.createChatCompletion({
-          model: "gpt-3.5-turbo",
+          model: input.model,
           messages: input.messages,
           temperature: input.temperature ?? 0.9,
           top_p: input.top_p ?? 1,
@@ -309,7 +310,7 @@ export const aiRouter = createTRPCRouter({
         .create({
           data: {
             task: input.task ?? "",
-            model: "gpt-3.5-turbo",
+            model: input.model,
             temperature: input.temperature ?? 0.6,
             userPrompt: "",
             fullPrompt: JSON.stringify(input.messages, null, 2),

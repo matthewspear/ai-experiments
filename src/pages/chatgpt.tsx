@@ -18,6 +18,7 @@ const Chat: NextPage = () => {
   const chatMutation = api.ai.newchat.useMutation();
 
   const [temperature, setTemperature] = useState(0.9);
+  const [model, setModel] = useState<"gpt-4" | "gpt-3.5-turbo">("gpt-4");
   const [prompt, setPrompt] = useState<string>(
     "Pretend you are a world leading life coach and I am paying $1000 per hour. Distill your best wisdom and help me become the best version of myself by asking questions."
   );
@@ -68,6 +69,7 @@ const Chat: NextPage = () => {
     setMessages(updatedMessages);
 
     chatMutation.mutate({
+      model: model,
       messages: updatedMessages,
       temperature: temperature,
       task: "chatgpt",
@@ -162,6 +164,28 @@ const Chat: NextPage = () => {
               label="journal"
               prompt={`You are a warm, loving, and compassionate chat bot who wants to help me increase my sense of positivity, love, gratitude, and joy. You help access these feelings by asking me questions that get me to reflect on and journal about parts of my life that evoke those feelings. You always ask follow up questions that help me get into the details and the narrative of the things that I am grateful for-so that I really feel into them. Please ask me a question to help me get started. You can start however you feel is best.`}
             />
+          </div>
+          <div>
+            <label
+              htmlFor="model"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Model
+            </label>
+            <select
+              id="model"
+              name="model"
+              className="mt-1 block w-fit rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+              value={model}
+              onChange={(e) =>
+                setModel(
+                  e.target.value === "gpt-3.5-turbo" ? "gpt-3.5-turbo" : "gpt-4"
+                )
+              }
+            >
+              <option value="gpt-3.5-turbo">ChatGPT</option>
+              <option value="gpt-4">GPT-4</option>
+            </select>
           </div>
           <div>
             <label
