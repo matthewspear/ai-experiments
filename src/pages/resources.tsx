@@ -48,6 +48,13 @@ const Resources: NextPage = () => {
         <Summary title="Resources">
           <p></p>
         </Summary>
+        <Section title="Tools">
+          <ResourceItem
+            title="👁️ Peek: Effortless OpenAI API Monitoring for Developers"
+            description="A macOS Menubar App for monitoring your OpenAI API usage."
+            url="https://mattspear.gumroad.com/l/peekapp"
+          />
+        </Section>
         <Section title="Open AI">
           <ResourceItem
             title="OpenAI Documentation"
@@ -75,6 +82,7 @@ const Resources: NextPage = () => {
             url="https://openai.com/research/gpt-4"
           />
         </Section>
+
         <Section title="Diving Deeper">
           <ResourceItem
             title="Fast.ai: Practical Deep Learning for Coders"
