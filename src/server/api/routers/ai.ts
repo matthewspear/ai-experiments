@@ -276,10 +276,11 @@ export const aiRouter = createTRPCRouter({
     .mutation(async ({ input, ctx }) => {
       checkAPIKey();
 
+      console.log("Enter function at", new Date().toISOString());
+
       let output;
 
       try {
-        // const chat = await openai.createCH
         const completion = await openai.createChatCompletion({
           model: input.model,
           messages: input.messages,
@@ -289,6 +290,8 @@ export const aiRouter = createTRPCRouter({
           presence_penalty: input.presence_penalty ?? 0.6,
           stop: input.stop ?? [" Human:", " AI:"],
         });
+
+        console.log("Response at", new Date().toISOString());
 
         const result = completion.data.choices[0]?.message;
         console.log("Result", result);
@@ -305,6 +308,8 @@ export const aiRouter = createTRPCRouter({
       } catch (error: unknown) {
         return handleError(error);
       }
+
+      console.log("Attempt write to db at", new Date().toISOString());
 
       await ctx.prisma.result
         .create({
@@ -324,6 +329,7 @@ export const aiRouter = createTRPCRouter({
           }
         });
 
+      console.log("Return data at", new Date().toISOString());
       return {
         result: output,
       };
