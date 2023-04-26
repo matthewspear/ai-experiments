@@ -9,6 +9,7 @@ import {
   ArrowsPointingInIcon,
   ChatBubbleBottomCenterTextIcon,
   ChatBubbleBottomCenterIcon,
+  EyeIcon,
 } from "@heroicons/react/24/outline";
 
 export const navigationItems = [
@@ -93,6 +94,17 @@ export const navigationItems = [
   //   href: "/first-step",
   //   icon: QueueListIcon,
   // },
+  {
+    divider: true,
+    name: "",
+    href: "",
+    icon: () => null,
+  },
+  {
+    name: "Peek: AI API Monitoring",
+    href: "https://apps.apple.com/gb/app/peek-ai-api-monitoring/id6447682119?mt=12",
+    icon: EyeIcon,
+  },
   {
     divider: true,
     name: "",
