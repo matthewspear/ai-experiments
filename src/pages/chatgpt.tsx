@@ -18,7 +18,9 @@ const Chat: NextPage = () => {
   const chatMutation = api.ai.newchat.useMutation();
 
   const [temperature, setTemperature] = useState(0.9);
-  const [model, setModel] = useState<"gpt-4" | "gpt-3.5-turbo">("gpt-4");
+  const [model, setModel] = useState<"gpt-4" | "gpt-3.5-turbo">(
+    "gpt-3.5-turbo"
+  );
   const [prompt, setPrompt] = useState<string>(
     "Pretend you are a world leading life coach and I am paying $1000 per hour. Distill your best wisdom and help me become the best version of myself by asking questions."
   );
@@ -184,8 +186,19 @@ const Chat: NextPage = () => {
               }
             >
               <option value="gpt-3.5-turbo">ChatGPT</option>
-              <option value="gpt-4">GPT-4</option>
+              <option disabled value="gpt-4">
+                GPT-4
+              </option>
             </select>
+            <div className="mt-2 mb-2 flex">
+              <a
+                href="mailto:matt@mattspear.co?subject=AI%20Experiments%20Upgrade"
+                className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+              >
+                Upgrade to GPT-4 for 30$ per month
+                <span aria-hidden="true"> &rarr;</span>
+              </a>
+            </div>
           </div>
           <div>
             <label
