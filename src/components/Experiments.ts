@@ -1,3 +1,4 @@
+import { type Experiment } from "@/pages/experiments";
 import {
   RocketLaunchIcon,
   TagIcon,
@@ -12,7 +13,7 @@ import {
   ChatBubbleBottomCenterTextIcon,
 } from "@heroicons/react/24/outline";
 
-export const experiments = [
+export const experiments: Experiment[] = [
   {
     title: "Startup Name Generator",
     description: `Generate a name for your startup / latest project`,

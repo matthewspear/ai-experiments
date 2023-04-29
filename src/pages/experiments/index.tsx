@@ -35,10 +35,10 @@ colors["indigo"] = {
 };
 
 type Icon = React.ForwardRefExoticComponent<
-  React.SVGProps<SVGSVGElement> & {
+  Omit<React.SVGProps<SVGSVGElement>, "ref"> & {
     title?: string | undefined;
     titleId?: string | undefined;
-  }
+  } & React.RefAttributes<SVGSVGElement>
 >;
 
 export interface Experiment {
