@@ -85,6 +85,11 @@ const Resources: NextPage = () => {
 
         <Section title="Diving Deeper">
           <ResourceItem
+            title="ChatGPT Prompt Engineering for Developers"
+            description="In ChatGPT Prompt Engineering for Developers, you will learn how to use a large language model (LLM) to quickly build new and powerful applications."
+            url="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/"
+          />
+          <ResourceItem
             title="Fast.ai: Practical Deep Learning for Coders"
             description="A free course designed for people with some coding experience, who want to learn how to apply deep learning and machine learning to practical problems."
             url="https://course.fast.ai/"
