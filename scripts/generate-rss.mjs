@@ -3,7 +3,7 @@ import { writeFileSync } from "fs";
 import RSS from "rss";
 import allPosts from "../.contentlayer/generated/Post/_index.json" assert { type: "json" };
 
-export const baseURL = "https://openai-experiment.vercel.app";
+export const baseURL = "https://aiexperiments.co";
 
 async function generate() {
   const feed = new RSS({

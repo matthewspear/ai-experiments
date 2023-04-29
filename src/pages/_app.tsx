@@ -20,7 +20,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
   useEffect(() => {
     // Initialize Fathom when the app loads
     Fathom.load(env.NEXT_PUBLIC_FATHOM_SITE_ID, {
-      includedDomains: ["openai-experiment.vercel.app"],
+      includedDomains: ["aiexperiments.co", "openai-experiment.vercel.app"],
     });
 
     function onRouteChangeComplete() {
