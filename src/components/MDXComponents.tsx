@@ -53,7 +53,7 @@ function RoundedImage(props: CustomImageProps): JSX.Element {
   );
 }
 
-function ExperimentLink(url: string): JSX.Element {
+function ExperimentLink({ url }: { url: string }): JSX.Element {
   const e = experiments.find((experiment) => experiment.url == url);
   if (!e) return <></>;
   return (
