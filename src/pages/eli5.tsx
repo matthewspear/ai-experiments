@@ -5,6 +5,7 @@ import { api } from "@/utils/api";
 import { type ChangeEvent, type FormEvent, useState, useEffect } from "react";
 import { ResultsBlock } from "@/components/ResultsBlock";
 import DropdownBlocks from "@/components/DropdownBlocks";
+import { GPT3Badge } from "@/components/Badges";
 
 const ELI5: NextPage = () => {
   const promptMutation = api.ai.prompt.useMutation();
@@ -37,6 +38,7 @@ const ELI5: NextPage = () => {
       <div className="flex w-full flex-col gap-4">
         <div className="prose prose-lg prose-gray">
           <h3>What is ELI5?</h3>
+          <GPT3Badge />
           <p>
             ELI5 or Explain Like I&apos;m 5 is a way of explaining concepts
             simply, as if to a child. The term gained popularity with the

@@ -17,7 +17,8 @@ const computedFields: ComputedFields = {
   },
   url: {
     type: "string",
-    resolve: (post) => `/blog/${post._raw.flattenedPath}`,
+    resolve: (post) =>
+      `/blog/${post._raw.sourceFileName.replace(/\.mdx$/, "")}`,
   },
   wordCount: {
     type: "number",
@@ -28,7 +29,7 @@ const computedFields: ComputedFields = {
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
-  filePathPattern: `**/*.mdx`,
+  filePathPattern: `posts/*.mdx`,
   contentType: "mdx",
   fields: {
     createdAt: { type: "string", required: true },
@@ -45,8 +46,8 @@ export const Post = defineDocumentType(() => ({
 }));
 
 export default makeSource({
-  contentDirPath: "posts",
   documentTypes: [Post],
+  contentDirPath: "data",
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [

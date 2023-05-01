@@ -13,6 +13,7 @@ import clsx from "clsx";
 import { AdvancedBlock } from "@/components/AdvancedBlock";
 import { ReferenceBlock } from "@/components/ReferenceBlock";
 import { downloadJSON } from "@/utils/download";
+import { ChatGPTBadge } from "@/components/Badges";
 
 const Chat: NextPage = () => {
   const chatMutation = api.ai.newchat.useMutation();
@@ -117,6 +118,7 @@ const Chat: NextPage = () => {
       <div className="flex w-full flex-col gap-4">
         <div className="prose prose-lg prose-gray">
           <h3>Chat</h3>
+          <ChatGPTBadge />
           <p>Built using the new ChatGPT API.</p>
         </div>
         <hr />
@@ -190,7 +192,7 @@ const Chat: NextPage = () => {
                 GPT-4
               </option>
             </select>
-            <div className="mt-2 mb-2 flex">
+            <div className="mb-2 mt-2 flex">
               <a
                 href="mailto:matt@mattspear.co?subject=AI%20Experiments%20Upgrade"
                 className="text-sm font-medium text-indigo-600 hover:text-indigo-500"

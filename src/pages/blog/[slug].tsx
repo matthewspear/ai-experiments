@@ -18,7 +18,9 @@ export function getStaticPaths() {
 }
 
 export function getStaticProps({ params }: { params: { slug: string } }) {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
+  const post = allPosts.find(
+    (post) => post._raw.sourceFileName.replace(/\.mdx$/, "") === params.slug
+  );
   return {
     props: {
       post,

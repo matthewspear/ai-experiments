@@ -18,11 +18,13 @@ export function PostCard(post: Post) {
                 ? "bg-indigo-100 text-indigo-800"
                 : "",
               post.category === "Video" ? "bg-pink-100 text-pink-800" : "",
-              post.category === "Tutorial" ? "bg-green-100 text-green-800" : "",
+              post.category === "Update" ? "bg-green-100 text-green-800" : "",
               post.category === "" ? "bg-gray-100 text-gray-800" : "",
               post.category === "" ? "bg-red-100 text-red-800" : "",
-              post.category === "" ? "bg-yellow-100 text-yellow-800" : "",
-              post.category === "" ? "bg-blue-100 text-blue-800" : "",
+              post.category === "Tutorial"
+                ? "bg-yellow-100 text-yellow-800"
+                : "",
+              post.category === "Product" ? "bg-blue-100 text-blue-800" : "",
               "inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium"
             )}
           >

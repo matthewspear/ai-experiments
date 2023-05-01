@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ExperimentCard } from "@/components/ExperimentCard";
 import { experiments } from "./Experiments";
 import type { AnchorHTMLAttributes, DetailedHTMLProps } from "react";
+import { ChatGPTBadge, GPT3Badge, GPT4Badge } from "./Badges";
 
 type LinkProps = DetailedHTMLProps<
   AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -73,6 +74,9 @@ const MDXComponents = {
   a: CustomLink,
   ExperimentLink,
   Divider,
+  GPT3Badge,
+  ChatGPTBadge,
+  GPT4Badge,
 };
 
 export default MDXComponents;

@@ -7,6 +7,7 @@ import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 import { ResultsBlock } from "@/components/ResultsBlock";
 import { Summary } from "@/components/Summary";
 import DropdownBlocks from "@/components/DropdownBlocks";
+import { GPT3Badge } from "@/components/Badges";
 
 interface HolidayForm {
   continent: string;
@@ -98,6 +99,7 @@ const Holiday: NextPage = () => {
     >
       <div className="flex w-full flex-col gap-4">
         <Summary title="Holiday Destination">
+          <GPT3Badge />
           <p>
             Fill out your critera for the perfect holiday and AI will generate
             you a destination:

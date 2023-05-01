@@ -7,6 +7,7 @@ import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 import { ResultsBlock } from "@/components/ResultsBlock";
 import { Summary } from "@/components/Summary";
 import DropdownBlocks from "@/components/DropdownBlocks";
+import { GPT3Badge } from "@/components/Badges";
 
 const JournalPrompt: NextPage = () => {
   const promptMutation = api.ai.prompt.useMutation();
@@ -62,6 +63,7 @@ const JournalPrompt: NextPage = () => {
     >
       <div className="flex w-full flex-col gap-4">
         <Summary title="Journal Prompt">
+          <GPT3Badge />
           <p>Tap one of the buttons below to generate a journal prompt:</p>
         </Summary>
         <div className="flex flex-wrap gap-4">

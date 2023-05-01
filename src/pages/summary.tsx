@@ -6,6 +6,7 @@ import { api } from "@/utils/api";
 import { useState, type FormEvent, type ChangeEvent, useEffect } from "react";
 import { Summary } from "@/components/Summary";
 import DropdownBlocks from "@/components/DropdownBlocks";
+import { GPT3Badge } from "@/components/Badges";
 
 enum Mode {
   tldr = "Tl;dr",
@@ -68,7 +69,9 @@ ${command}`;
   return (
     <Layout breadcrumbs={ExperimentsLevelBreadcrumbs("Summary", "/summary")}>
       <div className="flex w-full flex-col gap-4">
-        <Summary title="Summary"></Summary>
+        <Summary title="Summary">
+          <GPT3Badge />
+        </Summary>
         <hr />
         <form className="flex flex-col gap-4" onSubmit={onSubmit}>
           <div>

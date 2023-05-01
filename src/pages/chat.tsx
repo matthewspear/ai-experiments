@@ -9,6 +9,7 @@ import { DisplayBlock } from "@/components/DisplayBlock";
 import { AdvancedBlock } from "@/components/AdvancedBlock";
 import { ReferenceBlock } from "@/components/ReferenceBlock";
 import { downloadText } from "@/utils/download";
+import { GPT3Badge } from "@/components/Badges";
 
 const Chat: NextPage = () => {
   const chatMutation = api.ai.chat.useMutation();
@@ -106,6 +107,7 @@ const Chat: NextPage = () => {
       <div className="flex w-full flex-col gap-4">
         <div className="prose prose-lg prose-gray">
           <h3>Chat</h3>
+          <GPT3Badge />
           <p>Built using GPT-3 completions API.</p>
         </div>
         <hr />
