@@ -10,6 +10,7 @@ import {
   ChatBubbleBottomCenterTextIcon,
   ChatBubbleBottomCenterIcon,
   EyeIcon,
+  ArrowPathRoundedSquareIcon,
 } from "@heroicons/react/24/outline";
 
 export const navigationItems = [
@@ -115,6 +116,11 @@ export const navigationItems = [
     name: "Blog",
     href: "/blog",
     icon: NewspaperIcon,
+  },
+  {
+    name: "Changelog",
+    href: "/changelog",
+    icon: ArrowPathRoundedSquareIcon,
   },
   {
     name: "Resources",

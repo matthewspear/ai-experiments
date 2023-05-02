@@ -45,9 +45,28 @@ export const Post = defineDocumentType(() => ({
   computedFields,
 }));
 
+export const Changelog = defineDocumentType(() => ({
+  name: "Changelog",
+  filePathPattern: `changelog/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: { type: "string", required: true },
+    author: { type: "string", required: true },
+    authorImage: { type: "string", required: true },
+  },
+  computedFields: {
+    filename: {
+      type: "string",
+      resolve: (doc) => {
+        return doc._raw.sourceFileName.replace(/\.mdx$/, "");
+      },
+    },
+  },
+}));
+
 export default makeSource({
-  documentTypes: [Post],
   contentDirPath: "data",
+  documentTypes: [Post, Changelog],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
