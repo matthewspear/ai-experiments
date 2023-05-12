@@ -124,7 +124,7 @@ const Resources: NextPage = () => {
           <ResourceItem
             title="Fireship"
             description="High-intensity ⚡ code tutorials to help you build & ship your app faster. Recently covering AI news, tutorials, and demos."
-            url="https://www.youtube.com/watch?v=0rIvB3LZiKA"
+            url="https://www.youtube.com/@Fireship"
           />
           <ResourceItem
             title="Lex Fridman"
