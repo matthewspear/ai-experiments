@@ -127,6 +127,11 @@ const Resources: NextPage = () => {
             url="https://www.youtube.com/@Fireship"
           />
           <ResourceItem
+            title="The Inside View"
+            description="Michaël Trazzi discuss why experts believe what they believe about the future of AI progress."
+            url="https://www.youtube.com/@TheInsideView"
+          />
+          <ResourceItem
             title="Lex Fridman"
             description="Lex Fridman Podcast and other videos."
             url="https://www.youtube.com/channel/UCSHZKyawb77ixDdsGog4iWA"
@@ -145,6 +150,11 @@ const Resources: NextPage = () => {
             title="enigmatic_e"
             description="Videographer who also enjoys messing around with VFX and AI."
             url="https://www.youtube.com/@enigmatic_e"
+          />
+          <ResourceItem
+            title="HuggingFace"
+            description="HuggingFace is on a mission to solve Natural Language Processing (NLP) one commit at a time by open-source and open-science."
+            url="https://www.youtube.com/@HuggingFace"
           />
         </Section>
         <Section title="Diving Deeper">
