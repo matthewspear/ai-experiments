@@ -11,22 +11,36 @@ import type {
 import { DisplayBlock } from "@/components/DisplayBlock";
 import clsx from "clsx";
 import { AdvancedBlock } from "@/components/AdvancedBlock";
-import { ReferenceBlock } from "@/components/ReferenceBlock";
 import { downloadJSON } from "@/utils/download";
 import { ChatGPTBadge } from "@/components/Badges";
-import Link from "next/link";
 
-const Chat: NextPage = () => {
+const questions = [
+  "How do I determine north from the sun?",
+  "What's the weather going to be like tomorrow?",
+  "How can I get a wine stain out of my carpet?",
+  "What are some exercises I can do at home to stay fit?",
+  "How do I change a flat tire?",
+  "What's a simple recipe for a homemade tomato sauce?",
+  "How do I reset my Wi-Fi router?",
+  "What are the symptoms of the common cold?",
+  "How do I get my indoor plants to thrive?",
+  "What are some tips for managing stress?",
+  "How can I improve my sleep quality?",
+];
+
+const Question: NextPage = () => {
   const chatMutation = api.ai.newchat.useMutation();
 
-  const [temperature, setTemperature] = useState(0.9);
+  const [temperature, setTemperature] = useState(0.2);
   const [model, setModel] = useState<"gpt-4" | "gpt-3.5-turbo">(
     "gpt-3.5-turbo"
   );
-  const [prompt, setPrompt] = useState<string>(
-    "Pretend you are a world leading life coach and I am paying $1000 per hour. Distill your best wisdom and help me become the best version of myself by asking questions."
+  const [prompt] = useState<string>(
+    "Pretend you are a helpful google search, answer the question and avoid mentioning that your are an AI model"
   );
-  const [userInput, setUserInput] = useState<string>("Hello, who are you?");
+  const [userInput, setUserInput] = useState<string>(
+    questions.at(Math.floor(Math.random() * questions.length)) ?? ""
+  );
   const [messages, setMessages] = useState<ChatCompletionResponseMessage[]>([
     {
       role: "system",
@@ -76,7 +90,7 @@ const Chat: NextPage = () => {
       model: model,
       messages: updatedMessages,
       temperature: temperature,
-      task: "chatgpt",
+      task: "question",
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0.6,
@@ -84,93 +98,16 @@ const Chat: NextPage = () => {
     });
   };
 
-  function PromptButton({
-    icon,
-    label,
-    prompt,
-  }: {
-    icon: string;
-    label: string;
-    prompt: string;
-  }) {
-    return (
-      <button
-        className="inline-flex items-center rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium capitalize text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-        onClick={(e) => {
-          e.preventDefault();
-          setPrompt(prompt);
-          setMessages([
-            {
-              role: "system",
-              content: prompt,
-            },
-          ]);
-          setUserInput("Hello, who are you?");
-        }}
-      >
-        <p className="-ml-1 mr-2">{icon}</p>
-        <p>{label}</p>
-      </button>
-    );
-  }
-
   return (
     <Layout breadcrumbs={ExperimentsLevelBreadcrumbs("Chat", "/chat")}>
       <div className="flex w-full flex-col gap-4">
         <div className="prose prose-lg prose-gray">
-          <h3>Chat</h3>
+          <h3>Quick Question</h3>
           <ChatGPTBadge />
-          <p>Built using the new ChatGPT API.</p>
-          <Link href="/chat">Visit GPT-3 Chat</Link>
+          <p>Sometimes you just want the answer to a quick question!</p>
         </div>
         <hr />
         <div className="flex w-full flex-col gap-4">
-          <div className="flex flex-wrap gap-4">
-            <PromptButton
-              icon="📝"
-              label="lifecoach"
-              prompt={`Pretend you are a world leading life coach and I am paying $1000 per hour. Distill your best wisdom and help me become the best version of myself by asking questions.`}
-            />
-            <PromptButton
-              icon="🗺️"
-              label="travel guide"
-              prompt={`I want you to act as an AI travel guide. I will write you my location and you will suggest a place to visit near my location. In some cases, I will also give you the type of places I will visit. You will also suggest me places of similar type that are close to my first location. Ask my location to begin.`}
-            />
-            <PromptButton
-              icon="🔮"
-              label="philosophy teacher"
-              prompt={`I want you to act as a philosophy teacher. I will provide some topics related to the study of philosophy, and it will be your job to explain these concepts in an easy-to-understand manner. This could include providing examples, posing questions or breaking down complex ideas into smaller pieces that are easier to comprehend.`}
-            />
-            <PromptButton
-              icon="🚀"
-              label="motivational speaker"
-              prompt={`I want you to act as a motivational coach. I will provide you with some information about someone's goals and challenges, and it will be your job to come up with strategies that can help this person achieve their goals. This could involve providing positive affirmations, giving helpful advice or suggesting activities they can do to reach their end goal.`}
-            />
-            <PromptButton
-              icon="💻"
-              label="software engineer"
-              prompt={`I want you to act as a staff software engineer. I will write some software engineering concepts and it will be your job to explain them in easy-to-understand terms. We are pair programming and you are my copilot. Ask me what I need help with to begin.`}
-            />
-            {/* <PromptButton
-              icon="🍾"
-              label="drunk"
-              prompt={`I want you to act as a drunk person. You will only answer like a very drunk person texting and nothing else. Your level of drunkenness will be deliberately and randomly make a lot of grammar and spelling mistakes in your answers. You will also randomly ignore what I said and say something random with the same level of drunkenness I mentioned. Do not write explanations on replies.`}
-            /> */}
-          </div>
-          <hr />
-          <div className="flex flex-wrap items-center gap-4">
-            <p>New:</p>
-            <PromptButton
-              icon="🔮"
-              label="socrates"
-              prompt={`You are Socrates, please help me with an issue in my life. Please ask me questions to try to understand what my issue is and help me unpack it. You can start the conversation however you feel is best.`}
-            />
-            <PromptButton
-              icon="✍️"
-              label="journal"
-              prompt={`You are a warm, loving, and compassionate chat bot who wants to help me increase my sense of positivity, love, gratitude, and joy. You help access these feelings by asking me questions that get me to reflect on and journal about parts of my life that evoke those feelings. You always ask follow up questions that help me get into the details and the narrative of the things that I am grateful for-so that I really feel into them. Please ask me a question to help me get started. You can start however you feel is best.`}
-            />
-          </div>
           <div>
             <label
               htmlFor="model"
@@ -202,27 +139,6 @@ const Chat: NextPage = () => {
                 Upgrade to GPT-4 for 30$ per month
                 <span aria-hidden="true"> &rarr;</span>
               </a>
-            </div>
-          </div>
-          <div>
-            <label
-              htmlFor="concept"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Prompt
-            </label>
-            <div className="mt-1">
-              <textarea
-                rows={6}
-                name="text"
-                id="text"
-                className="block w-full resize rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:w-[700px] sm:text-sm"
-                placeholder=""
-                value={prompt}
-                onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-                  setPrompt(e.target.value);
-                }}
-              />
             </div>
           </div>
         </div>
@@ -306,22 +222,10 @@ const Chat: NextPage = () => {
             temperature={temperature}
             setTemperature={setTemperature}
           />
-          <ReferenceBlock
-            references={[
-              {
-                title: "Awesome ChatGPT Prompts",
-                url: "https://github.com/f/awesome-chatgpt-prompts",
-              },
-              {
-                title: "GPT-3 Is the Best Journal I've Ever Used",
-                url: "https://every.to/chain-of-thought/gpt-3-is-the-best-journal-you-ve-ever-used",
-              },
-            ]}
-          />
         </div>
       </div>
     </Layout>
   );
 };
 
-export default Chat;
+export default Question;

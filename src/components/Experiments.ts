@@ -11,6 +11,7 @@ import {
   QueueListIcon,
   ArrowsPointingInIcon,
   ChatBubbleBottomCenterTextIcon,
+  QuestionMarkCircleIcon,
 } from "@heroicons/react/24/outline";
 
 export const experiments: Experiment[] = [
@@ -110,5 +111,13 @@ export const experiments: Experiment[] = [
     icon: QueueListIcon,
     color: "rose",
     active: false,
+  },
+  {
+    title: "Quick Question",
+    description: `Ask a question and get an answer`,
+    url: "/question",
+    icon: QuestionMarkCircleIcon,
+    color: "yellow",
+    active: true,
   },
 ];

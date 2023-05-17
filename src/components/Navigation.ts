@@ -11,6 +11,7 @@ import {
   ChatBubbleBottomCenterIcon,
   EyeIcon,
   ArrowPathRoundedSquareIcon,
+  QuestionMarkCircleIcon,
 } from "@heroicons/react/24/outline";
 
 export const navigationItems = [
@@ -65,13 +66,18 @@ export const navigationItems = [
     href: "/summary",
     icon: ArrowsPointingInIcon,
   },
+  // {
+  //   name: "Chat",
+  //   href: "/chat",
+  //   icon: ChatBubbleBottomCenterIcon,
+  // },
   {
-    name: "Chat",
-    href: "/chat",
-    icon: ChatBubbleBottomCenterIcon,
+    name: "Quick Question",
+    href: "/question",
+    icon: QuestionMarkCircleIcon,
   },
   {
-    name: "Chat (w/ ChatGPT)",
+    name: "Chat",
     href: "/chatgpt",
     icon: ChatBubbleBottomCenterTextIcon,
   },
