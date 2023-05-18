@@ -15,6 +15,7 @@ import { ReferenceBlock } from "@/components/ReferenceBlock";
 import { downloadJSON } from "@/utils/download";
 import { ChatGPTBadge } from "@/components/Badges";
 import Link from "next/link";
+import { UpgradeButton } from "@/components/UpgradeButton";
 
 const Chat: NextPage = () => {
   const chatMutation = api.ai.newchat.useMutation();
@@ -194,15 +195,7 @@ const Chat: NextPage = () => {
                 GPT-4
               </option>
             </select>
-            <div className="mb-2 mt-2 flex">
-              <a
-                href="mailto:matt@mattspear.co?subject=AI%20Experiments%20Upgrade"
-                className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                Upgrade to GPT-4 for 30$ per month
-                <span aria-hidden="true"> &rarr;</span>
-              </a>
-            </div>
+            <UpgradeButton />
           </div>
           <div>
             <label
