@@ -99,7 +99,9 @@ const Question: NextPage = () => {
   };
 
   return (
-    <Layout breadcrumbs={ExperimentsLevelBreadcrumbs("Chat", "/chat")}>
+    <Layout
+      breadcrumbs={ExperimentsLevelBreadcrumbs("Quick Question", "/question")}
+    >
       <div className="flex w-full flex-col gap-4">
         <div className="prose prose-lg prose-gray">
           <h3>Quick Question</h3>
