@@ -27,9 +27,7 @@ export default function Layout(
   const router = useRouter();
   const { data: session } = useSession();
 
-  const fullTitle = title
-    ? `${title} | OpenAI Experiments`
-    : "OpenAI Experiments";
+  const fullTitle = title ? `${title} | AI Experiments` : "AI Experiments";
 
   return (
     <>

@@ -7,7 +7,7 @@ export const baseURL = "https://aiexperiments.co";
 
 async function generate() {
   const feed = new RSS({
-    title: "OpenAI Experiments",
+    title: "AI Experiments",
     site_url: baseURL,
     feed_url: `${baseURL}/feed.xml`,
   });

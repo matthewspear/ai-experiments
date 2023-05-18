@@ -8,7 +8,6 @@ import {
   PuzzlePieceIcon,
   ArrowsPointingInIcon,
   ChatBubbleBottomCenterTextIcon,
-  ChatBubbleBottomCenterIcon,
   EyeIcon,
   ArrowPathRoundedSquareIcon,
   QuestionMarkCircleIcon,
@@ -111,6 +110,7 @@ export const navigationItems = [
     name: "Peek: AI API Monitoring",
     href: "https://apps.apple.com/gb/app/peek-ai-api-monitoring/id6447682119?mt=12",
     icon: EyeIcon,
+    openNewTab: true,
   },
   {
     divider: true,

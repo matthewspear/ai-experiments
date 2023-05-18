@@ -21,7 +21,7 @@ export function DesktopSideBar({
     <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
       {/* Sidebar component, swap this element with another sidebar if you like */}
       <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
-        <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
+        <div className="flex flex-1 flex-col overflow-y-auto pb-4 pt-5">
           <div className="flex flex-shrink-0 items-center px-4">
             {/* <img
               className="h-8 w-auto"
@@ -29,7 +29,7 @@ export function DesktopSideBar({
               alt="Your Company"
             /> */}
             <Link href="/">
-              <h1 className="font-bold text-slate-900">OpenAI Experiments</h1>
+              <h1 className="font-bold text-slate-900">AI Experiments</h1>
             </Link>
           </div>
           <nav className="mt-5 flex-1 space-y-1 bg-white px-2">
@@ -43,6 +43,10 @@ export function DesktopSideBar({
                 {!item.divider && (
                   <Link
                     href={item.href}
+                    target={item.openNewTab ? "_blank" : "_self"}
+                    rel={item.openNewTab ? "noreferrer" : ""}
+                    // target="_blank"
+                    // rel="noreferrer"
                     className={clsx(
                       router.asPath === item.href
                         ? "bg-gray-100 text-gray-900"

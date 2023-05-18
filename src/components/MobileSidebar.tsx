@@ -59,7 +59,7 @@ export function MobileSidebar({
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <div className="absolute top-0 right-0 -mr-12 pt-2">
+                <div className="absolute right-0 top-0 -mr-12 pt-2">
                   <button
                     type="button"
                     className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
@@ -73,7 +73,7 @@ export function MobileSidebar({
                   </button>
                 </div>
               </Transition.Child>
-              <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
+              <div className="h-0 flex-1 overflow-y-auto pb-4 pt-5">
                 <div className="flex flex-shrink-0 items-center px-4">
                   {/* <img
               className="h-8 w-auto"
@@ -82,7 +82,7 @@ export function MobileSidebar({
             /> */}
                   <Link href="/">
                     <h1 className="text-lg font-bold text-slate-900">
-                      OpenAI Experiments
+                      AI Experiments
                     </h1>
                   </Link>
                 </div>
@@ -97,6 +97,8 @@ export function MobileSidebar({
                       {!item.divider && (
                         <Link
                           href={item.href}
+                          target={item.openNewTab ? "_blank" : "_self"}
+                          rel={item.openNewTab ? "noreferrer" : ""}
                           className={clsx(
                             router.asPath === item.href
                               ? "bg-gray-100 text-gray-900"
