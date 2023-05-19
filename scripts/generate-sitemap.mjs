@@ -18,18 +18,22 @@ async function generate() {
 
   // console.log("paths:", pages);
 
-  var processedURLs = pages.map((page) => {
-    const path = page
-      .replace("src/pages/", "")
-      .replace("posts/", "blog/")
-      .replace(".tsx", "")
-      .replace(".mdx", "")
-      .replace("index", "");
+  var processedURLs = pages
+    .map((page) => {
+      const path = page
+        .replace("src/pages/", "")
+        .replace("posts/", "blog/")
+        .replace(".tsx", "")
+        .replace(".mdx", "")
+        .replace("index", "");
 
-    return `${baseURL}/${path}`;
-  });
+      return `${baseURL}/${path}`;
+    })
+    .map((url) => {
+      return url.lastIndexOf("/") === url.length - 1 ? url.slice(0, -1) : url;
+    });
 
-  // console.log("urls:", processedURLs);
+  console.log("urls:", processedURLs);
 
   const sitemap = `
     <?xml version="1.0" encoding="UTF-8"?>

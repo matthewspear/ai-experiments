@@ -57,20 +57,22 @@ function PostPage({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
             </h1>
             <div className="mt-6 flex items-center">
               <div className="flex-shrink-0">
-                <a href={post.author}>
-                  <span className="sr-only">{post.author}</span>
-                  <Image
-                    width={40}
-                    height={40}
-                    className="h-10 w-10 rounded-full"
-                    src={post.authorImage}
-                    alt={`Author profile picture for ${post.author}`}
-                  />
-                </a>
+                {/* <a href={post.author}> */}
+                <span className="sr-only">{post.author}</span>
+                <Image
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 rounded-full"
+                  src={post.authorImage}
+                  alt={`Author profile picture for ${post.author}`}
+                />
+                {/* </a> */}
               </div>
               <div className="ml-3">
                 <p className="text-sm font-medium text-gray-900">
-                  <a href={post.author}>{post.author}</a>
+                  {/* <a href={post.author}> */}
+                  {post.author}
+                  {/* </a> */}
                 </p>
                 <div className="flex space-x-1 text-sm text-gray-500">
                   <time dateTime={post.publishedAt}>

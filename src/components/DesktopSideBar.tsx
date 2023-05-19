@@ -45,8 +45,6 @@ export function DesktopSideBar({
                     href={item.href}
                     target={item.openNewTab ? "_blank" : "_self"}
                     rel={item.openNewTab ? "noreferrer" : ""}
-                    // target="_blank"
-                    // rel="noreferrer"
                     className={clsx(
                       router.asPath === item.href
                         ? "bg-gray-100 text-gray-900"

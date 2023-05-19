@@ -1,8 +1,9 @@
-# OpenAI Experiments
+# AI Experiments
 
 An excuse to learn the latest wave of AI tech, so I'm learning / building in public.
 
 Built with:
+
 - [Next.js](https://nextjs.org)
 - [NextAuth.js](https://next-auth.js.org)
 - [Prisma](https://prisma.io)
