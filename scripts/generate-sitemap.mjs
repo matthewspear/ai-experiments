@@ -8,7 +8,7 @@ async function generate() {
 
   const pages = await globby([
     "src/pages/**/*.tsx",
-    "posts/*.mdx",
+    "data/posts/*.mdx",
     "!drafts/*.mdx",
     "!src/pages/_*.tsx",
     "!src/pages/**/[slug].tsx",
@@ -22,7 +22,7 @@ async function generate() {
     .map((page) => {
       const path = page
         .replace("src/pages/", "")
-        .replace("posts/", "blog/")
+        .replace("data/posts/", "blog/")
         .replace(".tsx", "")
         .replace(".mdx", "")
         .replace("index", "");

@@ -10,7 +10,7 @@ const StartupGenerator: NextPage = () => {
       // title="Startup Name Generator"
       breadcrumbs={ExperimentsLevelBreadcrumbs(
         "Startup Name Generator",
-        "/startup-name-generator"
+        "/startup-generator"
       )}
     >
       <div className="flex w-full flex-col">
