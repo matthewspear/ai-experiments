@@ -28,12 +28,10 @@ export default function Layout(
   const router = useRouter();
   const { data: session } = useSession();
 
-  const fullTitle = title ? `${title} | AI Experiments` : "AI Experiments";
-
   return (
     <>
       <Metatags
-        title={post?.title ? post.title : fullTitle}
+        title={post?.title ? post.title : title ?? ""}
         description={description || post?.summary || ""}
         image=""
       />
