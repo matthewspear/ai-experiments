@@ -55,7 +55,8 @@ const JournalPrompt: NextPage = () => {
 
   return (
     <Layout
-      // title="Journal Prompt"
+      title="Journal Prompt"
+      description="Immerse yourself in the 'Journal Prompt' experiment. With a simple click, generate personalised prompts aimed at inspiring your daily journaling practice. Choose from categories like daily prompts, gratitude, love, goals, dreams, childhood memories, weekly review, or prompts inspired by James Clear. Kickstart your writing journey with thought-provoking cues tailored just for you."
       breadcrumbs={ExperimentsLevelBreadcrumbs(
         "Journal Prompt",
         "/journal-prompt"

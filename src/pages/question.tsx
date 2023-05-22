@@ -14,6 +14,8 @@ import { AdvancedBlock } from "@/components/AdvancedBlock";
 import { downloadJSON } from "@/utils/download";
 import { ChatGPTBadge } from "@/components/Badges";
 import { UpgradeButton } from "@/components/UpgradeButton";
+import { useRouter } from "next/router";
+import Metatags from "@/components/Metatags";
 
 const questions = [
   "How do I determine north from the sun?",
@@ -30,6 +32,7 @@ const questions = [
 ];
 
 const Question: NextPage = () => {
+  const router = useRouter();
   const chatMutation = api.ai.newchat.useMutation();
 
   const [temperature, setTemperature] = useState(0.2);
@@ -39,8 +42,11 @@ const Question: NextPage = () => {
   const [prompt] = useState<string>(
     "Pretend you are a helpful google search, answer the question and avoid mentioning that your are an AI model"
   );
+
   const [userInput, setUserInput] = useState<string>(
-    questions.at(Math.floor(Math.random() * questions.length)) ?? ""
+    router.query.q
+      ? String(router.query.q)
+      : questions.at(Math.floor(Math.random() * questions.length)) ?? ""
   );
   const [messages, setMessages] = useState<ChatCompletionResponseMessage[]>([
     {
@@ -101,6 +107,8 @@ const Question: NextPage = () => {
 
   return (
     <Layout
+      title="Quick Question"
+      description="Step into the 'Quick Questions' experiment, designed to provide concise, helpful answers to your queries, mimicking a helpful Google search. This experiment is engineered to focus solely on addressing your questions, dispensing with AI self-references and delivering clear, straightforward responses."
       breadcrumbs={ExperimentsLevelBreadcrumbs("Quick Question", "/question")}
     >
       <div className="flex w-full flex-col gap-4">

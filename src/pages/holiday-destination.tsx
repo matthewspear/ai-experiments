@@ -92,6 +92,8 @@ const Holiday: NextPage = () => {
 
   return (
     <Layout
+      title="Holiday Destination"
+      description="Explore the 'Holiday Destination' experiment, where AI plays travel guide to help you find your ideal vacation spot. Provide your preferred continent, duration of stay, and various interests, and let the AI suggest a random destination tailored to your tastes, from serene beaches to vibrant cityscapes. Embark on a unique journey without leaving your seat."
       breadcrumbs={ExperimentsLevelBreadcrumbs(
         "Holiday Destination",
         "/holiday-destination"

@@ -7,7 +7,7 @@ import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 const URLGenerator: NextPage = () => {
   return (
     <Layout
-      //  title="URL Generator"
+      title="URL Generator"
       breadcrumbs={ExperimentsLevelBreadcrumbs(
         "URL Generator",
         "/url-generator"

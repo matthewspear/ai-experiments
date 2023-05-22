@@ -7,7 +7,7 @@ import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 const ThisOrThat: NextPage = () => {
   return (
     <Layout
-      // title="This or That"
+      title="This or That"
       breadcrumbs={ExperimentsLevelBreadcrumbs("This or That", "/this-that")}
     >
       <div className="flex w-full flex-col">

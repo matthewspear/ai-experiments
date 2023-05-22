@@ -18,11 +18,12 @@ export interface Breadcrumb {
 export default function Layout(
   props: PropsWithChildren<{
     title?: string;
+    description?: string;
     post?: Post;
     breadcrumbs?: Breadcrumb[];
   }>
 ) {
-  const { title, post, breadcrumbs, children } = props;
+  const { title, description, post, breadcrumbs, children } = props;
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
   const { data: session } = useSession();
@@ -33,7 +34,7 @@ export default function Layout(
     <>
       <Metatags
         title={post?.title ? post.title : fullTitle}
-        description={post?.summary || ""}
+        description={description || post?.summary || ""}
         image=""
       />
       <div>
@@ -71,7 +72,7 @@ export default function Layout(
                 <div className="flex flex-col py-4">
                   {/* <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" /> */}
                   {breadcrumbs && <BreadcrumbBar breadcrumbs={breadcrumbs} />}
-                  <div>
+                  {/* <div>
                     {title && (
                       <div className="max-w-7xl pt-4 sm:px-6 md:px-8">
                         <h1 className="text-2xl font-semibold text-gray-900">
@@ -79,7 +80,7 @@ export default function Layout(
                         </h1>
                       </div>
                     )}
-                  </div>
+                  </div> */}
                   {children}
                 </div>
                 {/* /End replace */}

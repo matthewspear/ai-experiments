@@ -46,7 +46,11 @@ function Section({
 
 const Resources: NextPage = () => {
   return (
-    <Layout breadcrumbs={TopLevelBreadcrumb("Resources", "/resources")}>
+    <Layout
+      title="Resources"
+      description="Discover the 'Resources' page, a comprehensive repository of tools, learning materials, and thought-provoking content to deepen your understanding of AI and Machine Learning. Here, you'll find resources ranging from OpenAI's API documentation, comparison tools, and the latest research papers to insightful YouTube channels and in-depth courses. Whether you're a beginner or an advanced learner, this page serves as a valuable reference for all things AI."
+      breadcrumbs={TopLevelBreadcrumb("Resources", "/resources")}
+    >
       <div className="flex flex-col gap-4 md:mx-auto md:w-1/2">
         <Summary title="Resources">
           <div className="flex gap-4">

@@ -50,9 +50,13 @@ export interface Experiment {
   active: boolean;
 }
 
-const About: NextPage = () => {
+const Experiments: NextPage = () => {
   return (
-    <Layout breadcrumbs={TopLevelBreadcrumb("Experiments", "/experiments")}>
+    <Layout
+      title="Experiments"
+      description="Explore the 'Experiments' page, a central hub linking to an array of AI-driven experiments. Ranging from conversational interactions with GPT-3, custom journal prompts, quick question answering, to AI-generated holiday destinations and more. Each experiment showcases a unique use-case of AI, offering a glimpse into the vast capabilities of modern machine learning models."
+      breadcrumbs={TopLevelBreadcrumb("Experiments", "/experiments")}
+    >
       <div className="flex w-full flex-col gap-4">
         <div className="border-b border-gray-200 pb-5 pt-6">
           <h3 className="text-lg font-medium leading-6 text-gray-900">Live</h3>
@@ -81,4 +85,4 @@ const About: NextPage = () => {
   );
 };
 
-export default About;
+export default Experiments;

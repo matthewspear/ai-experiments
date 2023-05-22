@@ -67,7 +67,11 @@ ${command}`;
   };
 
   return (
-    <Layout breadcrumbs={ExperimentsLevelBreadcrumbs("Summary", "/summary")}>
+    <Layout
+      title="Summary"
+      description="Embark on the 'Summary' experiment, which leverages AI to condense bodies of text into digestible forms. Choose between TLDR, bullet points, or summary paragraph. It's a practical tool for efficiently understanding and retaining the core message of any text."
+      breadcrumbs={ExperimentsLevelBreadcrumbs("Summary", "/summary")}
+    >
       <div className="flex w-full flex-col gap-4">
         <Summary title="Summary">
           <GPT3Badge />

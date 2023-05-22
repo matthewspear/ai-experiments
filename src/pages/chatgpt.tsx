@@ -116,7 +116,11 @@ const Chat: NextPage = () => {
   }
 
   return (
-    <Layout breadcrumbs={ExperimentsLevelBreadcrumbs("Chat", "/chat")}>
+    <Layout
+      title="Chat"
+      description="Discover the updated 'Chat' experiment, now utilizing the new ChatGPT API. Experience immersive interactions across roles such as Life Coach, Travel Guide, Philosophy Teacher, and more, all enhanced by the improved conversational capabilities of the latest GPT technology."
+      breadcrumbs={ExperimentsLevelBreadcrumbs("Chat", "/chat")}
+    >
       <div className="flex w-full flex-col gap-4">
         <div className="prose prose-lg prose-gray">
           <h3>Chat</h3>

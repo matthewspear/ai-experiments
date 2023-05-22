@@ -7,7 +7,7 @@ import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 const TaglineGenerator: NextPage = () => {
   return (
     <Layout
-      // title="Tagline Generator"
+      title="Tagline Generator"
       breadcrumbs={ExperimentsLevelBreadcrumbs(
         "Tagline Generator",
         "/tagline-generator"

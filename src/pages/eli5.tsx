@@ -34,7 +34,11 @@ const ELI5: NextPage = () => {
   };
 
   return (
-    <Layout breadcrumbs={ExperimentsLevelBreadcrumbs("ELI5", "/eli5")}>
+    <Layout
+      title="ELI5"
+      description="Dive into the 'ELI5' experiment, a unique exploration of simplifying complex concepts, as popularized by the r/explainlikeimfive subreddit. This experiment leverages the power of GPT to provide clear, understandable explanations as if speaking to a five-year-old, making even the most intricate subjects accessible to all."
+      breadcrumbs={ExperimentsLevelBreadcrumbs("ELI5", "/eli5")}
+    >
       <div className="flex w-full flex-col gap-4">
         <div className="prose prose-lg prose-gray">
           <h3>What is ELI5?</h3>
