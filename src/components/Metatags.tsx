@@ -32,7 +32,7 @@ export default function Metatags({
       <meta property="twitter:url" content={url} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image ?? "card.png"} />
+      <meta name="twitter:image" content={image ?? "/card.png"} />
     </Head>
   );
 }
