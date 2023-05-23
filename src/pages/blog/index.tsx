@@ -16,6 +16,7 @@ const Blog = ({ posts }: { posts: Post[] }) => {
     <Layout
       title="Blog"
       description="Browse through the 'Blog' section, a curated collection of articles and posts exploring various aspects of AI and Machine Learning. Here, you'll find thoughtful insights, detailed tutorials, and personal experiences shared by the author, providing a unique perspective on the fascinating world of technology. It's a valuable resource for both newcomers and seasoned enthusiasts in the AI space."
+      slug="/blog"
       breadcrumbs={TopLevelBreadcrumb("Blog", "/blog")}
     >
       {/* <div className="mx-auto flex flex-col"> */}

@@ -14,6 +14,7 @@ const About: NextPage = () => {
     <Layout
       title="About"
       description="AI Experiments by Matt Spear, a freelance software engineer specialized in AI, Deep Learning, and Machine Learning. The page offers insights into his journey in technology over the last decade, his fascination with AI and ML frameworks, his plans for building a SaaS business, and his upcoming YouTube channel for sharing use cases, tutorials, and examples."
+      slug="/about"
       breadcrumbs={TopLevelBreadcrumb("About", "/about")}
     >
       <div className="mx-auto max-w-3xl">

@@ -15,7 +15,6 @@ import { downloadJSON } from "@/utils/download";
 import { ChatGPTBadge } from "@/components/Badges";
 import { UpgradeButton } from "@/components/UpgradeButton";
 import { useRouter } from "next/router";
-import Metatags from "@/components/Metatags";
 
 const questions = [
   "How do I determine north from the sun?",
@@ -109,6 +108,7 @@ const Question: NextPage = () => {
     <Layout
       title="Quick Question"
       description="Step into the 'Quick Questions' experiment, designed to provide concise, helpful answers to your queries, mimicking a helpful Google search. This experiment is engineered to focus solely on addressing your questions, dispensing with AI self-references and delivering clear, straightforward responses."
+      slug="/question"
       breadcrumbs={ExperimentsLevelBreadcrumbs("Quick Question", "/question")}
     >
       <div className="flex w-full flex-col gap-4">

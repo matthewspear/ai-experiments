@@ -7,7 +7,8 @@ import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 const StartupGenerator: NextPage = () => {
   return (
     <Layout
-      // title="Startup Name Generator"
+      title="Startup Name Generator"
+      slug="/startup-generator"
       breadcrumbs={ExperimentsLevelBreadcrumbs(
         "Startup Name Generator",
         "/startup-generator"

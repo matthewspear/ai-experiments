@@ -7,7 +7,8 @@ import { ExperimentsLevelBreadcrumbs } from "@/components/BreadcrumbBar";
 const Planner: NextPage = () => {
   return (
     <Layout
-      // title="Planner"
+      title="Planner"
+      slug="/planner"
       breadcrumbs={ExperimentsLevelBreadcrumbs("Planner", "/planner")}
     >
       <div className="flex w-full flex-col">

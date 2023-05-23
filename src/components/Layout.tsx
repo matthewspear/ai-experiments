@@ -19,21 +19,21 @@ export default function Layout(
   props: PropsWithChildren<{
     title?: string;
     description?: string;
+    slug: `/${string}`;
     post?: Post;
     breadcrumbs?: Breadcrumb[];
   }>
 ) {
-  const { title, description, post, breadcrumbs, children } = props;
+  const { title, description, slug, post, breadcrumbs, children } = props;
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
   const { data: session } = useSession();
-
   return (
     <>
       <Metatags
         title={post?.title ? post.title : title ?? ""}
         description={description || post?.summary || ""}
-        image=""
+        url={`https://aiexperiments.co${slug}`}
       />
       <div>
         {/* Sidebar for mobile */}

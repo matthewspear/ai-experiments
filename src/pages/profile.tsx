@@ -10,6 +10,7 @@ const Profile: NextPage = () => {
   return (
     <Layout
       title="Profile"
+      slug="/profile"
       breadcrumbs={TopLevelBreadcrumb("Profile", "/profile")}
     >
       <div className="flex w-fit flex-col gap-2">

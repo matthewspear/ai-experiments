@@ -46,6 +46,7 @@ function PostPage({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
     <Layout
       title={post?.breadcrumb ?? post?.title ?? "Post"}
       description={post?.summary}
+      slug={`/blog/${post?.slug ?? ""}`}
       breadcrumbs={BlogLevelBreadcrumbs(
         post?.breadcrumb ?? post?.title ?? "",
         post?.url ?? ""

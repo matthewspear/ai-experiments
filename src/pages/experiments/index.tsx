@@ -55,6 +55,7 @@ const Experiments: NextPage = () => {
     <Layout
       title="Experiments"
       description="Explore the 'Experiments' page, a central hub linking to an array of AI-driven experiments. Ranging from conversational interactions with GPT-3, custom journal prompts, quick question answering, to AI-generated holiday destinations and more. Each experiment showcases a unique use-case of AI, offering a glimpse into the vast capabilities of modern machine learning models."
+      slug="/experiments"
       breadcrumbs={TopLevelBreadcrumb("Experiments", "/experiments")}
     >
       <div className="flex w-full flex-col gap-4">

@@ -8,6 +8,7 @@ const ThisOrThat: NextPage = () => {
   return (
     <Layout
       title="This or That"
+      slug="/this-that"
       breadcrumbs={ExperimentsLevelBreadcrumbs("This or That", "/this-that")}
     >
       <div className="flex w-full flex-col">

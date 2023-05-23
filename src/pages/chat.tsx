@@ -106,6 +106,7 @@ const Chat: NextPage = () => {
     <Layout
       title="Chat"
       description="Explore the 'Chat' experiment, where GPT-3 takes on roles like Life Coach, Travel Guide, Philosophy Teacher, Motivational Speaker, Software Engineer, Socrates, and Journal, offering unique and engaging interactions across a variety of contexts."
+      slug="/chat"
       breadcrumbs={ExperimentsLevelBreadcrumbs("Chat", "/chat")}
     >
       <div className="flex w-full flex-col gap-4">

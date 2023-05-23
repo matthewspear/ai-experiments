@@ -8,6 +8,7 @@ const URLGenerator: NextPage = () => {
   return (
     <Layout
       title="URL Generator"
+      slug="/url-generator"
       breadcrumbs={ExperimentsLevelBreadcrumbs(
         "URL Generator",
         "/url-generator"

@@ -8,6 +8,7 @@ const Expand: NextPage = () => {
   return (
     <Layout
       title="Expander"
+      slug="/expand"
       breadcrumbs={ExperimentsLevelBreadcrumbs("Expander", "/expand")}
     >
       <div className="flex w-full flex-col">

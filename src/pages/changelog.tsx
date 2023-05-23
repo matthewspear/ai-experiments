@@ -79,6 +79,7 @@ const ChangelogPage = ({ changelogs }: { changelogs: Changelog[] }) => {
     <Layout
       title="Changelog"
       description="Changelog page for AI experiments, detailing the addition of new experiments, updates to existing ones, and enhancement of resources over time. This page offers a comprehensive, chronological record of all changes and improvements made, providing an in-depth understanding of the ongoing development in AI experimentation. It is a valuable source for those interested in tracking the progression and advancements in AI experimentation."
+      slug="/changelog"
       breadcrumbs={TopLevelBreadcrumb("Changelog", "/changelog")}
     >
       <div className="relative mt-4 flex-auto">

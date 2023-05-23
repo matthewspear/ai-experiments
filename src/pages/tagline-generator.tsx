@@ -8,6 +8,7 @@ const TaglineGenerator: NextPage = () => {
   return (
     <Layout
       title="Tagline Generator"
+      slug="/tagline-generator"
       breadcrumbs={ExperimentsLevelBreadcrumbs(
         "Tagline Generator",
         "/tagline-generator"

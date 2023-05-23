@@ -101,8 +101,8 @@ const Home: NextPage = () => {
 
   return (
     <Layout
-      title="AI Experiments"
       description="AI Experiments is an interactive platform dedicated to showcasing the potential of AI. It provides demos, resources, and tutorials to help anyone experiment with AI and explore its possibilities."
+      slug="/"
     >
       <div className="flex w-full flex-col">
         <h1 className="px-4 text-5xl font-extrabold tracking-tight text-slate-900 sm:pt-16 sm:text-[5rem]">
