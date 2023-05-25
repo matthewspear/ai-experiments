@@ -1,9 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ExperimentCard } from "@/components/ExperimentCard";
-import { experiments } from "./Experiments";
+import { experiments } from "@/components/Experiments";
 import type { AnchorHTMLAttributes, DetailedHTMLProps } from "react";
-import { ChatGPTBadge, GPT3Badge, GPT4Badge } from "./Badges";
+import { ChatGPTBadge, GPT3Badge, GPT4Badge } from "@/components/Badges";
+import { RawPostLink } from "@/components/RawPostLink";
+import { PostLink } from "@/components/PostLink";
 
 type LinkProps = DetailedHTMLProps<
   AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -77,6 +79,8 @@ const MDXComponents = {
   GPT3Badge,
   ChatGPTBadge,
   GPT4Badge,
+  PostLink,
+  RawPostLink,
 };
 
 export default MDXComponents;
