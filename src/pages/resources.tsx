@@ -117,6 +117,11 @@ const Resources: NextPage = () => {
             url="https://www.youtube.com/user/keeroyz"
           />
           <ResourceItem
+            title="Data Independent"
+            description="Great resource for those interested in AI technologies like ChatGPT, OpenAI, and LangChain, as well as individuals seeking knowledge about data science, data visualization, and data bootcamps."
+            url="https://www.youtube.com/channel/UCyR2Ct3pDOeZSRyZH5hPO-Q"
+          />
+          <ResourceItem
             title="Radek Osmulski"
             description="I'm Radek, a Senior Data Scientist at NVIDIA and a 2x Kaggle Grandmaster. I started to learn programming and Machine Learning at 29 using online resources. I create videos for those who want to do awesome things in machine learning and don't have a traditional academic background."
             url="https://www.youtube.com/@radek_osmulski"
