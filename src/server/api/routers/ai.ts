@@ -78,10 +78,21 @@ function handleError(error: unknown) {
   }
 }
 
-const ChatMessage = z.object({
-  role: z.enum(["system", "user", "assistant"]),
-  content: z.string(),
+const FunctionCall = z.object({
   name: z.string().optional(),
+  arguements: z.string().optional(),
+})
+
+export const ChatMessage = z.object({
+  role: z.enum([
+    "system", 
+    "user", 
+    "assistant", 
+    "function"
+  ]),
+  content: z.string().optional(),
+  name: z.string().optional(),
+  function_call: FunctionCall.optional(),
 });
 
 export const aiRouter = createTRPCRouter({

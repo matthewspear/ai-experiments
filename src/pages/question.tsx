@@ -159,16 +159,16 @@ const Question: NextPage = () => {
                     "du-chat"
                   )}
                 >
-                  {m.content.trim() !== "" && (
+                  {m.content?.trim() !== "" && (
                     <div
                       className={clsx(
                         m.role === "assistant"
                           ? "bg-indigo-400"
                           : "bg-blue-400",
-                        "du-chat-bubble"
+                        "du-chat-bubble text-white"
                       )}
                     >
-                      {m.content.trim()}
+                      {m.content?.trim()}
                     </div>
                   )}
                 </div>

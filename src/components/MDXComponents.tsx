@@ -56,6 +56,23 @@ function RoundedImage(props: CustomImageProps): JSX.Element {
   );
 }
 
+function RectangleImage(props: CustomImageProps): JSX.Element {
+  const { src, height, width, ...rest } = props;
+  return (
+    <Image
+      src={src || ""}
+      width={Number(width)}
+      height={Number(height)}
+      alt={props.alt || ""}
+      {...rest}
+      style={{
+        maxWidth: "100%",
+        height: "auto",
+      }}
+    />
+  );
+}
+
 function ExperimentLink({ url }: { url: string }): JSX.Element {
   const e = experiments.find((experiment) => experiment.url == url);
   if (!e) return <></>;
@@ -72,7 +89,7 @@ function Divider(): JSX.Element {
 
 const MDXComponents = {
   RoundedImage,
-  Image,
+  RectangleImage,
   a: CustomLink,
   ExperimentLink,
   Divider,

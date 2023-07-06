@@ -4,8 +4,7 @@ import prettier from "prettier";
 import { baseURL } from "./generate-rss.mjs";
 
 async function generate() {
-  const prettierConfig = await prettier.resolveConfig("./.prettierrc.js");
-
+  
   const pages = await globby([
     "src/pages/**/*.tsx",
     "data/posts/*.mdx",
@@ -50,8 +49,7 @@ async function generate() {
     </urlset>
     `;
 
-  const formatted = prettier.format(sitemap, {
-    ...prettierConfig,
+  const formatted = await prettier.format(sitemap, {
     parser: "html",
   });
 

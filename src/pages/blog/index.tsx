@@ -7,7 +7,16 @@ import { PostCard } from "@/components/PostCard";
 export function getStaticProps() {
   const posts = allPosts.sort((a, b) => {
     return compareDesc(new Date(a.publishedAt), new Date(b.publishedAt));
-  });
+  })
+  .map((post: Post) => {
+    const p = post;
+    // Strip body
+    p.body = { raw: "", code: ""};
+    return p;
+  })
+
+  console.log(posts)
+
   return { props: { posts } };
 }
 

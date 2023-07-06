@@ -199,7 +199,7 @@ const Chat: NextPage = () => {
                     <div
                       className={clsx(
                         index % 2 == 0 ? "bg-indigo-400" : "bg-blue-400",
-                        "du-chat-bubble"
+                        "du-chat-bubble text-white"
                       )}
                     >
                       {c.trim()}
