@@ -5,31 +5,32 @@ import { TopLevelBreadcrumb } from "@/components/BreadcrumbBar";
 import { experiments } from "@/components/Experiments";
 import { ExperimentCard } from "@/components/ExperimentCard";
 
-export const colors: {
-  [id: string]: { iconForeground: string; iconBackground: string };
-} = {};
+export const colors: Record<
+  string,
+  { iconForeground: string; iconBackground: string }
+> = {};
 
-colors["teal"] = {
+colors.teal = {
   iconForeground: "text-teal-700",
   iconBackground: "bg-teal-50",
 };
-colors["purple"] = {
+colors.purple = {
   iconForeground: "text-purple-700",
   iconBackground: "bg-purple-50",
 };
-colors["sky"] = {
+colors.sky = {
   iconForeground: "text-sky-700",
   iconBackground: "bg-sky-50",
 };
-colors["yellow"] = {
+colors.yellow = {
   iconForeground: "text-yellow-700",
   iconBackground: "bg-yellow-50",
 };
-colors["rose"] = {
+colors.rose = {
   iconForeground: "text-rose-700",
   iconBackground: "bg-rose-50",
 };
-colors["indigo"] = {
+colors.indigo = {
   iconForeground: "text-indigo-700",
   iconBackground: "bg-indigo-50",
 };

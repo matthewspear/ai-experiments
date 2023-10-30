@@ -70,7 +70,7 @@ const Home: NextPage = () => {
   const chatMutation = api.ai.newchat.useMutation();
 
   const [prompt, setPrompt] = useState(
-    "Write a whitty description for this site"
+    "Write a whitty description for this site",
   );
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -114,11 +114,11 @@ const Home: NextPage = () => {
 
         <div className="flex h-full flex-col">
           {chatMutation.isLoading && <Loader />}
-          {chatMutation.data && chatMutation.data.error && (
+          {chatMutation.data?.error && (
             <div className="mt-8 flex w-full flex-row place-items-center items-center rounded-lg bg-white shadow-lg sm:w-[700px]">
               <ExclamationCircleIcon className="my-4 ml-4 mr-4 h-6 w-6 text-red-500" />
               <p className="h-6">
-                {(chatMutation.data.error && chatMutation.data.error.message) ||
+                {chatMutation.data.error?.message ||
                   JSON.stringify(chatMutation.data.error)}
               </p>
             </div>

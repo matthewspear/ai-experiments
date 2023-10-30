@@ -19,7 +19,7 @@ export function getStaticPaths() {
 
 export function getStaticProps({ params }: { params: { slug: string } }) {
   const post = allPosts.find(
-    (post) => post._raw.sourceFileName.replace(/\.mdx$/, "") === params.slug
+    (post) => post._raw.sourceFileName.replace(/\.mdx$/, "") === params.slug,
   );
   return {
     props: {
@@ -31,7 +31,7 @@ export function getStaticProps({ params }: { params: { slug: string } }) {
 export function getNumberWithOrdinal(n: number): string {
   const s = ["th", "st", "nd", "rd"] as const;
   const v = n % 100;
-  return `${n}${s[(v - 20) % 10] || s[v] || s[0]}`;
+  return `${n}${s[(v - 20) % 10] ?? s[v] ?? s[0]}`;
 }
 
 export function formatDate(value: string) {
@@ -49,7 +49,7 @@ function PostPage({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
       slug={`/blog/${post?.slug ?? ""}`}
       breadcrumbs={BlogLevelBreadcrumbs(
         post?.breadcrumb ?? post?.title ?? "",
-        post?.url ?? ""
+        post?.url ?? "",
       )}
     >
       <div className="mx-auto max-w-3xl">

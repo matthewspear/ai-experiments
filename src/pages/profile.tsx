@@ -17,7 +17,7 @@ const Profile: NextPage = () => {
         {session && (
           <>
             <Image
-              src={session.user.image as string}
+              src={session.user.image!}
               alt="Profile picture for user"
               className="inline-block h-32 w-32 rounded-full"
               width={128}

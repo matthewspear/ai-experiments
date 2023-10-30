@@ -22,7 +22,7 @@ export default function Layout(
     slug: `/${string}`;
     post?: Post;
     breadcrumbs?: Breadcrumb[];
-  }>
+  }>,
 ) {
   const { title, description, slug, post, breadcrumbs, children } = props;
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -32,7 +32,7 @@ export default function Layout(
     <>
       <Metatags
         title={post?.title ? post.title : title ?? ""}
-        description={description || post?.summary || ""}
+        description={description ?? post?.summary ?? ""}
         url={`https://aiexperiments.co${slug}`}
       />
       <div>

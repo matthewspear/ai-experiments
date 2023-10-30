@@ -28,11 +28,11 @@ export function ResultsBlock({
   return (
     <div className="flex h-full flex-col">
       {isLoading && <Loader />}
-      {data && data.error && (
+      {data?.error && (
         <div className="mt-8 flex w-full flex-row place-items-center items-center rounded-lg bg-white shadow-lg sm:w-[700px]">
-          <ExclamationCircleIcon className="my-4 mr-4 ml-4 h-6 w-6 text-red-500" />
+          <ExclamationCircleIcon className="my-4 ml-4 mr-4 h-6 w-6 text-red-500" />
           <p className="break-words">
-            {(data.error && data.error.message) || JSON.stringify(data.error)}
+            {data.error?.message || JSON.stringify(data.error)}
           </p>
         </div>
       )}
@@ -45,7 +45,7 @@ export function ResultsBlock({
               onClick={async () => {
                 if (data.result) {
                   await navigator.clipboard.writeText(
-                    pretext ?? "" + data.result.trim()
+                    pretext ?? "" + data.result.trim(),
                   );
                   setCopied(true);
                   setTimeout(() => {

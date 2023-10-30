@@ -42,10 +42,10 @@ function RoundedImage(props: CustomImageProps): JSX.Element {
   const { src, height, width, ...rest } = props;
   return (
     <Image
-      src={src || ""}
+      src={src ?? ""}
       width={Number(width)}
       height={Number(height)}
-      alt={props.alt || ""}
+      alt={props.alt ?? ""}
       className="rounded-lg"
       {...rest}
       style={{
@@ -60,10 +60,10 @@ function RectangleImage(props: CustomImageProps): JSX.Element {
   const { src, height, width, ...rest } = props;
   return (
     <Image
-      src={src || ""}
+      src={src ?? ""}
       width={Number(width)}
       height={Number(height)}
-      alt={props.alt || ""}
+      alt={props.alt ?? ""}
       {...rest}
       style={{
         maxWidth: "100%",
