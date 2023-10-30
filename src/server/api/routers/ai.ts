@@ -81,15 +81,10 @@ function handleError(error: unknown) {
 const FunctionCall = z.object({
   name: z.string().optional(),
   arguements: z.string().optional(),
-})
+});
 
 export const ChatMessage = z.object({
-  role: z.enum([
-    "system", 
-    "user", 
-    "assistant", 
-    "function"
-  ]),
+  role: z.enum(["system", "user", "assistant", "function"]),
   content: z.string().optional(),
   name: z.string().optional(),
   function_call: FunctionCall.optional(),
@@ -103,7 +98,7 @@ export const aiRouter = createTRPCRouter({
         temperature: z.number().optional(),
         task: z.string().optional(),
         max_tokens: z.number().optional(),
-      })
+      }),
     )
     .output(
       z.object({
@@ -113,7 +108,7 @@ export const aiRouter = createTRPCRouter({
             message: z.string(),
           })
           .optional(),
-      })
+      }),
     )
     .mutation(async ({ input, ctx }) => {
       checkAPIKey();
@@ -185,7 +180,7 @@ export const aiRouter = createTRPCRouter({
         frequency_penalty: z.number().optional(),
         presence_penalty: z.number().optional(),
         stop: z.array(z.string()).optional(),
-      })
+      }),
     )
     .output(
       z.object({
@@ -195,7 +190,7 @@ export const aiRouter = createTRPCRouter({
             message: z.string(),
           })
           .optional(),
-      })
+      }),
     )
     .mutation(async ({ input, ctx }) => {
       checkAPIKey();
@@ -272,7 +267,7 @@ export const aiRouter = createTRPCRouter({
         frequency_penalty: z.number().optional(),
         presence_penalty: z.number().optional(),
         stop: z.array(z.string()).optional(),
-      })
+      }),
     )
     .output(
       z.object({
@@ -282,7 +277,7 @@ export const aiRouter = createTRPCRouter({
             message: z.string(),
           })
           .optional(),
-      })
+      }),
     )
     .mutation(async ({ input, ctx }) => {
       checkAPIKey();
@@ -290,6 +285,11 @@ export const aiRouter = createTRPCRouter({
       console.log("Enter function at", new Date().toISOString());
 
       let output;
+
+      // limit gpt-4 to minimum logged in users
+      if (!ctx.session?.user.id && input.model === "gpt-4") {
+        input.model = "gpt-3.5-turbo";
+      }
 
       try {
         const completion = await openai.createChatCompletion({
