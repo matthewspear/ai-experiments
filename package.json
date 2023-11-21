@@ -38,7 +38,7 @@
     "fathom-client": "^3.6.0",
     "gpt-3-encoder": "^1.1.4",
     "next": "^13.5",
-    "next-auth": "^4.24.4",
+    "next-auth": "^4.24.5",
     "next-contentlayer": "^0.3.4",
     "openai": "^3.3.0",
     "react": "18.2.0",
