@@ -1,6 +1,0 @@
-{
-  "routes": [
-    { "src": "/sitemap.xml", "dest": "/_next/static/sitemap.xml" },
-    { "src": "/feed.json", "dest": "/_next/static/feed.json" }
-  ]
-}
