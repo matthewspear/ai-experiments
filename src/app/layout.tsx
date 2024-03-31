@@ -39,7 +39,7 @@ export default function RootLayout({
         <body
           className={`h-full min-h-screen bg-slate-100 antialiased ${inter.variable}`}
         >
-          <Fathom siteId="FEJFMFNM" domains={["aiexperiments.co"]} />
+          <Fathom />
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
