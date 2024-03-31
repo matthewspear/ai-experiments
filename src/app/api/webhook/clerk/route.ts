@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import type { NextRequest } from "next/server";
 import { env } from "@/env";
 import { db } from "@/server/db";
-import { users } from "@/server/db/schema";
+import { users } from "@/server/db/schema/users";
 import { eq } from "drizzle-orm";
 
 function getPrimaryEmail(data: UserJSON) {
@@ -115,13 +115,24 @@ export async function POST(req: NextRequest) {
     case "user.deleted":
       console.log("User deleted");
 
-      // TODO: Handle soft delete
+      if (event.data.deleted && event.data.id) {
+        await db
+          .update(users)
+          .set({
+            softDelete: true,
+          })
+          .where(eq(users.id, event.data.id));
 
-      await db.delete(users).where(eq(users.id, event.data.id!));
-      return Response.json({
-        status: "OK",
-        code: 200,
-      });
+        return Response.json({
+          status: "OK",
+          code: 200,
+        });
+      } else {
+        return Response.json({
+          status: "Soft Delete Error",
+          code: 400,
+        });
+      }
 
     default:
       console.log("Unsupported event");
