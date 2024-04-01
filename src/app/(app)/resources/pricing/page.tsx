@@ -3,6 +3,10 @@ import { buttonVariants } from "@/components/ui/button";
 import clsx from "clsx";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Pricing Tracker",
+};
+
 export default function Pricing() {
   return (
     <div className="flex w-full flex-col gap-4">
