@@ -2,6 +2,7 @@
 import { Card } from "@/components/ui/card";
 import { colors, type Experiment } from "@/data/experiments";
 import clsx from "clsx";
+import Link from "next/link";
 
 export function ExperimentCard({ experiment }: { experiment: Experiment }) {
   return (
@@ -30,11 +31,11 @@ export function ExperimentCard({ experiment }: { experiment: Experiment }) {
       </div>
       <div className="mt-8">
         <h3 className="text-lg font-medium">
-          <a href={experiment.url} className="focus:outline-none">
+          <Link href={experiment.url} className="focus:outline-none">
             {/* Extend touch target to entire panel */}
             <span className="absolute inset-0" aria-hidden="true" />
             {experiment.title}
-          </a>
+          </Link>
         </h3>
         <p className="mt-2 text-sm text-gray-500">{experiment.description}</p>
       </div>
