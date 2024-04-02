@@ -13,6 +13,7 @@ import { ZodError } from "zod";
 
 import { db } from "@/server/db";
 import { type getAuth } from "@clerk/nextjs/server";
+import { NextRequest } from "next/server";
 
 /**
  * 1. CONTEXT
@@ -28,6 +29,7 @@ import { type getAuth } from "@clerk/nextjs/server";
  */
 export const createTRPCContext = async (opts: {
   auth: ReturnType<typeof getAuth>;
+  req: NextRequest;
 }) => {
   return {
     db,
