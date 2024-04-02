@@ -15,12 +15,22 @@ export const creditRouter = createTRPCRouter({
         credits: z.number(),
       }),
     )
-    .query(async ({ ctx: { req } }) => {
-      const ip = req.headers.get("x-forwarded-for") ?? req.ip;
+    .query(async ({ ctx: { req, headers } }) => {
+      console.log(
+        headers?.get("x-forwarded-for"),
+        req?.headers.get("x-forwarded-for"),
+        req?.ip,
+      );
+
+      const ip =
+        headers?.get("x-forwarded-for") ??
+        req?.headers.get("x-forwarded-for") ??
+        req?.ip;
       const creditsKey = `anonymous_credits:${ip}`;
       const now = new Date();
-      const endOfDay = new Date(now).setHours(24, 0, 0, 0) - now;
-      const ttl = Math.ceil(endOfDay / 1000); // TTL in seconds until the end of the day
+      const endOfDay = new Date(now).setHours(24, 0, 0, 0);
+      // TTL in seconds until the end of the day
+      const ttl = Math.ceil((endOfDay - now.getTime()) / 1000);
 
       let credits = await redis.get<number>(creditsKey);
 
@@ -47,16 +57,25 @@ export const creditRouter = createTRPCRouter({
         credits: z.number(),
       }),
     )
-    .mutation(async ({ ctx: { req }, input }) => {
-      const ip = req.headers.get("x-forwarded-for") ?? req.ip;
+    .mutation(async ({ ctx: { req, headers }, input }) => {
+      console.log(
+        headers?.get("x-forwarded-for"),
+        req?.headers.get("x-forwarded-for"),
+        req?.ip,
+      );
+
+      const ip =
+        headers?.get("x-forwarded-for") ??
+        req?.headers.get("x-forwarded-for") ??
+        req?.ip;
       const creditsKey = `anonymous_credits:${ip}`;
       const credits = await redis.get<number>(creditsKey);
       const now = new Date();
-      const endOfDay = new Date(now).setHours(24, 0, 0, 0) - now;
-      const ttl = Math.ceil(endOfDay / 1000); // TTL in seconds until the end of the day
+      const endOfDay = new Date(now).setHours(24, 0, 0, 0);
+      // TTL in seconds until the end of the day
+      const ttl = Math.ceil((endOfDay - now.getTime()) / 1000);
 
       if (credits == null) {
-        // throw new Error("No credits available.");
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
           message: "No credits available.",
@@ -65,7 +84,6 @@ export const creditRouter = createTRPCRouter({
 
       const updatedCredits = credits + input.amount;
       if (updatedCredits < 0) {
-        // throw new Error("Insufficient credits.");
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
           message: "Insufficient credits.",

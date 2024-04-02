@@ -13,7 +13,8 @@ import { getAuth } from "@clerk/nextjs/server";
 const createContext = async (req: NextRequest) => {
   return createTRPCContext({
     auth: getAuth(req),
-    req,
+    headers: req.headers,
+    req: req,
   });
 };
 
