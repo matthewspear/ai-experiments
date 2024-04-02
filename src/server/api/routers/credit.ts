@@ -1,11 +1,41 @@
-import { Redis } from "@upstash/redis";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
+import { type NextRequest } from "next/server";
+import { redis } from "@/server/redis";
 
-const redis = Redis.fromEnv();
-
+const userCreditsDefault = 10; // Example: 10 free credits per day
 const anonymousCreditDefault = 5; // Example: 5 free credits per day
+
+export async function getCredits(
+  req: NextRequest | undefined,
+  headers: Headers,
+) {
+  const ip =
+    headers?.get("x-forwarded-for") ??
+    req?.headers.get("x-forwarded-for") ??
+    req?.ip;
+  const creditsKey = `anonymous_credits:${ip}`;
+  return {
+    key: creditsKey,
+    credits: await redis.get<number>(creditsKey),
+  };
+}
+
+export async function getUserCredits(userId: string) {
+  const creditsKey = `user_credits:${userId}`;
+  return {
+    key: creditsKey,
+    credits: await redis.get<number>(creditsKey),
+  };
+}
+
+function endOfDayTTL() {
+  const now = new Date();
+  const endOfDay = new Date(now).setHours(24, 0, 0, 0);
+  // TTL in seconds until the end of the day
+  return Math.ceil((endOfDay - now.getTime()) / 1000);
+}
 
 export const creditRouter = createTRPCRouter({
   getCredit: publicProcedure
@@ -15,33 +45,26 @@ export const creditRouter = createTRPCRouter({
         credits: z.number(),
       }),
     )
-    .query(async ({ ctx: { req, headers } }) => {
-      console.log(
-        headers?.get("x-forwarded-for"),
-        req?.headers.get("x-forwarded-for"),
-        req?.ip,
-      );
+    .query(async ({ ctx: { req, headers, auth } }) => {
+      const creditInfo = auth.userId
+        ? await getUserCredits(auth.userId)
+        : await getCredits(req, headers);
 
-      const ip =
-        headers?.get("x-forwarded-for") ??
-        req?.headers.get("x-forwarded-for") ??
-        req?.ip;
-      const creditsKey = `anonymous_credits:${ip}`;
+      let credits = creditInfo.credits;
+
       const now = new Date();
       const endOfDay = new Date(now).setHours(24, 0, 0, 0);
       // TTL in seconds until the end of the day
       const ttl = Math.ceil((endOfDay - now.getTime()) / 1000);
 
-      let credits = await redis.get<number>(creditsKey);
-
       if (credits == null) {
         // Allocate initial daily credits for a new user
-        credits = anonymousCreditDefault;
-        await redis.setex(creditsKey, ttl, credits);
+        credits = auth.userId ? userCreditsDefault : anonymousCreditDefault;
+        await redis.setex(creditInfo.key, ttl, credits);
       }
 
       return {
-        creditsKey: creditsKey,
+        creditsKey: creditInfo.key,
         credits: credits,
       };
     }),
@@ -57,23 +80,10 @@ export const creditRouter = createTRPCRouter({
         credits: z.number(),
       }),
     )
-    .mutation(async ({ ctx: { req, headers }, input }) => {
-      console.log(
-        headers?.get("x-forwarded-for"),
-        req?.headers.get("x-forwarded-for"),
-        req?.ip,
-      );
-
-      const ip =
-        headers?.get("x-forwarded-for") ??
-        req?.headers.get("x-forwarded-for") ??
-        req?.ip;
-      const creditsKey = `anonymous_credits:${ip}`;
-      const credits = await redis.get<number>(creditsKey);
-      const now = new Date();
-      const endOfDay = new Date(now).setHours(24, 0, 0, 0);
-      // TTL in seconds until the end of the day
-      const ttl = Math.ceil((endOfDay - now.getTime()) / 1000);
+    .mutation(async ({ ctx: { req, headers, auth }, input }) => {
+      const { key, credits } = auth.userId
+        ? await getUserCredits(auth.userId)
+        : await getCredits(req, headers);
 
       if (credits == null) {
         throw new TRPCError({
@@ -90,9 +100,10 @@ export const creditRouter = createTRPCRouter({
         });
       }
 
-      await redis.setex(creditsKey, ttl, updatedCredits);
+      const ttl = endOfDayTTL();
+      await redis.setex(key, ttl, updatedCredits);
       return {
-        creditsKey: creditsKey,
+        creditsKey: key,
         credits: updatedCredits,
       };
     }),

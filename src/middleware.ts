@@ -18,6 +18,7 @@ export default authMiddleware({
     "/experiments",
     "/emoji",
     "/credits",
+    "/resources(.*)",
   ].concat(experiments.map((e) => e.url)),
 });
 

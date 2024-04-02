@@ -1,4 +1,4 @@
-import { boolean, varchar } from "drizzle-orm/mysql-core";
+import { boolean, int, varchar } from "drizzle-orm/mysql-core";
 import { createdAt, mysqlTable, updatedAt } from "./schema";
 
 export const users = mysqlTable("user", {
@@ -9,5 +9,6 @@ export const users = mysqlTable("user", {
   image: varchar("image", { length: 255 }),
   createdAt: createdAt,
   updatedAt: updatedAt,
+  credits: int("credits").default(30),
   softDelete: boolean("softDelete").default(false),
 });

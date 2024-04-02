@@ -24,6 +24,8 @@ import { api } from "@/trpc/react";
 import { Slider } from "@/components/ui/slider";
 import { EmojiButton } from "./EmojiButton";
 import { SmallSpinner } from "@/components/core/SmallSpinner";
+import { useQueryClient } from "@tanstack/react-query";
+import { getQueryKey } from "@trpc/react-query";
 
 const formSchema = z.object({
   topic: z.string().min(2, {
@@ -35,15 +37,22 @@ const formSchema = z.object({
 });
 
 export function EmojiForm() {
-  const chatMutation = api.ai.emoji.useMutation();
+  const queryClient = useQueryClient();
+  const key = getQueryKey(api.credit.getCredit, undefined, "query");
+
+  const chatMutation = api.ai.emoji.useMutation({
+    onSuccess: async () => {
+      void queryClient.refetchQueries({ queryKey: key });
+    },
+  });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       topic: "",
-      number: 5,
+      number: 10,
       prompt:
-        "Pick an emoji to represent a topic. Provide a JSON object with a key called emojis with an array of 5 emojis suitable, ordered from most to least suitable.",
+        "Pick an emoji to represent a topic. Provide a JSON object with a key called emojis with an array of 10 emojis suitable, ordered from most to least suitable.",
       temperature: 0,
     },
   });
@@ -60,14 +69,18 @@ export function EmojiForm() {
     if (chatMutation.isPending) {
       return;
     }
-    await chatMutation.mutateAsync({
-      prompt: values.prompt,
-      query: "Topic: " + values.topic,
-      temperature: values.temperature,
-      model: "gpt-4-turbo-preview",
-      maxTokens: 512,
-      jsonMode: true,
-    });
+    try {
+      await chatMutation.mutateAsync({
+        prompt: values.prompt,
+        query: "Topic: " + values.topic,
+        temperature: values.temperature,
+        model: "gpt-4-turbo-preview",
+        maxTokens: 512,
+        jsonMode: true,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <>
@@ -181,6 +194,11 @@ export function EmojiForm() {
           {chatMutation.data.emojis.map((emoji: string) => (
             <EmojiButton key={emoji} emoji={emoji} />
           ))}
+        </div>
+      )}
+      {chatMutation.error && (
+        <div className="rounded-md bg-red-100 p-4 text-red-900">
+          {chatMutation.error.message}
         </div>
       )}
       {/* <DropdownBlocks

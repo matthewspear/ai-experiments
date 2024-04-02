@@ -5,6 +5,7 @@ import { env } from "@/env";
 
 import * as schema from "./schema/schema";
 import * as users from "./schema/users";
+import * as results from "./schema/results";
 
 /**
  * Cache the database connection in development. This avoids creating a new connection on every HMR
@@ -22,6 +23,7 @@ export const db = drizzle(conn, {
   schema: {
     ...schema,
     ...users,
+    ...results,
   },
   mode: "default",
   logger: false,
