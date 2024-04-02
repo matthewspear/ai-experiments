@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 import { useAtom } from "jotai";
 import { sidebar } from "./atom";
 import ProfileButton from "../profile-button";
+import { Credits } from "./Credits";
 
 export function MobileSidebar() {
   const pathname = usePathname();
@@ -117,6 +118,7 @@ export function MobileSidebar() {
                   ))}
                 </nav>
               </div>
+              <Credits />
               <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
                 <a
                   onClick={async () => {
@@ -131,42 +133,6 @@ export function MobileSidebar() {
                 >
                   <div className="flex items-center">
                     <ProfileButton />
-                    {/* <div>
-                      {session && (
-                        <Image
-                          src={session.user.image!}
-                          alt="Profile picture for user"
-                          className="inline-block h-10 w-10 rounded-full"
-                          width={40}
-                          height={40}
-                        />
-                      )}
-                      {!session && (
-                        <UserCircleIcon className="inline-block h-10 w-10 text-slate-500" />
-                      )}
-                    </div>
-                    <div className="ml-3">
-                      {!session && (
-                        <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
-                          User
-                        </p>
-                      )}
-                      {session && (
-                        <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
-                          {session.user.name}
-                        </p>
-                      )}
-                      {!session && (
-                        <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
-                          Login
-                        </p>
-                      )}
-                      {session && (
-                        <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
-                          View profile
-                        </p>
-                      )}
-                    </div> */}
                   </div>
                 </a>
               </div>

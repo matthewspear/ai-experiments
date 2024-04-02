@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { useAtom } from "jotai";
 import ProfileButton from "../profile-button";
 import { sidebar } from "./atom";
+import { Credits } from "./Credits";
 
 export function DesktopSidebar() {
   const pathname = usePathname();
@@ -63,6 +64,7 @@ export function DesktopSidebar() {
             ))}
           </nav>
         </div>
+        <Credits />
         <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
           <button
             className="group block w-full flex-shrink-0"
@@ -77,43 +79,6 @@ export function DesktopSidebar() {
           >
             <div className="flex items-center">
               <ProfileButton />
-              {/* <div>
-                {session && (
-                  <Image
-                    src={session.user.image!}
-                    alt="Profile picture for user"
-                    className="inline-block h-9 w-9 rounded-full"
-                    width={36}
-                    height={36}
-                    priority
-                  />
-                )}
-                {!session && (
-                  <UserCircleIcon className="inline-block h-9 w-9 text-slate-500" />
-                )}
-              </div>
-              <div className="ml-3">
-                {!session && (
-                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-                    User
-                  </p>
-                )}
-                {session && (
-                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-                    {session.user.name}
-                  </p>
-                )}
-                {!session && (
-                  <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-                    Login
-                  </p>
-                )}
-                {session && (
-                  <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-                    View profile
-                  </p>
-                )}
-              </div> */}
             </div>
           </button>
         </div>
