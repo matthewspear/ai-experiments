@@ -42,8 +42,8 @@ export default function RootLayout({
           <Fathom />
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
-            enableSystem
+            defaultTheme="light"
+            enableSystem={false}
             disableTransitionOnChange
           >
             <TRPCReactProvider>{children}</TRPCReactProvider>
