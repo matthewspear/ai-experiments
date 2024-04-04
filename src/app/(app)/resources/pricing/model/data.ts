@@ -71,6 +71,13 @@ export const aiModelPricings: AIModelPricing[] = [
     contextLength: 32_000,
   },
   {
+    model: "Command-R+",
+    company: "Cohere",
+    inputCost: 3.0,
+    outputCost: 15.0,
+    contextLength: 128_000,
+  },
+  {
     model: "Sonnet",
     company: "Anthropic",
     inputCost: 3,
