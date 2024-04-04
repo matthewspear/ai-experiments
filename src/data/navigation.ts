@@ -4,6 +4,7 @@ import {
   FaceSmileIcon,
   RectangleStackIcon,
   CurrencyDollarIcon,
+  PencilSquareIcon,
 } from "@heroicons/react/24/outline";
 
 type Icon = React.ForwardRefExoticComponent<
@@ -47,6 +48,11 @@ export const navigationItems: NavigationItem[] = [
     name: "Emoji Picker",
     href: "/emoji",
     icon: FaceSmileIcon,
+  },
+  {
+    name: "AI Journalist",
+    href: "/journalist",
+    icon: PencilSquareIcon,
   },
   // {
   //   name: "Journal Prompt",
