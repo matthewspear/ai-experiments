@@ -17,7 +17,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/trpc/react";
 import { SmallSpinner } from "@/components/core/SmallSpinner";
 import { Switch } from "@/components/ui/switch";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   topic: z.string().min(2, {
@@ -28,6 +28,7 @@ const formSchema = z.object({
 
 export function JournalistForm() {
   const articleMutation = api.article.request.useMutation();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -47,7 +48,7 @@ export function JournalistForm() {
         topic: values.topic,
         editMode: values.editMode,
       });
-      redirect(`/journalist/articles/${result.articleId}`);
+      router.push(`/journalist/articles/${result.articleId}`);
     } catch (error) {
       console.log(error);
     }
