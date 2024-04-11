@@ -29,6 +29,12 @@ export default function Pricing() {
       >
         Embedding
       </Link>
+      <Link
+        className={clsx(buttonVariants({ variant: "link" }), "w-fit")}
+        href="/resources/pricing/calculator"
+      >
+        Calculator
+      </Link>
     </div>
   );
 }

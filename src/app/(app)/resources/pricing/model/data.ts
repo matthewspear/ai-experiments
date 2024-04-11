@@ -85,18 +85,18 @@ export const aiModelPricings: AIModelPricing[] = [
     contextLength: 200_000,
   },
   {
-    model: "GPT-4 Turbo",
-    company: "OpenAI",
-    inputCost: 10,
-    outputCost: 30,
-    contextLength: 128_000,
-  },
-  {
     model: "Mistral Large",
     company: "Mistral",
     inputCost: 8,
     outputCost: 24,
     contextLength: 32_000,
+  },
+  {
+    model: "GPT-4 Turbo",
+    company: "OpenAI",
+    inputCost: 10,
+    outputCost: 30,
+    contextLength: 128_000,
   },
   {
     model: "Opus",
@@ -105,4 +105,11 @@ export const aiModelPricings: AIModelPricing[] = [
     outputCost: 75,
     contextLength: 200_000,
   },
+  // {
+  //   model: "GPT-4",
+  //   company: "OpenAI",
+  //   inputCost: 30,
+  //   outputCost: 60,
+  //   contextLength: 8_192,
+  // },
 ];

@@ -25,7 +25,7 @@ export default function Pricing() {
         data={aiModelPricings}
       />
 
-      <h3 className="pb-4 text-xl font-medium">Link</h3>
+      <h3 className="pb-4 text-xl font-medium">Links</h3>
       <div className="grid grid-cols-2 gap-4">
         <PricingLink
           title="OpenAI Pricing"
