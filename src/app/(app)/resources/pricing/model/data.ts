@@ -57,6 +57,13 @@ export const aiModelPricings: AIModelPricing[] = [
     contextLength: 32_000,
   },
   {
+    model: "Mixtral 8x22B",
+    company: "Mistral",
+    inputCost: 2.0,
+    outputCost: 6.0,
+    contextLength: 64_000,
+  },
+  {
     model: "Mistral Small",
     company: "Mistral",
     inputCost: 2,

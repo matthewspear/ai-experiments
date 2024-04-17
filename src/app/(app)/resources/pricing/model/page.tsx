@@ -40,7 +40,7 @@ export default function Pricing() {
         <PricingLink
           title="Mistral Pricing and Rate Limits"
           author="Mistral"
-          url="https://docs.mistral.ai/platform/pricing/"
+          url="https://mistral.ai/technology/#pricing"
         />
         <PricingLink
           title="Cohere Pricing"
