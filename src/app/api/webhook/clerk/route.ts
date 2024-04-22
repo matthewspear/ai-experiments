@@ -1,4 +1,3 @@
-import type { UserWebhookEvent, UserJSON } from "@clerk/nextjs/api";
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import type { NextRequest } from "next/server";
@@ -6,6 +5,19 @@ import { env } from "@/env";
 import { db } from "@/server/db";
 import { users } from "@/server/db/schema/users";
 import { eq } from "drizzle-orm";
+import type { WebhookEvent } from "@clerk/nextjs/server";
+
+type UserWebhookEvent = Extract<
+  WebhookEvent,
+  { type: "user.created" | "user.updated" | "user.deleted" }
+>;
+
+type ExtractUserJSON<T> = T extends { data: infer P } ? P : never;
+
+type UserJSON = ExtractUserJSON<
+  Extract<WebhookEvent, { type: "user.created" | "user.updated" }>
+>;
+
 
 function getPrimaryEmail(data: UserJSON) {
   const email = data.email_addresses.find(

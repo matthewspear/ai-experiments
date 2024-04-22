@@ -34,7 +34,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider appearance={{
+      userProfile: {
+        variables: {
+          colorPrimary: "#5E35FF",
+          colorText: "#4C4D4E",
+        },
+      },
+    }}>
       <html lang="en" suppressHydrationWarning className="h-full">
         <body
           className={`h-full min-h-screen bg-slate-100 antialiased ${inter.variable}`}

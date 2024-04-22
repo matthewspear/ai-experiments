@@ -21,16 +21,7 @@ export default function UserActions() {
         </Link>
       )}
       {user.isLoaded && user.isSignedIn && (
-        <UserButton
-          appearance={{
-            userProfile: {
-              variables: {
-                colorPrimary: "#5E35FF",
-                colorText: "#4C4D4E",
-              },
-            },
-          }}
-        />
+        <UserButton />
       )}
       {user.isLoaded && !user.isSignedIn && (
         <Link href="/sign-in" className={buttonVariants({ variant: "ghost" })}>
