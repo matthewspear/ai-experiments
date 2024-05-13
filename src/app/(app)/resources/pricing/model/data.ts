@@ -92,6 +92,13 @@ export const aiModelPricings: AIModelPricing[] = [
     contextLength: 200_000,
   },
   {
+    model: "GPT-4o",
+    company: "OpenAI",
+    inputCost: 5.0,
+    outputCost: 15.0,
+    contextLength: 128_000,
+  },
+  {
     model: "Mistral Large",
     company: "Mistral",
     inputCost: 8,
