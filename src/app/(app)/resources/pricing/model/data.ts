@@ -8,7 +8,14 @@ export interface AIModelPricing {
 
 export const aiModelPricings: AIModelPricing[] = [
   {
-    model: "Haiku",
+    model: "GPT-4o mini",
+    company: "OpenAI",
+    inputCost: 0.015,
+    outputCost: 0.6,
+    contextLength: 128_000,
+  },
+  {
+    model: "Claude 3 Haiku",
     company: "Anthropic",
     inputCost: 0.25,
     outputCost: 1.25,
@@ -85,7 +92,7 @@ export const aiModelPricings: AIModelPricing[] = [
     contextLength: 128_000,
   },
   {
-    model: "Sonnet",
+    model: "Claude 3.5 Sonnet",
     company: "Anthropic",
     inputCost: 3,
     outputCost: 15,
@@ -113,7 +120,7 @@ export const aiModelPricings: AIModelPricing[] = [
     contextLength: 128_000,
   },
   {
-    model: "Opus",
+    model: "Claude 3 Opus",
     company: "Anthropic",
     inputCost: 15,
     outputCost: 75,

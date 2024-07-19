@@ -33,9 +33,9 @@ export default function Pricing() {
           url="https://openai.com/pricing"
         />
         <PricingLink
-          title="Anthropic API"
+          title="Anthropic API Pricing"
           author="Anthropic"
-          url="https://www.anthropic.com/api"
+          url="https://www.anthropic.com/pricing#anthropic-api"
         />
         <PricingLink
           title="Mistral Pricing and Rate Limits"
