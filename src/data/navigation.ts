@@ -4,7 +4,8 @@ import {
   FaceSmileIcon,
   RectangleStackIcon,
   CurrencyDollarIcon,
-  PencilSquareIcon,
+  PuzzlePieceIcon,
+  InformationCircleIcon,
 } from "@heroicons/react/24/outline";
 
 type Icon = React.ForwardRefExoticComponent<
@@ -50,10 +51,15 @@ export const navigationItems: NavigationItem[] = [
     icon: FaceSmileIcon,
   },
   {
-    name: "AI Journalist",
-    href: "/journalist",
-    icon: PencilSquareIcon,
+    name: "Explain Like I Am 5",
+    href: "/eli5",
+    icon: PuzzlePieceIcon,
   },
+  // {
+  //   name: "AI Journalist",
+  //   href: "/journalist",
+  //   icon: PencilSquareIcon,
+  // },
   // {
   //   name: "Journal Prompt",
   //   href: "/journal-prompt",
@@ -78,11 +84,6 @@ export const navigationItems: NavigationItem[] = [
   //   name: "Holiday Destination",
   //   href: "/holiday-destination",
   //   icon: GlobeEuropeAfricaIcon,
-  // },
-  // {
-  //   name: "Explain Like I Am 5",
-  //   href: "/eli5",
-  //   icon: PuzzlePieceIcon,
   // },
   // {
   //   name: "Summary",
@@ -162,10 +163,9 @@ export const navigationItems: NavigationItem[] = [
     href: "/resources",
     icon: InboxIcon,
   },
-
-  // {
-  //   name: "About",
-  //   href: "/about",
-  //   icon: InformationCircleIcon,
-  // },
+  {
+    name: "About",
+    href: "/about",
+    icon: InformationCircleIcon,
+  },
 ];

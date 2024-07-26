@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import { Section } from "./Section";
 import { ResourceItem } from "./ResourceItem";
-import { Summary } from "./Summary";
+import { Summary } from "@/components/summary";
 import { allSections, resources } from "./resources";
 import { buttonVariants } from "@/components/ui/button";
 import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";

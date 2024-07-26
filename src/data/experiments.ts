@@ -67,6 +67,14 @@ export const experiments: Experiment[] = [
     color: "sky",
     active: true,
   },
+  {
+    title: "Explain Like I Am 5",
+    description: `Explain a concept in simple terms, so that anyone can understand it`,
+    url: "/eli5",
+    icon: PuzzlePieceIcon,
+    color: "indigo",
+    active: true,
+  },
   // {
   //   title: "Chat",
   //   description: `Talk to the AI and ask questions`,

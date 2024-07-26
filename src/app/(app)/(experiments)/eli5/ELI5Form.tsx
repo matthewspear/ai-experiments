@@ -22,25 +22,24 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { api } from "@/trpc/react";
 import { Slider } from "@/components/ui/slider";
-import { EmojiButton } from "./EmojiButton";
 import { SmallSpinner } from "@/components/core/SmallSpinner";
 import { useQueryClient } from "@tanstack/react-query";
 import { getQueryKey } from "@trpc/react-query";
+import { ResultsBlock } from "./ResultsBlock";
 
 const formSchema = z.object({
-  topic: z.string().min(2, {
-    message: "Topic must be at least 2 characters.",
+  concept: z.string().min(2, {
+    message: "Concept must be at least 2 characters.",
   }),
-  number: z.number().min(1),
   prompt: z.string(),
   temperature: z.number().min(0).max(100),
 });
 
-export function EmojiForm() {
+export function ELI5Form() {
   const queryClient = useQueryClient();
   const key = getQueryKey(api.credit.getCredit, undefined, "query");
 
-  const chatMutation = api.ai.emoji.useMutation({
+  const chatMutation = api.ai.completion.useMutation({
     onSuccess: async () => {
       void queryClient.refetchQueries({ queryKey: key });
     },
@@ -49,18 +48,16 @@ export function EmojiForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      topic: "",
-      number: 10,
-      prompt:
-        "Pick an emoji to represent a topic. Provide a JSON object with a key called emojis with an array of 10 emojis suitable, ordered from most to least suitable.",
-      temperature: 0,
+      concept: "",
+      prompt: "Explain like I am 5 years old the concept of",
+      temperature: 0.5,
     },
   });
 
-  function updatePromptForNumber(number: number) {
+  function updatePrompt(value: string) {
     form.setValue(
       "prompt",
-      `Pick an emoji to represent a topic. Provide a JSON object with a key called emojis with an array of ${number} emojis suitable, ordered from most to least suitable.`,
+      `Explain like I am 5 years old the concept of ${value}`,
     );
   }
 
@@ -71,12 +68,9 @@ export function EmojiForm() {
     }
     try {
       await chatMutation.mutateAsync({
-        prompt: values.prompt,
-        query: "Topic: " + values.topic,
+        query: values.prompt,
         temperature: values.temperature,
         model: "gpt-4o",
-        maxTokens: 512,
-        jsonMode: true,
       });
     } catch (error) {
       console.log(error);
@@ -88,42 +82,20 @@ export function EmojiForm() {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
             control={form.control}
-            name="topic"
+            name="concept"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Topic</FormLabel>
+                <FormLabel>Concept</FormLabel>
                 <FormControl>
-                  <Input placeholder="e.g Magic" autoFocus {...field} />
-                </FormControl>
-                {/* <FormDescription>
-                  This is your public display name.
-                </FormDescription> */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="number"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Number</FormLabel>
-                <FormControl>
-                  <>
-                    <p>{field.value}</p>
-                    <Slider
-                      min={0.0}
-                      max={50.0}
-                      step={5}
-                      onValueChange={(value) => {
-                        field.onChange(value[0]);
-                        if (value[0]) {
-                          updatePromptForNumber(value[0]);
-                        }
-                      }}
-                      defaultValue={[field.value]}
-                    />
-                  </>
+                  <Input
+                    placeholder="e.g Blackholes"
+                    autoFocus
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e.target.value);
+                      updatePrompt(e.target.value);
+                    }}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -167,6 +139,7 @@ export function EmojiForm() {
                             max={1.0}
                             step={0.01}
                             onValueChange={(value) => field.onChange(value[0])}
+                            value={[field.value]}
                           />
                         </>
                       </FormControl>
@@ -190,27 +163,17 @@ export function EmojiForm() {
       </Form>
       <hr />
       {chatMutation.data && (
-        <div className="flex flex-wrap gap-2">
-          {chatMutation.data.emojis.map((emoji: string) => (
-            <EmojiButton key={emoji} emoji={emoji} />
-          ))}
-        </div>
+        <ResultsBlock
+          isLoading={chatMutation.isPending}
+          data={{ result: chatMutation.data?.message ?? undefined }}
+          copyable={true}
+        />
       )}
       {chatMutation.error && (
         <div className="rounded-md bg-red-100 p-4 text-red-900">
           {chatMutation.error.message}
         </div>
       )}
-      {/* <DropdownBlocks
-        prompt={latestPrompt}
-        result={promptMutation.data?.result ?? ""}
-        temperature={temperature}
-        setTemperature={setTemperature}
-      />
-      <ResultsBlock
-        isLoading={promptMutation.isLoading}
-        data={promptMutation.data}
-      /> */}
     </>
   );
 }

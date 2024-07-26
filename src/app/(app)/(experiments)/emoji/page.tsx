@@ -17,7 +17,7 @@ export default function Home() {
       <div className="prose prose-lg prose-slate pt-8">
         <h3>Emoji Picker</h3>
         <Badge variant="outline" className="bg-[#FEFEFE]">
-          gpt-4-turbo-preview
+          gpt-4o
         </Badge>
       </div>
       <hr />
