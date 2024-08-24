@@ -70,7 +70,6 @@ export function ELI5Form() {
       await chatMutation.mutateAsync({
         query: values.prompt,
         temperature: values.temperature,
-        model: "gpt-4o",
       });
     } catch (error) {
       console.log(error);

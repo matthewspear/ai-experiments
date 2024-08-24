@@ -11,6 +11,8 @@ const emojiResponse = z.object({
   emojis: z.array(z.string()),
 });
 
+const defaultModel = "gpt-4o-2024-08-06";
+
 export const aiRouter = createTRPCRouter({
   completion: publicProcedure
     .input(
@@ -53,13 +55,13 @@ export const aiRouter = createTRPCRouter({
           content: input.query,
         });
 
-        const model = input.model ?? "gpt-4o";
+        const model = input.model ?? defaultModel;
         const temperature = input.temperature ?? 0.0;
         const maxTokens = input.maxTokens ?? 256;
         const topP = input.topP ?? 1;
 
         const response_format = await openai.chat.completions.create({
-          model: input.model ?? "gpt-4o",
+          model: model,
           messages: messages,
           temperature: temperature,
           max_tokens: maxTokens,
@@ -133,8 +135,10 @@ export const aiRouter = createTRPCRouter({
           },
         ];
 
+        const model = input.model ?? defaultModel;
+
         const response_format = await openai.chat.completions.create({
-          model: input.model ?? "gpt-4o",
+          model: model,
           messages: messages,
           temperature: input.temperature ?? 0.0,
           max_tokens: input.maxTokens ?? 256,
@@ -143,7 +147,11 @@ export const aiRouter = createTRPCRouter({
             input.jsonMode == true ? { type: "json_object" } : undefined,
         });
 
+        console.log(response_format);
+
         const message = response_format.choices[0]?.message.content;
+
+        console.log(message);
 
         if (message == undefined) {
           return { emojis: [] };
@@ -151,6 +159,7 @@ export const aiRouter = createTRPCRouter({
 
         try {
           const data = emojiResponse.parse(JSON.parse(message));
+          console.log(data);
 
           await Promise.all([
             // Deduct credit
@@ -158,7 +167,7 @@ export const aiRouter = createTRPCRouter({
             // Log to db
             db.insert(results).values({
               task: "emoji",
-              model: input.model ?? "gpt-4o",
+              model: model,
               temperature: input.temperature ?? 0.0,
               userPrompt: input.prompt,
               fullPrompt: input.query,

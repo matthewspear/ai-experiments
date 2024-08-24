@@ -74,7 +74,6 @@ export function EmojiForm() {
         prompt: values.prompt,
         query: "Topic: " + values.topic,
         temperature: values.temperature,
-        model: "gpt-4o",
         maxTokens: 512,
         jsonMode: true,
       });
