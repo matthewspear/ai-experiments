@@ -8,10 +8,17 @@ export interface AIModelPricing {
 
 export const aiModelPricings: AIModelPricing[] = [
   {
-    model: "GPT-4o mini",
+    model: "GPT-4o-mini",
     company: "OpenAI",
-    inputCost: 0.015,
+    inputCost: 0.15,
     outputCost: 0.6,
+    contextLength: 128_000,
+  },
+  {
+    model: "GPT-4o-mini-finetune",
+    company: "OpenAI",
+    inputCost: 0.3,
+    outputCost: 1.2,
     contextLength: 128_000,
   },
   {
@@ -102,6 +109,20 @@ export const aiModelPricings: AIModelPricing[] = [
     model: "GPT-4o",
     company: "OpenAI",
     inputCost: 5.0,
+    outputCost: 15.0,
+    contextLength: 128_000,
+  },
+  {
+    model: "GPT-4o-2024-08-06",
+    company: "OpenAI",
+    inputCost: 2.5,
+    outputCost: 10.0,
+    contextLength: 128_000,
+  },
+  {
+    model: "GPT-4o-2024-08-06-finetune",
+    company: "OpenAI",
+    inputCost: 3.75,
     outputCost: 15.0,
     contextLength: 128_000,
   },
