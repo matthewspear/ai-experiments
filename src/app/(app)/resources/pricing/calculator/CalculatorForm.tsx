@@ -183,7 +183,7 @@ export function CalculatorForm() {
           </div>
           <Select
             onValueChange={(value) => {
-              const model = aiModelPricings.filter((m) => m.model === value)[0];
+              const model = aiModelPricings.find((m) => m.model === value);
               if (model) {
                 form.setValue("inputCostPerMillion", model.inputCost);
                 form.setValue("outputCostPerMillion", model.outputCost);
