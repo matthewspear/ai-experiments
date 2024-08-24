@@ -1,5 +1,7 @@
 import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
 import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import clsx from "clsx";
 
 export default function Dashboard() {
   return (
@@ -15,6 +17,12 @@ export default function Dashboard() {
         Coming Soon
       </Badge>
       <p>Submit ideas and vote on what we should build next 🚀</p>
+      <a
+      href="https://tally.so/r/wa0PYB"
+      target="_blank"
+      rel="noreferrer"
+      className={clsx(buttonVariants({ variant: "default" }), "w-fit")}
+      >Suggest an idea</a>
     </div>
   );
 }

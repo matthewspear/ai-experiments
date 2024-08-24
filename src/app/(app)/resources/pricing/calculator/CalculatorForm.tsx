@@ -190,7 +190,7 @@ export function CalculatorForm() {
               }
             }}
           >
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[250px]">
               <SelectValue placeholder="Select a Model..." />
             </SelectTrigger>
             <SelectContent>
