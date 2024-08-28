@@ -7,6 +7,8 @@ import {
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { Loader } from "./Loader";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface ResultsBlockInput {
   isLoading: boolean;
@@ -16,16 +18,10 @@ interface ResultsBlockInput {
         error?: { message: string };
       }
     | undefined;
-  pretext?: string;
   copyable?: boolean;
 }
 
-export function ResultsBlock({
-  isLoading,
-  data,
-  pretext,
-  copyable,
-}: ResultsBlockInput) {
+export function ResultsBlock({ isLoading, data, copyable }: ResultsBlockInput) {
   const [copied, setCopied] = useState(false);
   return (
     <div className="flex h-full flex-col">
@@ -46,9 +42,7 @@ export function ResultsBlock({
               aria-label="Copy to clipboard"
               onClick={async () => {
                 if (data.result) {
-                  await navigator.clipboard.writeText(
-                    pretext ?? "" + data.result.trim(),
-                  );
+                  await navigator.clipboard.writeText(data.result.trim());
                   setCopied(true);
                   setTimeout(() => {
                     setCopied(false);
@@ -64,15 +58,14 @@ export function ResultsBlock({
               )}
             </button>
           )}
-          <div className="prose prose-slate !max-w-none whitespace-pre-line pr-8">
-            <p className="p-4">
-              {pretext ?? ""}
+          <div className="prose prose-base prose-slate !max-w-none pr-8 prose-code:before:hidden prose-code:after:hidden prose-pre:bg-slate-50 prose-pre:text-slate-800">
+            <Markdown className="px-4 pb-4" remarkPlugins={[remarkGfm]}>
               {data.result?.trim()}
-            </p>
+            </Markdown>
           </div>
         </div>
       )}
-      {/* <div className="h-10 grow" /> */}
+      <div className="h-10 grow" />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import {
   CurrencyDollarIcon,
   PuzzlePieceIcon,
   InformationCircleIcon,
+  ArrowsPointingInIcon,
 } from "@heroicons/react/24/outline";
 
 type Icon = React.ForwardRefExoticComponent<
@@ -85,11 +86,11 @@ export const navigationItems: NavigationItem[] = [
   //   href: "/holiday-destination",
   //   icon: GlobeEuropeAfricaIcon,
   // },
-  // {
-  //   name: "Summary",
-  //   href: "/summary",
-  //   icon: ArrowsPointingInIcon,
-  // },
+  {
+    name: "Summary",
+    href: "/summary",
+    icon: ArrowsPointingInIcon,
+  },
   // {
   //   name: "Chat",
   //   href: "/chat",
