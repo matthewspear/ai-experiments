@@ -4,6 +4,7 @@ export interface AIModelPricing {
   inputCost: number; // $/MTok
   outputCost: number; // $/MTok,
   contextLength: number; // tokens
+  tokenizer: string; // huggingface
 }
 
 export const aiModelPricings: AIModelPricing[] = [
@@ -13,6 +14,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 0.15,
     outputCost: 0.6,
     contextLength: 128_000,
+    tokenizer: "xenova/gpt-4o",
   },
   {
     model: "GPT-4o-mini-finetune",
@@ -20,6 +22,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 0.3,
     outputCost: 1.2,
     contextLength: 128_000,
+    tokenizer: "xenova/gpt-4o",
   },
   {
     model: "Claude 3 Haiku",
@@ -27,6 +30,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 0.25,
     outputCost: 1.25,
     contextLength: 200_000,
+    tokenizer: "xenova/claude-tokenizer",
   },
   {
     model: "Mistral 7B",
@@ -34,6 +38,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 0.25,
     outputCost: 0.25,
     contextLength: 32_000,
+    tokenizer: "xenova/mistral-tokenizer-v3",
   },
   {
     model: "Command Light",
@@ -41,6 +46,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 0.3,
     outputCost: 0.6,
     contextLength: 4_096,
+    tokenizer: "xenova/command-light",
   },
   {
     model: "GPT-3.5 Turbo",
@@ -48,6 +54,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 0.5,
     outputCost: 1.5,
     contextLength: 16_385,
+    tokenizer: "xenova/gpt-3.5-turbo",
   },
   {
     model: "Gemini Pro",
@@ -55,6 +62,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 0.5,
     outputCost: 1.5,
     contextLength: 30_720,
+    tokenizer: "xenova/gemma2-tokenizer",
   },
   {
     model: "Command-R",
@@ -62,6 +70,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 0.5,
     outputCost: 1.5,
     contextLength: 128_000,
+    tokenizer: "xenova/c4ai-command-r-v01-tokenizer",
   },
   {
     model: "Mixtral 8x7B",
@@ -69,6 +78,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 0.7,
     outputCost: 0.7,
     contextLength: 32_000,
+    tokenizer: "xenova/mistral-tokenizer-v3",
   },
   {
     model: "Mixtral 8x22B",
@@ -76,6 +86,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 2.0,
     outputCost: 6.0,
     contextLength: 64_000,
+    tokenizer: "xenova/mistral-tokenizer-v3",
   },
   {
     model: "Mistral Small",
@@ -83,6 +94,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 2,
     outputCost: 6,
     contextLength: 32_000,
+    tokenizer: "xenova/mistral-tokenizer-v3",
   },
   {
     model: "Mistral Medium",
@@ -90,6 +102,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 2.7,
     outputCost: 8.1,
     contextLength: 32_000,
+    tokenizer: "xenova/mistral-tokenizer-v3",
   },
   {
     model: "Command-R+",
@@ -97,6 +110,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 3.0,
     outputCost: 15.0,
     contextLength: 128_000,
+    tokenizer: "xenova/c4ai-command-r-v01-tokenizer",
   },
   {
     model: "Claude 3.5 Sonnet",
@@ -104,6 +118,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 3,
     outputCost: 15,
     contextLength: 200_000,
+    tokenizer: "xenova/claude-tokenizer",
   },
   {
     model: "GPT-4o",
@@ -111,6 +126,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 5.0,
     outputCost: 15.0,
     contextLength: 128_000,
+    tokenizer: "xenova/gpt-4o",
   },
   {
     model: "GPT-4o-2024-08-06",
@@ -118,6 +134,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 2.5,
     outputCost: 10.0,
     contextLength: 128_000,
+    tokenizer: "xenova/gpt-4o",
   },
   {
     model: "GPT-4o-2024-08-06-finetune",
@@ -125,6 +142,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 3.75,
     outputCost: 15.0,
     contextLength: 128_000,
+    tokenizer: "xenova/gpt-4o",
   },
   {
     model: "Mistral Large",
@@ -132,6 +150,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 8,
     outputCost: 24,
     contextLength: 32_000,
+    tokenizer: "xenova/mistral-tokenizer-v3",
   },
   {
     model: "GPT-4 Turbo",
@@ -139,6 +158,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 10,
     outputCost: 30,
     contextLength: 128_000,
+    tokenizer: "xenova/gpt-4",
   },
   {
     model: "Claude 3 Opus",
@@ -146,6 +166,7 @@ export const aiModelPricings: AIModelPricing[] = [
     inputCost: 15,
     outputCost: 75,
     contextLength: 200_000,
+    tokenizer: "xenova/claude-tokenizer",
   },
   // {
   //   model: "GPT-4",

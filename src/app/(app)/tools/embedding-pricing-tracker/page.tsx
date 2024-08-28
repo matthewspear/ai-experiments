@@ -10,18 +10,11 @@ export default function Pricing() {
   return (
     <div className="flex w-full flex-col gap-4">
       <BreadcrumbBuilder
-        items={[
-          { href: "/resources", label: "Resources" },
-          {
-            href: "/resources/pricing",
-            label: "Pricing",
-          },
-        ]}
-        page="Embedding"
+        items={[{ href: "/tools", label: "Tools" }]}
+        page="Embedding Pricing Tracker"
       />
       <DataTable
-        title="Embedding Pricing"
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        title="Embedding Pricing Tracker"
         columns={columns}
         data={aiEmbeddingPricings}
       />

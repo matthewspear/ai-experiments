@@ -3,10 +3,11 @@ import {
   Square3Stack3DIcon,
   FaceSmileIcon,
   RectangleStackIcon,
-  CurrencyDollarIcon,
   PuzzlePieceIcon,
   InformationCircleIcon,
   ArrowsPointingInIcon,
+  CalculatorIcon,
+  WrenchScrewdriverIcon,
 } from "@heroicons/react/24/outline";
 
 type Icon = React.ForwardRefExoticComponent<
@@ -155,9 +156,14 @@ export const navigationItems: NavigationItem[] = [
   //   icon: ArrowPathRoundedSquareIcon,
   // },
   {
-    name: "Pricing Tracker",
-    href: "/resources/pricing",
-    icon: CurrencyDollarIcon,
+    name: "Prompt Calculator",
+    href: "/tools/prompt-calculator",
+    icon: CalculatorIcon,
+  },
+  {
+    name: "Tools",
+    href: "/tools",
+    icon: WrenchScrewdriverIcon,
   },
   {
     name: "Resources",

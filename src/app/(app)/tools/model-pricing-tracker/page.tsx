@@ -10,17 +10,11 @@ export default function Pricing() {
   return (
     <div className="flex w-full flex-col gap-4">
       <BreadcrumbBuilder
-        items={[
-          { href: "/resources", label: "Resources" },
-          {
-            href: "/resources/pricing",
-            label: "Pricing",
-          },
-        ]}
-        page="Model"
+        items={[{ href: "/tools", label: "Tools" }]}
+        page="Model Pricing Tracker"
       />
       <DataTable
-        title="Model Pricing"
+        title="Model Pricing Tracker"
         columns={columns}
         data={aiModelPricings}
       />

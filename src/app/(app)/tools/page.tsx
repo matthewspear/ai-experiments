@@ -5,34 +5,31 @@ import Link from "next/link";
 import { Summary } from "@/components/summary";
 
 export const metadata = {
-  title: "Pricing Tracker",
+  title: "Tools",
 };
 
 export default function Pricing() {
   return (
     <div className="flex w-full flex-col gap-4">
-      <BreadcrumbBuilder
-        items={[{ href: "/resources", label: "Resources" }]}
-        page="Pricing"
-      />
-      <Summary title="Pricing" />
+      <BreadcrumbBuilder page="Tools" />
+      <Summary title="Tools" />
       <Link
         className={clsx(buttonVariants({ variant: "link" }), "w-fit")}
-        href="/resources/pricing/model"
+        href="/tools/prompt-calculator"
       >
-        Model
+        Prompt Calculator
       </Link>
       <Link
         className={clsx(buttonVariants({ variant: "link" }), "w-fit")}
-        href="/resources/pricing/embedding"
+        href="/tools/model-pricing-tracker"
       >
-        Embedding
+        Model Pricing Tracker
       </Link>
       <Link
         className={clsx(buttonVariants({ variant: "link" }), "w-fit")}
-        href="/resources/pricing/calculator"
+        href="/tools/embedding-pricing-tracker"
       >
-        Calculator
+        Embedding Pricing Tracker
       </Link>
     </div>
   );
