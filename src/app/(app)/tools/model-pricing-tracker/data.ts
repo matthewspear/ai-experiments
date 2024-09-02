@@ -57,6 +57,14 @@ export const aiModelPricings: AIModelPricing[] = [
     tokenizer: "xenova/gemma2-tokenizer",
   },
   {
+    model: "Mistral Codestral",
+    company: "Mistral",
+    inputCost: 1.0,
+    outputCost: 3.0,
+    contextLength: 32_000,
+    tokenizer: "xenova/mistral-tokenizer-v3",
+  },
+  {
     model: "Command-R+",
     company: "Cohere",
     inputCost: 2.5,

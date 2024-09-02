@@ -97,7 +97,7 @@ export const experiments: Experiment[] = [
     url: "/summary",
     icon: ArrowsPointingInIcon,
     color: "rose",
-    active: false,
+    active: true,
   },
   {
     title: "Startup Name Generator",
