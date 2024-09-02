@@ -2,8 +2,9 @@ import { Badge } from "@/components/ui/badge";
 
 import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
 import { ELI5Form } from "./ELI5Form";
+import { type Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "ELI5",
 };
 

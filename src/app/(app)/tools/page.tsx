@@ -3,8 +3,9 @@ import { buttonVariants } from "@/components/ui/button";
 import clsx from "clsx";
 import Link from "next/link";
 import { Summary } from "@/components/summary";
+import { type Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Tools",
 };
 

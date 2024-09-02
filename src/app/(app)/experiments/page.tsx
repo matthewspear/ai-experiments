@@ -1,10 +1,10 @@
-import { type NextPage } from "next";
+import { type Metadata, type NextPage } from "next";
 
 import { ExperimentCard } from "./ExperimentCard";
 import { experiments } from "@/data/experiments";
 import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Experiments",
   description:
     "Explore the 'Experiments' page, a central hub linking to an array of AI-driven experiments. Ranging from conversational interactions with GPT-3, custom journal prompts, quick question answering, to AI-generated holiday destinations and more. Each experiment showcases a unique use-case of AI, offering a glimpse into the vast capabilities of modern machine learning models.",

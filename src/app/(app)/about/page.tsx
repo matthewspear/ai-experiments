@@ -4,8 +4,9 @@ import { format, parseISO } from "date-fns";
 import profile from "@/public/profile.png";
 import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
 import { Summary } from "@/components/summary";
+import { type Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "About",
   description:
     "AI Experiments by Matt Spear, a freelance software engineer specialized in AI, Deep Learning, and Machine Learning. The page offers insights into his journey in technology over the last decade, his fascination with AI and ML frameworks, his plans for building a SaaS business, and his upcoming YouTube channel for sharing use cases, tutorials, and examples.",

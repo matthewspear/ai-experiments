@@ -2,8 +2,9 @@ import { Badge } from "@/components/ui/badge";
 
 import { EmojiForm } from "./EmojiForm";
 import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
+import { type Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Emoji Picker",
 };
 

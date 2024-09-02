@@ -7,7 +7,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/dark-mode/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import Fathom from "@/components/core/Fathom";
-import { Metadata } from "next";
+import { type Metadata } from "next";
 
 const inter = Inter({
   subsets: ["latin"],

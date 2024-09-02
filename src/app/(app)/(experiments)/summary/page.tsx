@@ -1,8 +1,9 @@
 import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
 import { Badge } from "@/components/ui/badge";
 import { SummaryForm } from "./SummaryForm";
+import { type Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Summary",
   description:
     "Embark on the 'Summary' experiment, which leverages AI to condense bodies of text into digestible forms. Choose between TLDR, bullet points, or summary paragraph. It's a practical tool for efficiently understanding and retaining the core message of any text.",
