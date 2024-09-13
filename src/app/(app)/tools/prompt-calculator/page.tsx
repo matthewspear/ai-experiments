@@ -4,11 +4,8 @@ import { type Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Prompt Calculator",
-  openGraph: {
-    title: "Prompt Calculator",
-    description:
-      "Calculate the cost of your prompts with the prompt calculator. Enter the input, output and model to get an estimate of the total cost.",
-  },
+  description:
+    "Calculate the cost of your prompts with the prompt calculator. Enter the input, output and model to get an estimate of the total cost.",
 };
 
 export default function Pricing() {
