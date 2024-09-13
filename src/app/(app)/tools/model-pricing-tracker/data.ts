@@ -73,6 +73,14 @@ export const aiModelPricings: AIModelPricing[] = [
     tokenizer: "xenova/c4ai-command-r-v01-tokenizer",
   },
   {
+    model: "o1-mini",
+    company: "OpenAI",
+    inputCost: 3,
+    outputCost: 12,
+    contextLength: 128_000,
+    tokenizer: "xenova/gpt-4o",
+  },
+  {
     model: "Claude 3.5 Sonnet",
     company: "Anthropic",
     inputCost: 3,
@@ -119,6 +127,14 @@ export const aiModelPricings: AIModelPricing[] = [
     outputCost: 30,
     contextLength: 128_000,
     tokenizer: "xenova/gpt-4",
+  },
+  {
+    model: "o1-preview",
+    company: "OpenAI",
+    inputCost: 15,
+    outputCost: 60,
+    contextLength: 128_000,
+    tokenizer: "xenova/gpt-4o",
   },
   {
     model: "Claude 3 Opus",
