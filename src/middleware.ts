@@ -14,6 +14,7 @@ const isPublicRoute = createRouteMatcher(
     "/experiments",
     "/emoji",
     "/credits",
+    "/about",
     "/tools(.*)",
     "/resources(.*)",
   ].concat(experiments.map((e) => e.url)),
