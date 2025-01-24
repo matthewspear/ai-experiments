@@ -131,6 +131,7 @@ ${command}`,
     }
     try {
       await chatMutation.mutateAsync({
+        task: "summary",
         query: values.prompt,
         temperature: values.temperature,
         maxTokens: 512,

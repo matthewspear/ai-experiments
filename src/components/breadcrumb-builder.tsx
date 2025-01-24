@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -23,12 +22,12 @@ export function BreadcrumbBuilder({
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         {items?.map((item) => (
-          <Fragment key={item.href}>
+          <div key={item.href} className="flex items-center gap-2">
             <BreadcrumbItem>
               <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
-          </Fragment>
+          </div>
         ))}
         <BreadcrumbItem>
           <BreadcrumbPage>{page}</BreadcrumbPage>

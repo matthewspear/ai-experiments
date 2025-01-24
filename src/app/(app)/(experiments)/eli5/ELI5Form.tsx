@@ -68,6 +68,7 @@ export function ELI5Form() {
     }
     try {
       await chatMutation.mutateAsync({
+        task: "eli5",
         query: values.prompt,
         temperature: values.temperature,
       });
