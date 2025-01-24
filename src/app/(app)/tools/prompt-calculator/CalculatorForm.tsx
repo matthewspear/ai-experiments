@@ -86,7 +86,7 @@ export function CalculatorForm() {
     },
   });
 
-  const tokenizer = useRef<PreTrainedTokenizer>();
+  const tokenizer = useRef<PreTrainedTokenizer | undefined>(undefined);
 
   useEffect(() => {
     void AutoTokenizer.from_pretrained(form.getValues("tokenizer")).then(

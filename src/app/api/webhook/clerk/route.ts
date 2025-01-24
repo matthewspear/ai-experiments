@@ -18,7 +18,6 @@ type UserJSON = ExtractUserJSON<
   Extract<WebhookEvent, { type: "user.created" | "user.updated" }>
 >;
 
-
 function getPrimaryEmail(data: UserJSON) {
   const email = data.email_addresses.find(
     (e) => e.id === data.primary_email_address_id,
@@ -30,7 +29,7 @@ export async function POST(req: NextRequest) {
   // eslint-disable-next-line
   const payload = await req.json();
   const payloadString = JSON.stringify(payload);
-  const headerPayload = headers();
+  const headerPayload = await headers();
 
   const svixId = headerPayload.get("svix-id");
   const svixIdTimeStamp = headerPayload.get("svix-timestamp");
