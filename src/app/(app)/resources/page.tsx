@@ -21,7 +21,7 @@ const Resources: NextPage = () => {
           {allSections.map((section) => (
             <a
               key={section}
-              href={`#${section.replace(" ", "%20")}`}
+              href={`#${section.replace(/ /g, "%20")}`}
               className={buttonVariants({ variant: "link" })}
             >
               {section}
