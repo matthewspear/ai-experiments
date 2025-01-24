@@ -8,6 +8,7 @@ import {
   ArrowsPointingInIcon,
   CalculatorIcon,
   WrenchScrewdriverIcon,
+  EyeIcon,
 } from "@heroicons/react/24/outline";
 
 type Icon = React.ForwardRefExoticComponent<
@@ -127,18 +128,18 @@ export const navigationItems: NavigationItem[] = [
   //   href: "/first-step",
   //   icon: QueueListIcon,
   // },
-  // {
-  //   divider: true,
-  //   name: "",
-  //   href: "",
-  //   icon: () => null,
-  // },
-  // {
-  //   name: "Peek: AI API Monitoring",
-  //   href: "https://apps.apple.com/gb/app/peek-ai-api-monitoring/id6447682119?mt=12",
-  //   icon: EyeIcon,
-  //   openNewTab: true,
-  // },
+  {
+    divider: true,
+    name: "",
+    href: "",
+    icon: () => null,
+  },
+  {
+    name: "Peek: AI API Monitoring",
+    href: "https://apps.apple.com/gb/app/peek-ai-api-monitoring/id6447682119?mt=12",
+    icon: EyeIcon,
+    openNewTab: true,
+  },
   {
     divider: true,
     name: "",

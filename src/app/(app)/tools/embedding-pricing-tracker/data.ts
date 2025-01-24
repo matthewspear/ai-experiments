@@ -18,8 +18,18 @@ export const aiEmbeddingPricings: AIEmbeddingPricing[] = [
     cost: 0.1,
     dimensions: 1536,
   },
-  { model: "mistral-embed", company: "Mistral", cost: 0.1, dimensions: 1024 },
-  { model: "Embed 3", company: "Cohere", cost: 0.1, dimensions: 1024 },
+  {
+    model: "mistral-embed",
+    company: "Mistral",
+    cost: 0.1,
+    dimensions: 1024,
+  },
+  {
+    model: "Embed 3",
+    company: "Cohere",
+    cost: 0.1,
+    dimensions: 1024,
+  },
   {
     model: "text-embedding-3-large",
     company: "OpenAI",
