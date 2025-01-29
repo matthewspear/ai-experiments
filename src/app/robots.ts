@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api/", "/sign-in/", "/sign-up/"],
+      disallow: ["/api/", "/sign-in/", "/sign-up/", "/profile"],
     },
     sitemap: "https://aiexperiments.co/sitemap.xml",
   };
