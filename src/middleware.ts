@@ -17,6 +17,8 @@ const isPublicRoute = createRouteMatcher(
     "/about",
     "/tools(.*)",
     "/resources(.*)",
+    "/robots.txt",
+    "/sitemap.xml",
   ].concat(experiments.map((e) => e.url)),
 );
 
