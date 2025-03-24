@@ -160,4 +160,12 @@ export const aiModelPricings: AIModelPricing[] = [
     contextLength: 128_000,
     tokenizer: "xenova/gpt-4o",
   },
+  {
+    model: "o1-pro",
+    company: "OpenAI",
+    inputCost: 150,
+    outputCost: 600,
+    contextLength: 200_000,
+    tokenizer: "xenova/gpt-4o",
+  },
 ];
