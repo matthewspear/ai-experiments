@@ -37,16 +37,10 @@ import {
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  AutoTokenizer,
-  type PreTrainedTokenizer,
-  env,
-} from "@xenova/transformers";
+import { type PreTrainedTokenizer } from "@xenova/transformers";
 import { debounce, type DebouncedFunc } from "lodash";
 
 const typeEnum = z.enum(["prompt", "tokens"]);
-
-env.allowLocalModels = false;
 
 const formSchema = z.discriminatedUnion("type", [
   z.object({
@@ -89,10 +83,14 @@ export function CalculatorForm() {
   const tokenizer = useRef<PreTrainedTokenizer | undefined>(undefined);
 
   useEffect(() => {
-    void AutoTokenizer.from_pretrained(form.getValues("tokenizer")).then(
-      (t) => (tokenizer.current = t),
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const initTokenizer = async () => {
+      const { AutoTokenizer, env } = await import("@xenova/transformers");
+      env.allowLocalModels = false;
+      tokenizer.current = await AutoTokenizer.from_pretrained(
+        form.getValues("tokenizer"),
+      );
+    };
+    void initTokenizer();
   }, [form.watch("tokenizer")]);
 
   // init tokenizer from file

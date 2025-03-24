@@ -59,9 +59,11 @@ export function ResultsBlock({ isLoading, data, copyable }: ResultsBlockInput) {
             </button>
           )}
           <div className="prose prose-base prose-slate !max-w-none pr-8 prose-code:before:hidden prose-code:after:hidden prose-pre:bg-slate-50 prose-pre:text-slate-800">
-            <Markdown className="px-4 pb-4" remarkPlugins={[remarkGfm]}>
-              {data.result?.trim()}
-            </Markdown>
+            <div className="px-4 pb-4">
+              <Markdown remarkPlugins={[remarkGfm]}>
+                {data.result?.trim()}
+              </Markdown>
+            </div>
           </div>
         </div>
       )}
