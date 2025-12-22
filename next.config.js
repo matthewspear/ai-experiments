@@ -6,6 +6,7 @@ await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
 const config = {
+  serverExternalPackages: ["onnxruntime-node", "sharp"],
   webpack: (config) => {
     // See https://webpack.js.org/configuration/resolve/#resolvealias
     config.resolve.alias = {
