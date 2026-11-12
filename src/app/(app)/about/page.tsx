@@ -1,10 +1,9 @@
-import Image from "next/image";
 import { format, parseISO } from "date-fns";
-
-import profile from "@/public/profile.png";
+import type { Metadata } from "next";
+import Image from "next/image";
 import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
 import { Summary } from "@/components/summary";
-import { type Metadata } from "next";
+import profile from "@/public/profile.png";
 
 export const metadata: Metadata = {
   title: "About",

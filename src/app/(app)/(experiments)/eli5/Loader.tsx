@@ -83,7 +83,7 @@ export function SmallWhiteLoader() {
   return (
     <div className="grid h-7 place-items-center">
       <svg
-        className="h-7 w-12  fill-slate-50 text-slate-50"
+        className="h-7 w-12 fill-slate-50 text-slate-50"
         viewBox="0 0 120 30"
         xmlns="http://www.w3.org/2000/svg"
         fill="#currentColor"

@@ -1,8 +1,8 @@
+import { eq } from "drizzle-orm";
+import type { NextRequest } from "next/server";
+import { env } from "process";
 import { db } from "@/server/db";
 import { articles } from "@/server/db/schema/articles";
-import { eq } from "drizzle-orm";
-import { type NextRequest } from "next/server";
-import { env } from "process";
 import { articleSchema } from "./articleSchema";
 
 export async function POST(req: NextRequest) {

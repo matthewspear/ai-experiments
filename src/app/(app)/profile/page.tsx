@@ -1,12 +1,12 @@
 "use client";
 
+import { useClerk } from "@clerk/nextjs";
+import { UserCircleIcon } from "@heroicons/react/24/outline";
+import { useRouter } from "next/navigation";
 import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { api } from "@/trpc/react";
-import { useClerk } from "@clerk/nextjs";
-import { UserCircleIcon } from "@heroicons/react/24/outline";
-import { useRouter } from "next/navigation";
 
 // TODO: Improve loading states / skeletons
 
@@ -38,7 +38,7 @@ export default function Profile() {
       <h2>
         {user?.firstName} {user?.lastName}
       </h2>
-      <pre className="my-4 overflow-y-scroll whitespace-pre-wrap rounded-lg bg-white/50 p-4 text-sm backdrop-blur-md">
+      <pre className="my-4 overflow-y-scroll rounded-lg bg-white/50 p-4 text-sm whitespace-pre-wrap backdrop-blur-md">
         {JSON.stringify(user, null, 2)}
       </pre>
       <p>Signed in as {user?.email}</p>

@@ -1,8 +1,9 @@
 // import { type Experiment, colors } from "@/data/experiments";
-import { Card } from "@/components/ui/card";
-import { colors, type Experiment } from "@/data/experiments";
+
 import clsx from "clsx";
 import Link from "next/link";
+import { Card } from "@/components/ui/card";
+import { colors, type Experiment } from "@/data/experiments";
 
 export function ExperimentCard({ experiment }: { experiment: Experiment }) {
   return (
@@ -40,7 +41,7 @@ export function ExperimentCard({ experiment }: { experiment: Experiment }) {
         <p className="mt-2 text-sm text-gray-500">{experiment.description}</p>
       </div>
       <span
-        className="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
+        className="pointer-events-none absolute top-6 right-6 text-gray-300 group-hover:text-gray-400"
         aria-hidden="true"
       >
         <svg

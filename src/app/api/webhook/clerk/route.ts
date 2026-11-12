@@ -1,11 +1,11 @@
-import { Webhook } from "svix";
+import type { WebhookEvent } from "@clerk/nextjs/server";
+import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import type { NextRequest } from "next/server";
+import { Webhook } from "svix";
 import { env } from "@/env";
 import { db } from "@/server/db";
 import { users } from "@/server/db/schema/users";
-import { eq } from "drizzle-orm";
-import type { WebhookEvent } from "@clerk/nextjs/server";
 
 type UserWebhookEvent = Extract<
   WebhookEvent,
@@ -137,12 +137,11 @@ export async function POST(req: NextRequest) {
           status: "OK",
           code: 200,
         });
-      } else {
-        return Response.json({
-          status: "Soft Delete Error",
-          code: 400,
-        });
       }
+      return Response.json({
+        status: "Soft Delete Error",
+        code: 400,
+      });
 
     default:
       console.log("Unsupported event");

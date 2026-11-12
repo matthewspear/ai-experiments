@@ -1,5 +1,17 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useQueryClient } from "@tanstack/react-query";
+import { getQueryKey } from "@trpc/react-query";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { SmallSpinner } from "@/components/core/SmallSpinner";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -10,21 +22,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Slider } from "@/components/ui/slider";
 import { Textarea } from "@/components/ui/textarea";
 import { api } from "@/trpc/react";
-import { Slider } from "@/components/ui/slider";
-import { SmallSpinner } from "@/components/core/SmallSpinner";
-import { useQueryClient } from "@tanstack/react-query";
-import { getQueryKey } from "@trpc/react-query";
 import { ResultsBlock } from "./ResultsBlock";
 
 const formSchema = z.object({
@@ -104,7 +104,7 @@ export function ELI5Form() {
           <Accordion type="multiple">
             <AccordionItem value="prompt">
               <AccordionTrigger>Prompt</AccordionTrigger>
-              <AccordionContent className="px-1 pb-4 pt-1">
+              <AccordionContent className="px-1 pt-1 pb-4">
                 <FormField
                   control={form.control}
                   name="prompt"
@@ -125,7 +125,7 @@ export function ELI5Form() {
             </AccordionItem>
             <AccordionItem value="temperature">
               <AccordionTrigger>Temperature</AccordionTrigger>
-              <AccordionContent className="px-1 pb-4 pt-2">
+              <AccordionContent className="px-1 pt-2 pb-4">
                 <FormField
                   control={form.control}
                   name="temperature"

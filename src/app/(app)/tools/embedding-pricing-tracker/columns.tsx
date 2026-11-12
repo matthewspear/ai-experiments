@@ -1,8 +1,8 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import type { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-import { type ColumnDef } from "@tanstack/react-table";
-import { type AIEmbeddingPricing } from "./data";
+import { Button } from "@/components/ui/button";
+import type { AIEmbeddingPricing } from "./data";
 
 export const columns: ColumnDef<AIEmbeddingPricing>[] = [
   {
@@ -37,7 +37,7 @@ export const columns: ColumnDef<AIEmbeddingPricing>[] = [
       );
     },
     cell: ({ row }) => {
-      const amount: number = parseFloat(row.getValue("cost"));
+      const amount: number = Number.parseFloat(row.getValue("cost"));
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",

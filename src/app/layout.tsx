@@ -1,13 +1,12 @@
 import "@/styles/globals.css";
 
-import { Inter } from "next/font/google";
-
-import { TRPCReactProvider } from "@/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import Fathom from "@/components/core/Fathom";
 import { ThemeProvider } from "@/components/dark-mode/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-import Fathom from "@/components/core/Fathom";
-import { type Metadata } from "next";
+import { TRPCReactProvider } from "@/trpc/react";
 
 const inter = Inter({
   subsets: ["latin"],

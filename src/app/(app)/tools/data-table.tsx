@@ -1,5 +1,6 @@
 "use client";
 
+import { type RankingInfo, rankItem } from "@tanstack/match-sorter-utils";
 import {
   type ColumnDef,
   type FilterFn,
@@ -10,7 +11,8 @@ import {
   type SortingState,
   useReactTable,
 } from "@tanstack/react-table";
-
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -19,9 +21,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { type RankingInfo, rankItem } from "@tanstack/match-sorter-utils";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

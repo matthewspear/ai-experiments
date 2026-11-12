@@ -1,11 +1,11 @@
-import { z } from "zod";
-import { createTRPCRouter, publicProcedure } from "../trpc";
-import { openai } from "@/server/openai";
-import { getCredits, getUserCredits } from "./credit";
 import { TRPCError } from "@trpc/server";
-import { redis } from "@/server/redis";
+import type { ChatCompletionMessageParam } from "openai/resources/index.mjs";
+import { z } from "zod";
 import { results } from "@/server/db/schema/results";
-import { type ChatCompletionMessageParam } from "openai/resources/index.mjs";
+import { openai } from "@/server/openai";
+import { redis } from "@/server/redis";
+import { createTRPCRouter, publicProcedure } from "../trpc";
+import { getCredits, getUserCredits } from "./credit";
 
 const emojiResponse = z.object({
   emojis: z.array(z.string()),

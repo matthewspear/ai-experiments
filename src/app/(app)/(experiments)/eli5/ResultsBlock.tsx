@@ -6,9 +6,9 @@ import {
   ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import { Loader } from "./Loader";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { Loader } from "./Loader";
 
 interface ResultsBlockInput {
   isLoading: boolean;
@@ -28,7 +28,7 @@ export function ResultsBlock({ isLoading, data, copyable }: ResultsBlockInput) {
       {isLoading && <Loader />}
       {data?.error && (
         <div className="mt-8 flex w-full flex-row items-center rounded-lg bg-white shadow-lg">
-          <ExclamationCircleIcon className="my-4 ml-4 mr-4 h-6 w-6 text-red-500" />
+          <ExclamationCircleIcon className="my-4 mr-4 ml-4 h-6 w-6 text-red-500" />
           <p className="break-words">
             {data.error?.message || JSON.stringify(data.error)}
           </p>
@@ -38,7 +38,7 @@ export function ResultsBlock({ isLoading, data, copyable }: ResultsBlockInput) {
         <div className="relative mt-8 grid w-full rounded-lg bg-white shadow-lg">
           {copyable && (
             <button
-              className="absolute bottom-0 right-0 p-4"
+              className="absolute right-0 bottom-0 p-4"
               aria-label="Copy to clipboard"
               onClick={async () => {
                 if (data.result) {
@@ -58,7 +58,7 @@ export function ResultsBlock({ isLoading, data, copyable }: ResultsBlockInput) {
               )}
             </button>
           )}
-          <div className="prose prose-base prose-slate !max-w-none pr-8 prose-code:before:hidden prose-code:after:hidden prose-pre:bg-slate-50 prose-pre:text-slate-800">
+          <div className="prose prose-base prose-slate prose-code:before:hidden prose-code:after:hidden prose-pre:bg-slate-50 prose-pre:text-slate-800 !max-w-none pr-8">
             <div className="px-4 pb-4">
               <Markdown remarkPlugins={[remarkGfm]}>
                 {data.result?.trim()}

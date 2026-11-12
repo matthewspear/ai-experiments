@@ -1,8 +1,8 @@
 "use client"; // 👈 Don't forget your client directive
 
 import { load, trackPageview } from "fathom-client";
-import { useEffect, Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
+import { Suspense, useEffect } from "react";
 import { env } from "@/env";
 
 // REF: https://www.codu.co/articles/how-to-add-fathom-analytics-in-next-js-app-router-yvoc6xry

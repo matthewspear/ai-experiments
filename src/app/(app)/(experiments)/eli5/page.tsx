@@ -1,8 +1,8 @@
-import { Badge } from "@/components/ui/badge";
+import type { Metadata } from "next";
 
 import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
+import { Badge } from "@/components/ui/badge";
 import { ELI5Form } from "./ELI5Form";
-import { type Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "ELI5",

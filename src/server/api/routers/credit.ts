@@ -1,8 +1,8 @@
-import { createTRPCRouter, publicProcedure } from "../trpc";
-import { z } from "zod";
 import { TRPCError } from "@trpc/server";
-import { type NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
+import { z } from "zod";
 import { redis } from "@/server/redis";
+import { createTRPCRouter, publicProcedure } from "../trpc";
 
 const userCreditsDefault = 10; // Example: 10 free credits per day
 const anonymousCreditDefault = 5; // Example: 5 free credits per day

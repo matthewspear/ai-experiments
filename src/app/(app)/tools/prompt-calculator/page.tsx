@@ -1,6 +1,6 @@
+import type { Metadata } from "next";
 import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
 import { CalculatorForm } from "./CalculatorForm";
-import { type Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Prompt Calculator",

@@ -1,9 +1,9 @@
 "use client";
 
-import { buttonVariants } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import { UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function UserActions() {
   const user = useUser();
@@ -20,9 +20,7 @@ export default function UserActions() {
           Go to Dashboard
         </Link>
       )}
-      {user.isLoaded && user.isSignedIn && (
-        <UserButton />
-      )}
+      {user.isLoaded && user.isSignedIn && <UserButton />}
       {user.isLoaded && !user.isSignedIn && (
         <Link href="/sign-in" className={buttonVariants({ variant: "ghost" })}>
           Sign In

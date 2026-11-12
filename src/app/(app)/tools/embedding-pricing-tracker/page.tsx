@@ -1,10 +1,10 @@
 "use client";
 
+import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
 import { DataTable } from "../data-table";
-import { aiEmbeddingPricings } from "./data";
 import { PricingLink } from "../PricingLink";
 import { columns } from "./columns";
-import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
+import { aiEmbeddingPricings } from "./data";
 
 export default function Pricing() {
   return (

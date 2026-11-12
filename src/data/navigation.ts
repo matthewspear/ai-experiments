@@ -1,14 +1,14 @@
 import {
-  InboxIcon,
-  Square3Stack3DIcon,
-  FaceSmileIcon,
-  RectangleStackIcon,
-  PuzzlePieceIcon,
-  InformationCircleIcon,
   ArrowsPointingInIcon,
   CalculatorIcon,
-  WrenchScrewdriverIcon,
   EyeIcon,
+  FaceSmileIcon,
+  InboxIcon,
+  InformationCircleIcon,
+  PuzzlePieceIcon,
+  RectangleStackIcon,
+  Square3Stack3DIcon,
+  WrenchScrewdriverIcon,
 } from "@heroicons/react/24/outline";
 
 type Icon = React.ForwardRefExoticComponent<

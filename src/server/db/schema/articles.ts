@@ -1,5 +1,5 @@
-import { createdAt, cuid, mysqlTable, updatedAt, userIdRef } from "./schema";
 import { boolean, json, text, varchar } from "drizzle-orm/mysql-core";
+import { createdAt, cuid, mysqlTable, updatedAt, userIdRef } from "./schema";
 
 export const articles = mysqlTable("article", {
   id: cuid,

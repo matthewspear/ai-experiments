@@ -1,10 +1,10 @@
-import { type Metadata, type NextPage } from "next";
-import { Section } from "./Section";
-import { ResourceItem } from "./ResourceItem";
-import { Summary } from "@/components/summary";
-import { allSections, resources } from "./resources";
-import { buttonVariants } from "@/components/ui/button";
+import type { Metadata, NextPage } from "next";
 import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
+import { Summary } from "@/components/summary";
+import { buttonVariants } from "@/components/ui/button";
+import { ResourceItem } from "./ResourceItem";
+import { allSections, resources } from "./resources";
+import { Section } from "./Section";
 
 export const metadata: Metadata = {
   title: "Resources",

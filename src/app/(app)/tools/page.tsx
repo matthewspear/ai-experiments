@@ -1,9 +1,9 @@
-import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
-import { buttonVariants } from "@/components/ui/button";
 import clsx from "clsx";
+import type { Metadata } from "next";
 import Link from "next/link";
+import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
 import { Summary } from "@/components/summary";
-import { type Metadata } from "next";
+import { buttonVariants } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Tools",

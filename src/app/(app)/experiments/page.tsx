@@ -1,8 +1,7 @@
-import { type Metadata, type NextPage } from "next";
-
-import { ExperimentCard } from "./ExperimentCard";
-import { experiments } from "@/data/experiments";
+import type { Metadata, NextPage } from "next";
 import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
+import { experiments } from "@/data/experiments";
+import { ExperimentCard } from "./ExperimentCard";
 
 export const metadata: Metadata = {
   title: "Experiments",
@@ -15,8 +14,8 @@ const Experiments: NextPage = () => {
     <div className="flex w-full flex-col gap-4">
       <BreadcrumbBuilder items={[]} page="Experiments" />
 
-      <div className="border-b border-gray-200 pb-5 pt-6">
-        <h3 className="text-lg font-medium leading-6 text-gray-900">Live</h3>
+      <div className="border-b border-gray-200 pt-6 pb-5">
+        <h3 className="text-lg leading-6 font-medium text-gray-900">Live</h3>
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {experiments
@@ -25,8 +24,8 @@ const Experiments: NextPage = () => {
             <ExperimentCard key={e.url} experiment={e} />
           ))}
       </div>
-      <div className="border-b border-gray-200 pb-5 pt-6">
-        <h3 className="text-lg font-medium leading-6 text-gray-900">
+      <div className="border-b border-gray-200 pt-6 pb-5">
+        <h3 className="text-lg leading-6 font-medium text-gray-900">
           Coming Soon
         </h3>
       </div>

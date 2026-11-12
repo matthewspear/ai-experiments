@@ -1,7 +1,7 @@
+import type { Metadata } from "next";
 import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
 import { Badge } from "@/components/ui/badge";
 import { SummaryForm } from "./SummaryForm";
-import { type Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Summary",

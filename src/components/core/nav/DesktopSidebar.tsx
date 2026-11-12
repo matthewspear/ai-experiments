@@ -1,11 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import { navigationItems } from "@/data/navigation";
 import clsx from "clsx";
-import { usePathname } from "next/navigation";
-
 import { useAtom } from "jotai";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { navigationItems } from "@/data/navigation";
 import ProfileButton from "../profile-button";
 import { sidebar } from "./atom";
 import { Credits } from "./Credits";
@@ -17,7 +16,7 @@ export function DesktopSidebar() {
     <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
       {/* Sidebar component, swap this element with another sidebar if you like */}
       <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
-        <div className="flex flex-1 flex-col overflow-y-auto pb-4 pt-5">
+        <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
           <div className="flex flex-shrink-0 items-center px-4">
             {/* <img
               className="h-8 w-auto"

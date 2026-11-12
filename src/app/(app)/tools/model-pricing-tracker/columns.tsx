@@ -1,8 +1,8 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import type { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-import { type ColumnDef } from "@tanstack/react-table";
-import { type AIModelPricing } from "./data";
+import { Button } from "@/components/ui/button";
+import type { AIModelPricing } from "./data";
 
 export const columns: ColumnDef<AIModelPricing>[] = [
   {
@@ -37,7 +37,7 @@ export const columns: ColumnDef<AIModelPricing>[] = [
       );
     },
     cell: ({ row }) => {
-      const amount: number = parseFloat(row.getValue("inputCost"));
+      const amount: number = Number.parseFloat(row.getValue("inputCost"));
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
@@ -61,7 +61,7 @@ export const columns: ColumnDef<AIModelPricing>[] = [
       );
     },
     cell: ({ row }) => {
-      const amount: number = parseFloat(row.getValue("outputCost"));
+      const amount: number = Number.parseFloat(row.getValue("outputCost"));
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
@@ -84,7 +84,7 @@ export const columns: ColumnDef<AIModelPricing>[] = [
       );
     },
     cell: ({ row }) => {
-      const amount: number = parseFloat(row.getValue("contextLength"));
+      const amount: number = Number.parseFloat(row.getValue("contextLength"));
       const formatted = new Intl.NumberFormat("en-US", {
         style: "decimal", // Change style to "decimal" for numeric formatting without currency
         // minimumFractionDigits: 0, // Optional: set minimum fraction digits

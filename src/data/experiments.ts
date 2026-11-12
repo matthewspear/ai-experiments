@@ -1,7 +1,7 @@
 import {
-  PuzzlePieceIcon,
   ArrowsPointingInIcon,
   FaceSmileIcon,
+  PuzzlePieceIcon,
 } from "@heroicons/react/24/outline";
 
 export const colors: Record<
@@ -53,7 +53,7 @@ export interface Experiment {
 export const experiments: Experiment[] = [
   {
     title: "Emoji Picker",
-    description: `Generate emojis based on a prompt`,
+    description: "Generate emojis based on a prompt",
     url: "/emoji",
     icon: FaceSmileIcon,
     color: "sky",
@@ -61,7 +61,8 @@ export const experiments: Experiment[] = [
   },
   {
     title: "Explain Like I Am 5",
-    description: `Explain a concept in simple terms, so that anyone can understand it`,
+    description:
+      "Explain a concept in simple terms, so that anyone can understand it",
     url: "/eli5",
     icon: PuzzlePieceIcon,
     color: "indigo",
@@ -85,7 +86,8 @@ export const experiments: Experiment[] = [
   // },
   {
     title: "Summary",
-    description: `Get a concise summary of any text that captures the key points`,
+    description:
+      "Get a concise summary of any text that captures the key points",
     url: "/summary",
     icon: ArrowsPointingInIcon,
     color: "rose",

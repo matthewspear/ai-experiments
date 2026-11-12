@@ -1,7 +1,7 @@
+import clsx from "clsx";
 import { BreadcrumbBuilder } from "@/components/breadcrumb-builder";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
-import clsx from "clsx";
 
 export default function Dashboard() {
   return (
@@ -10,8 +10,8 @@ export default function Dashboard() {
         items={[{ href: "/experiments", label: "Experiments" }]}
         page="Vote"
       />
-      <div className="border-b border-gray-200 pb-5 pt-6">
-        <h3 className="text-lg font-medium leading-6 text-gray-900">Vote</h3>
+      <div className="border-b border-gray-200 pt-6 pb-5">
+        <h3 className="text-lg leading-6 font-medium text-gray-900">Vote</h3>
       </div>
       <Badge variant="outline" className="w-fit bg-white">
         Coming Soon

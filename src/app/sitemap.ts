@@ -1,4 +1,4 @@
-import { type MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 import { experiments } from "@/data/experiments";
 
 const baseUrl = "https://aiexperiments.co";

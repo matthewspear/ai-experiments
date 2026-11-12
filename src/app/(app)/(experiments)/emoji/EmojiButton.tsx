@@ -1,6 +1,6 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 export function EmojiButton({ emoji }: { emoji: string }) {
   const [copied, setCopied] = useState(false);

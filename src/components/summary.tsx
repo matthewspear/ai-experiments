@@ -1,4 +1,4 @@
-import { type PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 export function Summary(props: PropsWithChildren<{ title: string }>) {
   return (
