@@ -42,7 +42,7 @@ export default function RootLayout({
         userProfile: {
           variables: {
             colorPrimary: "#5E35FF",
-            colorText: "#4C4D4E",
+            colorForeground: "#4C4D4E",
           },
         },
       }}

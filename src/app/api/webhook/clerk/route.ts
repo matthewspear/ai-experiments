@@ -26,9 +26,7 @@ function getPrimaryEmail(data: UserJSON) {
 }
 
 export async function POST(req: NextRequest) {
-  // eslint-disable-next-line
-  const payload = await req.json();
-  const payloadString = JSON.stringify(payload);
+  const payloadString = await req.text();
   const headerPayload = await headers();
 
   const svixId = headerPayload.get("svix-id");
@@ -54,7 +52,8 @@ export async function POST(req: NextRequest) {
   let primaryEmail: string | undefined;
 
   try {
-    event = wh.verify(payloadString, svixHeaders) as UserWebhookEvent;
+    wh.verify(payloadString, svixHeaders);
+    event = JSON.parse(payloadString) as UserWebhookEvent;
   } catch {
     console.log("Webhook verification failed");
     return Response.json({
