@@ -7,7 +7,7 @@
  * need to use are documented accordingly near the end.
  */
 
-import type { getAuth } from "@clerk/nextjs/server";
+import type { auth } from "@clerk/nextjs/server";
 import { initTRPC, TRPCError } from "@trpc/server";
 import type { NextRequest } from "next/server";
 import superjson from "superjson";
@@ -27,7 +27,7 @@ import { db } from "@/server/db";
  * @see https://trpc.io/docs/server/context
  */
 export const createTRPCContext = async (opts: {
-  auth: ReturnType<typeof getAuth>;
+  auth: Awaited<ReturnType<typeof auth>>;
   headers: Headers;
   req?: NextRequest;
 }) => {

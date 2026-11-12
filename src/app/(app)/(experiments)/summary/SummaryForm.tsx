@@ -49,7 +49,7 @@ const formSchema = z.object({
     message: "Text must be at least 2 characters.",
   }),
   prompt: z.string(),
-  mode: z.nativeEnum(Mode),
+  mode: z.enum(Mode),
   temperature: z.number().min(0).max(100),
 });
 
