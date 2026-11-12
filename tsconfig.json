@@ -29,7 +29,9 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/public/*": ["./public/*"]
-    }
+    },
+    /* Vitest */
+    "types": ["vitest/globals"]
   },
   "include": [
     "next-env.d.ts",
