@@ -1,0 +1,6 @@
+allowBuilds:
+  "@biomejs/biome": true
+  "@clerk/shared": true
+  esbuild: true
+  protobufjs: true
+  sharp: true
