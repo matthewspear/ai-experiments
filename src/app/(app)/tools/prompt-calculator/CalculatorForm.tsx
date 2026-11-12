@@ -177,7 +177,7 @@ export function CalculatorForm() {
               form.setValue("type", typeEnum.parse(v))
             }
           >
-            <TabsList className="border-[1px]">
+            <TabsList className="border">
               <TabsTrigger value="prompt">Prompt</TabsTrigger>
               <TabsTrigger value="tokens">Tokens</TabsTrigger>
             </TabsList>

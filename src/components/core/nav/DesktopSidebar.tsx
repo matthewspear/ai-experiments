@@ -17,7 +17,7 @@ export function DesktopSidebar() {
       {/* Sidebar component, swap this element with another sidebar if you like */}
       <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
         <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
-          <div className="flex flex-shrink-0 items-center px-4">
+          <div className="flex shrink-0 items-center px-4">
             {/* <img
               className="h-8 w-auto"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
@@ -52,7 +52,7 @@ export function DesktopSidebar() {
                         pathname === item.href
                           ? "text-gray-500"
                           : "text-gray-400 group-hover:text-gray-500",
-                        "mr-3 h-6 w-6 flex-shrink-0",
+                        "mr-3 h-6 w-6 shrink-0",
                       )}
                       aria-hidden="true"
                     />
@@ -64,9 +64,9 @@ export function DesktopSidebar() {
           </nav>
         </div>
         <Credits />
-        <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
+        <div className="flex shrink-0 border-t border-gray-200 p-4">
           <button
-            className="group block w-full flex-shrink-0"
+            className="group block w-full shrink-0"
             onClick={async (): Promise<void> => {
               // if (session) {
               //   await router.push("/profile");

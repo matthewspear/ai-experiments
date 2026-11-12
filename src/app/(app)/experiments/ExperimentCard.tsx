@@ -32,7 +32,7 @@ export function ExperimentCard({ experiment }: { experiment: Experiment }) {
       </div>
       <div className="mt-8">
         <h3 className="text-lg font-medium">
-          <Link href={experiment.url} className="focus:outline-none">
+          <Link href={experiment.url} className="focus:outline-hidden">
             {/* Extend touch target to entire panel */}
             <span className="absolute inset-0" aria-hidden="true" />
             {experiment.title}

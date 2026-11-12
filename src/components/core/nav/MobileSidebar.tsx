@@ -32,7 +32,7 @@ export function MobileSidebar() {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="bg-opacity-75 fixed inset-0 bg-gray-600" />
+          <div className="fixed inset-0 bg-gray-600/75" />
         </Transition.Child>
 
         <div className="fixed inset-0 z-40 flex">
@@ -58,7 +58,7 @@ export function MobileSidebar() {
                 <div className="absolute top-0 right-0 -mr-12 pt-2">
                   <button
                     type="button"
-                    className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:ring-2 focus:ring-white focus:outline-none focus:ring-inset"
+                    className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset"
                     onClick={() => void setSidebarOpen(false)}
                   >
                     <span className="sr-only">Close sidebar</span>
@@ -70,7 +70,7 @@ export function MobileSidebar() {
                 </div>
               </Transition.Child>
               <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
-                <div className="flex flex-shrink-0 items-center px-4">
+                <div className="flex shrink-0 items-center px-4">
                   {/* <img
               className="h-8 w-auto"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
@@ -107,7 +107,7 @@ export function MobileSidebar() {
                               pathname === item.href
                                 ? "text-gray-500"
                                 : "text-gray-400 group-hover:text-gray-500",
-                              "mr-4 h-6 w-6 flex-shrink-0",
+                              "mr-4 h-6 w-6 shrink-0",
                             )}
                             aria-hidden="true"
                           />
@@ -119,7 +119,7 @@ export function MobileSidebar() {
                 </nav>
               </div>
               <Credits />
-              <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
+              <div className="flex shrink-0 border-t border-gray-200 p-4">
                 <a
                   onClick={async () => {
                     // if (session) {
@@ -129,7 +129,7 @@ export function MobileSidebar() {
                     // }
                     setSidebarOpen(false);
                   }}
-                  className="group block flex-shrink-0"
+                  className="group block shrink-0"
                 >
                   <div className="flex items-center">
                     <ProfileButton />
@@ -138,7 +138,7 @@ export function MobileSidebar() {
               </div>
             </Dialog.Panel>
           </Transition.Child>
-          <div className="w-14 flex-shrink-0">
+          <div className="w-14 shrink-0">
             {/* Force sidebar to shrink to fit close icon */}
           </div>
         </div>

@@ -17,7 +17,7 @@ const Resources: NextPage = () => {
     <div className="flex w-full flex-col gap-4">
       <BreadcrumbBuilder page="Resources" />
       <Summary title="Resources">
-        <div className="flex gap-2 rounded-lg border bg-white px-2 shadow-sm">
+        <div className="flex gap-2 rounded-lg border bg-white px-2 shadow-xs">
           {allSections.map((section) => (
             <a
               key={section}

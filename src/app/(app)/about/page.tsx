@@ -19,7 +19,7 @@ export default function About() {
       <BreadcrumbBuilder page="About" />
       <Summary title="About">
         <div className="flex items-center">
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <span className="sr-only">Matt Spear</span>
             <Image
               width={40}
@@ -96,7 +96,7 @@ export default function About() {
           About
         </h1>
         <div className="mt-6 flex items-center">
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <span className="sr-only">Matt Spear</span>
             <Image
               width={40}

@@ -29,7 +29,7 @@ export function ResultsBlock({ isLoading, data, copyable }: ResultsBlockInput) {
       {data?.error && (
         <div className="mt-8 flex w-full flex-row items-center rounded-lg bg-white shadow-lg">
           <ExclamationCircleIcon className="my-4 mr-4 ml-4 h-6 w-6 text-red-500" />
-          <p className="break-words">
+          <p className="wrap-break-word">
             {data.error?.message || JSON.stringify(data.error)}
           </p>
         </div>
@@ -58,7 +58,7 @@ export function ResultsBlock({ isLoading, data, copyable }: ResultsBlockInput) {
               )}
             </button>
           )}
-          <div className="prose prose-base prose-slate prose-code:before:hidden prose-code:after:hidden prose-pre:bg-slate-50 prose-pre:text-slate-800 !max-w-none pr-8">
+          <div className="prose prose-base prose-slate prose-code:before:hidden prose-code:after:hidden prose-pre:bg-slate-50 prose-pre:text-slate-800 max-w-none! pr-8">
             <div className="px-4 pb-4">
               <Markdown remarkPlugins={[remarkGfm]}>
                 {data.result?.trim()}
