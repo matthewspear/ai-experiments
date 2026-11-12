@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { PreTrainedTokenizer } from "@xenova/transformers";
+import type { PreTrainedTokenizer } from "@huggingface/transformers";
 import { type DebouncedFunc, debounce } from "lodash";
 import { useEffect, useRef, useState } from "react";
 import { type ControllerRenderProps, useForm } from "react-hook-form";
@@ -86,7 +86,7 @@ export function CalculatorForm() {
 
   useEffect(() => {
     const initTokenizer = async () => {
-      const { AutoTokenizer, env } = await import("@xenova/transformers");
+      const { AutoTokenizer, env } = await import("@huggingface/transformers");
       env.allowLocalModels = false;
       tokenizer.current = await AutoTokenizer.from_pretrained(tokenizerName);
     };
