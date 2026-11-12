@@ -45,6 +45,7 @@ export function ExperimentCard({ experiment }: { experiment: Experiment }) {
         aria-hidden="true"
       >
         <svg
+          aria-hidden="true"
           className="h-6 w-6"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"

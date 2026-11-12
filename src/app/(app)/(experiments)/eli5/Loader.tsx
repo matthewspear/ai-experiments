@@ -3,6 +3,7 @@ export function Loader() {
   return (
     <div className="grid h-[300px] w-full place-items-center sm:w-[700px]">
       <svg
+        aria-hidden="true"
         className="h-12 w-12 text-slate-300 opacity-50"
         viewBox="0 0 120 30"
         xmlns="http://www.w3.org/2000/svg"
@@ -83,6 +84,7 @@ export function SmallWhiteLoader() {
   return (
     <div className="grid h-7 place-items-center">
       <svg
+        aria-hidden="true"
         className="h-7 w-12 fill-slate-50 text-slate-50"
         viewBox="0 0 120 30"
         xmlns="http://www.w3.org/2000/svg"

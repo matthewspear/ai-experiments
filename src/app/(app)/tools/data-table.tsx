@@ -4,10 +4,12 @@ import { type RankingInfo, rankItem } from "@tanstack/match-sorter-utils";
 import {
   type ColumnDef,
   type FilterFn,
+  type FilterMeta,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getSortedRowModel,
+  type Row,
   type SortingState,
   useReactTable,
 } from "@tanstack/react-table";
@@ -36,10 +38,13 @@ declare module "@tanstack/react-table" {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
+const fuzzyFilter = <TData,>(
+  row: Row<TData>,
+  columnId: string,
+  value: string,
+  addMeta: (meta: FilterMeta) => void,
+) => {
   // Rank the item
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const itemRank = rankItem(row.getValue(columnId), value);
 
   // Store the itemRank info
@@ -48,7 +53,6 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   });
 
   // Return if the item should be filtered in/out
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return itemRank.passed;
 };
 

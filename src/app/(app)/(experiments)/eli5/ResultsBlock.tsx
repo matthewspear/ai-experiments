@@ -38,6 +38,7 @@ export function ResultsBlock({ isLoading, data, copyable }: ResultsBlockInput) {
         <div className="relative mt-8 grid w-full rounded-lg bg-white shadow-lg">
           {copyable && (
             <button
+              type="button"
               className="absolute right-0 bottom-0 p-4"
               aria-label="Copy to clipboard"
               onClick={async () => {

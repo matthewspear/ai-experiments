@@ -36,16 +36,4 @@ export function ResourceItem({
       </Card>
     </a>
   );
-
-  return (
-    <a href={url} target="_blank" rel="noreferrer noopener">
-      <div className="flex flex-col gap-1 rounded-lg bg-white p-4 shadow-lg">
-        <h3 className="font-bold">{title}</h3>
-        <p>{description}</p>
-        <pre className="truncate pt-2 font-mono text-[12px] underline">
-          {url}
-        </pre>
-      </div>
-    </a>
-  );
 }

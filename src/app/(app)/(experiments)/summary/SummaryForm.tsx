@@ -165,7 +165,7 @@ ${command}`,
                   />
                 </FormControl>
                 <FormDescription>
-                  {wordCount} word{wordCount == 1 ? "" : "s"}
+                  {wordCount} word{wordCount === 1 ? "" : "s"}
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -228,17 +228,15 @@ ${command}`,
                   name="temperature"
                   render={({ field }) => (
                     <FormItem>
+                      <p>{field.value}</p>
                       <FormControl>
-                        <>
-                          <p>{field.value}</p>
-                          <Slider
-                            min={0.0}
-                            max={1.0}
-                            step={0.01}
-                            onValueChange={(value) => field.onChange(value[0])}
-                            value={[field.value]}
-                          />
-                        </>
+                        <Slider
+                          min={0.0}
+                          max={1.0}
+                          step={0.01}
+                          onValueChange={(value) => field.onChange(value[0])}
+                          value={[field.value]}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

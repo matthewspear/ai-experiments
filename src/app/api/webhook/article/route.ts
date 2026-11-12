@@ -1,6 +1,6 @@
+import { env } from "node:process";
 import { eq } from "drizzle-orm";
 import type { NextRequest } from "next/server";
-import { env } from "process";
 import { db } from "@/server/db";
 import { articles } from "@/server/db/schema/articles";
 import { articleSchema } from "./articleSchema";
@@ -16,8 +16,7 @@ export async function POST(req: NextRequest) {
 
   console.log("Webhook received");
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const data = await req.json();
+  const data: unknown = await req.json();
   console.log(data);
 
   const article = await articleSchema.parseAsync(data);

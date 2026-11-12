@@ -120,7 +120,8 @@ export function MobileSidebar() {
               </div>
               <Credits />
               <div className="flex shrink-0 border-t border-gray-200 p-4">
-                <a
+                <button
+                  type="button"
                   onClick={async () => {
                     // if (session) {
                     //   await router.push("/profile");
@@ -134,7 +135,7 @@ export function MobileSidebar() {
                   <div className="flex items-center">
                     <ProfileButton />
                   </div>
-                </a>
+                </button>
               </div>
             </Dialog.Panel>
           </Transition.Child>

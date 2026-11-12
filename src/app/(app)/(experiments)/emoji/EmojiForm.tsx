@@ -72,7 +72,7 @@ export function EmojiForm() {
     try {
       await chatMutation.mutateAsync({
         prompt: values.prompt,
-        query: "Topic: " + values.topic,
+        query: `Topic: ${values.topic}`,
         temperature: values.temperature,
         maxTokens: 512,
         jsonMode: true,
@@ -107,22 +107,20 @@ export function EmojiForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Number</FormLabel>
+                <p>{field.value}</p>
                 <FormControl>
-                  <>
-                    <p>{field.value}</p>
-                    <Slider
-                      min={0.0}
-                      max={50.0}
-                      step={5}
-                      onValueChange={(value) => {
-                        field.onChange(value[0]);
-                        if (value[0]) {
-                          updatePromptForNumber(value[0]);
-                        }
-                      }}
-                      defaultValue={[field.value]}
-                    />
-                  </>
+                  <Slider
+                    min={0.0}
+                    max={50.0}
+                    step={5}
+                    onValueChange={(value) => {
+                      field.onChange(value[0]);
+                      if (value[0]) {
+                        updatePromptForNumber(value[0]);
+                      }
+                    }}
+                    defaultValue={[field.value]}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -158,16 +156,14 @@ export function EmojiForm() {
                   name="temperature"
                   render={({ field }) => (
                     <FormItem>
+                      <p>{field.value}</p>
                       <FormControl>
-                        <>
-                          <p>{field.value}</p>
-                          <Slider
-                            min={0.0}
-                            max={1.0}
-                            step={0.01}
-                            onValueChange={(value) => field.onChange(value[0])}
-                          />
-                        </>
+                        <Slider
+                          min={0.0}
+                          max={1.0}
+                          step={0.01}
+                          onValueChange={(value) => field.onChange(value[0])}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

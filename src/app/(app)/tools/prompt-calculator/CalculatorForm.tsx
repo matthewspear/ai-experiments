@@ -82,16 +82,16 @@ export function CalculatorForm() {
 
   const tokenizer = useRef<PreTrainedTokenizer | undefined>(undefined);
 
+  const tokenizerName = form.watch("tokenizer");
+
   useEffect(() => {
     const initTokenizer = async () => {
       const { AutoTokenizer, env } = await import("@xenova/transformers");
       env.allowLocalModels = false;
-      tokenizer.current = await AutoTokenizer.from_pretrained(
-        form.getValues("tokenizer"),
-      );
+      tokenizer.current = await AutoTokenizer.from_pretrained(tokenizerName);
     };
     void initTokenizer();
-  }, [form.watch("tokenizer")]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [tokenizerName]);
 
   // init tokenizer from file
   async function onSubmit(values: z.infer<typeof formSchema>) {

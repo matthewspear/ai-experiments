@@ -66,6 +66,7 @@ export function DesktopSidebar() {
         <Credits />
         <div className="flex shrink-0 border-t border-gray-200 p-4">
           <button
+            type="button"
             className="group block w-full shrink-0"
             onClick={async (): Promise<void> => {
               // if (session) {
