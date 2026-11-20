@@ -9,3 +9,14 @@ allowBuilds:
 overrides:
   # Typography pins 6.0.10; GHSA-rj75-hqrm-r3gf is fixed in 6.1.5.
   "@tailwindcss/typography>postcss-selector-parser": 6.1.5
+permissions:
+  "@trpc/client":
+    skills: [client-setup, links, superjson]
+  "@trpc/server":
+    skills: [server-setup, adapter-fetch, trpc-router, middlewares, error-handling, validators, auth, server-side-calls]
+  "@tanstack/match-sorter-utils":
+    skills: false
+skills:
+  dirs:
+    - .claude/skills
+    - .agents/skills

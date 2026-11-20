@@ -1,0 +1,13 @@
+# pnpm
+/adapter-fetch
+/auth
+/client-setup
+/error-handling
+/links
+/middlewares
+/server-setup
+/server-side-calls
+/superjson
+/trpc-router
+/validators
+# pnpm end
